@@ -14,27 +14,47 @@ region = Rect2(12, 0, 12, 16)
 atlas = ExtResource("2_ax26v")
 region = Rect2(0, 0, 12, 16)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xboos"]
-radius = 4.1231055
+[sub_resource type="AtlasTexture" id="AtlasTexture_6p1w3"]
+atlas = ExtResource("2_ax26v")
+region = Rect2(0, 16, 4, 4)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p1w3"]
+radius = 3.0
+height = 8.0
 
 [node name="Player" type="CharacterBody2D" unique_id=240714517 groups=["player"]]
 script = ExtResource("1_ilk7j")
 
-[node name="SprtieBody" type="Sprite2D" parent="." unique_id=616515613]
+[node name="Visuals" type="Node2D" parent="." unique_id=203098467]
+
+[node name="Body" type="Sprite2D" parent="Visuals" unique_id=616515613]
+position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_mti6b")
 
-[node name="SpriteHead" type="Sprite2D" parent="." unique_id=1965004166]
+[node name="HeadPivot" type="Node2D" parent="Visuals" unique_id=750475493]
+position = Vector2(0, -9)
+
+[node name="Head" type="Sprite2D" parent="Visuals/HeadPivot" unique_id=1965004166]
+position = Vector2(0, 1)
 texture = SubResource("AtlasTexture_4kxuq")
 
+[node name="HandPivot" type="Node2D" parent="." unique_id=507084467]
+position = Vector2(0, -9)
+
+[node name="Hand" type="Sprite2D" parent="HandPivot" unique_id=509635315]
+texture = SubResource("AtlasTexture_6p1w3")
+
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=438437244]
-shape = SubResource("CircleShape2D_xboos")
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_6p1w3")
 
 [node name="DebugStateLabel" type="Label" parent="." unique_id=1664998739]
 unique_name_in_owner = true
 offset_left = -24.0
-offset_top = -33.0
+offset_top = -32.0
 offset_right = 26.0
-offset_bottom = -10.0
+offset_bottom = -17.0
+text = "test"
 horizontal_alignment = 1
 vertical_alignment = 1
 

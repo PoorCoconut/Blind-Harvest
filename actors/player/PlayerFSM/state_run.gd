@@ -17,5 +17,5 @@ func movement(delta: float):
 	
 	PLAYER.move_and_slide()
 	
-	if direction == Vector2.ZERO and PLAYER.velocity.length() < 5.0:
+	if direction == Vector2.ZERO and PLAYER.velocity.length() < 1.0:
 		transition.emit(self, "Idle")
