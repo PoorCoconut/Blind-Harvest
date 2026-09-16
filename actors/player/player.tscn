@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://b3vev5pcqxupu"]
+
+[ext_resource type="Script" uid="uid://bip5hhxeryemi" path="res://actors/player/player.gd" id="1_ilk7j"]
+[ext_resource type="Texture2D" uid="uid://cjcochjq7rsgd" path="res://actors/player/player.png" id="2_ax26v"]
+[ext_resource type="Script" uid="uid://bhxjxgka2uddu" path="res://systems/FSM/FSM.gd" id="3_ax26v"]
+[ext_resource type="Script" uid="uid://qri00n31jglx" path="res://actors/player/PlayerFSM/state_idle.gd" id="4_6p1w3"]
+[ext_resource type="Script" uid="uid://b1ci27y347n1w" path="res://actors/player/PlayerFSM/state_run.gd" id="5_15y17"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mti6b"]
+atlas = ExtResource("2_ax26v")
+region = Rect2(12, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
+atlas = ExtResource("2_ax26v")
+region = Rect2(0, 0, 12, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xboos"]
+radius = 4.1231055
+
+[node name="Player" type="CharacterBody2D" unique_id=240714517 groups=["player"]]
+script = ExtResource("1_ilk7j")
+
+[node name="SprtieBody" type="Sprite2D" parent="." unique_id=616515613]
+texture = SubResource("AtlasTexture_mti6b")
+
+[node name="SpriteHead" type="Sprite2D" parent="." unique_id=1965004166]
+texture = SubResource("AtlasTexture_4kxuq")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=438437244]
+shape = SubResource("CircleShape2D_xboos")
+
+[node name="DebugStateLabel" type="Label" parent="." unique_id=1664998739]
+unique_name_in_owner = true
+offset_left = -24.0
+offset_top = -33.0
+offset_right = 26.0
+offset_bottom = -10.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FSM" type="Node" parent="." unique_id=1219932784 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_ax26v")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="FSM" unique_id=1302581798 node_paths=PackedStringArray("PLAYER")]
+script = ExtResource("4_6p1w3")
+PLAYER = NodePath("../..")
+
+[node name="Run" type="Node" parent="FSM" unique_id=2093321865 node_paths=PackedStringArray("PLAYER")]
+script = ExtResource("5_15y17")
+PLAYER = NodePath("../..")

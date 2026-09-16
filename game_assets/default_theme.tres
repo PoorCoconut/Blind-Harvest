@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://ctupecruwuwey"]
+
+[ext_resource type="FontFile" uid="uid://d4dkpgeb28ur5" path="res://game_assets/fonts/Cairopixel.ttf" id="1_qtphv"]
+
+[resource]
+default_font = ExtResource("1_qtphv")
+default_font_size = 16

@@ -56,5 +56,6 @@ func force_change_state(new_state : String):
 func _process(delta: float) -> void:
 	if get_parent().has_node("DebugStateLabel"):
 		%DebugStateLabel.text = cur_state.name
+		pass
 	if cur_state:
 		cur_state.updateState(delta)

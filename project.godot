@@ -10,9 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Coco's Game Template"
+config/name="Blind Harvest"
+config/description="Farm your way off your debts while dealing with a series of unfortunate events in your farm!"
 run/main_scene="uid://camlgx74mlna4"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
@@ -31,11 +32,11 @@ ScreenTransition="*uid://rgy5yu73bm2h"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=320
+window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
 [file_customization]
@@ -53,6 +54,10 @@ folder_colors={
 [global_group]
 
 player=""
+
+[gui]
+
+theme/custom="uid://ctupecruwuwey"
 
 [input]
 
