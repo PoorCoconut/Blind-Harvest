@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bip5hhxeryemi" path="res://actors/player/player.gd" id="1_ilk7j"]
 [ext_resource type="Texture2D" uid="uid://cjcochjq7rsgd" path="res://actors/player/player.png" id="2_ax26v"]
+[ext_resource type="Texture2D" uid="uid://c2m0t3pkj2dx1" path="res://vfx/particles/particles.png" id="3_15y17"]
 [ext_resource type="Script" uid="uid://bhxjxgka2uddu" path="res://systems/FSM/FSM.gd" id="3_ax26v"]
 [ext_resource type="Script" uid="uid://qri00n31jglx" path="res://actors/player/PlayerFSM/state_idle.gd" id="4_6p1w3"]
 [ext_resource type="Script" uid="uid://b1ci27y347n1w" path="res://actors/player/PlayerFSM/state_run.gd" id="5_15y17"]
@@ -17,6 +18,29 @@ region = Rect2(0, 0, 12, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6p1w3"]
 atlas = ExtResource("2_ax26v")
 region = Rect2(0, 16, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k3an"]
+atlas = ExtResource("2_ax26v")
+region = Rect2(0, 22, 20, 10)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xhehx"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v71g"]
+atlas = ExtResource("3_15y17")
+region = Rect2(0, 7, 21, 7)
+
+[sub_resource type="Curve" id="Curve_715ea"]
+_limits = [0.0, 1.6525698, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.6525698), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bop6h"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19148937, 1), 0.0, 0.0, 0, 0, Vector2(0.87765956, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p1w3"]
 radius = 3.0
@@ -43,6 +67,29 @@ position = Vector2(0, -9)
 
 [node name="Hand" type="Sprite2D" parent="HandPivot" unique_id=509635315]
 texture = SubResource("AtlasTexture_6p1w3")
+
+[node name="Tool" type="Sprite2D" parent="HandPivot" unique_id=1680671086]
+position = Vector2(0, -3)
+texture = SubResource("AtlasTexture_1k3an")
+hframes = 2
+
+[node name="WateringCanParticles" type="CPUParticles2D" parent="HandPivot/Tool" unique_id=620768442]
+z_index = -1
+material = SubResource("CanvasItemMaterial_xhehx")
+position = Vector2(1, 0)
+emitting = false
+amount = 20
+texture = SubResource("AtlasTexture_0v71g")
+randomness = 1.0
+spread = 5.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+angular_velocity_min = 10.0
+angular_velocity_max = 30.0
+angular_velocity_curve = SubResource("Curve_715ea")
+scale_amount_curve = SubResource("Curve_bop6h")
+anim_speed_max = 2.4
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=438437244]
 position = Vector2(0, -4)

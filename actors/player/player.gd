@@ -24,6 +24,7 @@ var max_hand_distance: float = 10.0
 var max_mouse_reference: float = 100.0
 @onready var hand_pivot: Node2D = $HandPivot
 @onready var hand: Sprite2D = $HandPivot/Hand
+@onready var tool: Sprite2D = $HandPivot/Tool
 
 func _ready() -> void:
 	_max_look_rad = deg_to_rad(max_look_angle_degrees)
@@ -46,7 +47,13 @@ func _physics_process(_delta: float) -> void:
 func update_floating_hand() -> void:
 	var diff: Vector2 = get_global_mouse_position() - hand_pivot.global_position
 	hand_pivot.rotation = diff.angle()
+	
+	var is_facing_right: bool = diff.x >= 0.0
+	tool.flip_v = not is_facing_right
+	
 	var distance_to_mouse: float = diff.length()
 	var distance_ratio: float = clampf(distance_to_mouse / max_mouse_reference, 0.0, 1.0)
 	var calculated_distance: float = lerpf(min_hand_distance, max_hand_distance, distance_ratio)
+	
 	hand.position = Vector2(calculated_distance, 0.0)
+	tool.position = Vector2(calculated_distance, 0.0)

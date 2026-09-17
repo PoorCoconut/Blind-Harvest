@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dgbwxfljplkvr"]
+
+[ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="1_2cup7"]
+[ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/player.tscn" id="2_8fyfc"]
+[ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="3_140fy"]
+
+[node name="World_Farm" type="Node2D" unique_id=516408830]
+position = Vector2(160, 56)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=777440633]
+offset_left = -288.0
+offset_top = -184.0
+offset_right = 288.0
+offset_bottom = 200.0
+color = Color(0.14509805, 0.14509805, 0.3019608, 1)
+
+[node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("1_2cup7")]
+visible = false
+
+[node name="Player" parent="." unique_id=240714517 instance=ExtResource("2_8fyfc")]
+
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("3_140fy")]
+position = Vector2(-160, -56)
+target = NodePath("../Player")
