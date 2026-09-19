@@ -21,7 +21,7 @@ region = Rect2(0, 16, 4, 4)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1k3an"]
 atlas = ExtResource("2_ax26v")
-region = Rect2(0, 22, 20, 10)
+region = Rect2(0, 22, 30, 10)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xhehx"]
 particles_animation = true
@@ -42,9 +42,20 @@ point_count = 2
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19148937, 1), 0.0, 0.0, 0, 0, Vector2(0.87765956, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhehx"]
+atlas = ExtResource("3_15y17")
+region = Rect2(0, 14, 7, 7)
+
+[sub_resource type="Curve" id="Curve_vfsqc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25531915, 1), 0.0, 0.0, 0, 0, Vector2(0.7446809, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p1w3"]
 radius = 3.0
 height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1k3an"]
+radius = 20.0
 
 [node name="Player" type="CharacterBody2D" unique_id=240714517 groups=["player"]]
 script = ExtResource("1_ilk7j")
@@ -71,10 +82,9 @@ texture = SubResource("AtlasTexture_6p1w3")
 [node name="Tool" type="Sprite2D" parent="HandPivot" unique_id=1680671086]
 position = Vector2(0, -3)
 texture = SubResource("AtlasTexture_1k3an")
-hframes = 2
+hframes = 3
 
 [node name="WateringCanParticles" type="CPUParticles2D" parent="HandPivot/Tool" unique_id=620768442]
-z_index = -1
 material = SubResource("CanvasItemMaterial_xhehx")
 position = Vector2(1, 0)
 emitting = false
@@ -91,9 +101,32 @@ angular_velocity_curve = SubResource("Curve_715ea")
 scale_amount_curve = SubResource("Curve_bop6h")
 anim_speed_max = 2.4
 
+[node name="WrenchParticles" type="CPUParticles2D" parent="HandPivot/Tool" unique_id=590604180]
+position = Vector2(0, 3)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_xhehx")
+emission_shape = 1
+emission_sphere_radius = 20.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 10.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+scale_amount_curve = SubResource("Curve_vfsqc")
+
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=438437244]
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_6p1w3")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=2133392981]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1137938108]
+shape = SubResource("CircleShape2D_1k3an")
 
 [node name="DebugStateLabel" type="Label" parent="." unique_id=1664998739]
 unique_name_in_owner = true
@@ -116,3 +149,5 @@ PLAYER = NodePath("../..")
 [node name="Run" type="Node" parent="FSM" unique_id=2093321865 node_paths=PackedStringArray("PLAYER")]
 script = ExtResource("5_15y17")
 PLAYER = NodePath("../..")
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]

@@ -3,15 +3,29 @@
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="1_2cup7"]
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/player.tscn" id="2_8fyfc"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="3_140fy"]
+[ext_resource type="Texture2D" uid="uid://fexph0k7gham" path="res://game_assets/gameplay/farm_sprites.png" id="4_8fyfc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k3an"]
+atlas = ExtResource("4_8fyfc")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_140fy"]
+atlas = ExtResource("4_8fyfc")
+region = Rect2(80, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2c5r3"]
+atlas = ExtResource("4_8fyfc")
+region = Rect2(72, 48, 32, 32)
 
 [node name="World_Farm" type="Node2D" unique_id=516408830]
+y_sort_enabled = true
 position = Vector2(160, 56)
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=777440633]
-offset_left = -288.0
+offset_left = -416.0
 offset_top = -184.0
-offset_right = 288.0
-offset_bottom = 200.0
+offset_right = 416.0
+offset_bottom = 360.0
 color = Color(0.14509805, 0.14509805, 0.3019608, 1)
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("1_2cup7")]
@@ -22,3 +36,15 @@ visible = false
 [node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("3_140fy")]
 position = Vector2(-160, -56)
 target = NodePath("../Player")
+
+[node name="FarmHouseSprite" type="Sprite2D" parent="." unique_id=125340420]
+position = Vector2(0, -40)
+texture = SubResource("AtlasTexture_1k3an")
+
+[node name="GeneratorSprite" type="Sprite2D" parent="." unique_id=1649506822]
+position = Vector2(148, 188)
+texture = SubResource("AtlasTexture_140fy")
+
+[node name="WaterPump" type="Sprite2D" parent="." unique_id=796070638]
+position = Vector2(-148, 184)
+texture = SubResource("AtlasTexture_2c5r3")

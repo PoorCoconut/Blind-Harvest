@@ -24,7 +24,11 @@ var max_hand_distance: float = 10.0
 var max_mouse_reference: float = 100.0
 @onready var hand_pivot: Node2D = $HandPivot
 @onready var hand: Sprite2D = $HandPivot/Hand
+
+#Tools and Particles
 @onready var tool: Sprite2D = $HandPivot/Tool
+@onready var water_ptcl: CPUParticles2D = $HandPivot/Tool/WateringCanParticles
+@onready var wrench_ptcl: CPUParticles2D = $HandPivot/Tool/WrenchParticles
 
 func _ready() -> void:
 	_max_look_rad = deg_to_rad(max_look_angle_degrees)
@@ -40,6 +44,21 @@ func _process(_delta: float) -> void:
 	
 	#Hand code
 	update_floating_hand()
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		match tool.frame:
+			0: #Holding nothing
+				water_ptcl.emitting = false
+				wrench_ptcl.emitting = false
+			1: #Watering Can
+				water_ptcl.emitting = true
+				wrench_ptcl.emitting = false
+			2: #Wrench
+				water_ptcl.emitting = false
+				wrench_ptcl.emitting = true
+	else:
+		water_ptcl.emitting = false
+		wrench_ptcl.emitting = false
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -57,3 +76,22 @@ func update_floating_hand() -> void:
 	
 	hand.position = Vector2(calculated_distance, 0.0)
 	tool.position = Vector2(calculated_distance, 0.0)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			cycle_tool_sprite(-1)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			cycle_tool_sprite(1)
+
+func cycle_tool_sprite(direction: int) -> void:
+	var total_frames: int = tool.hframes * tool.vframes
+	tool.frame = posmod(tool.frame + direction, total_frames)
+
+func _on_interaction_area_area_entered(area: Area2D) -> void:
+	var area_par := area.get_parent()
+	if area_par:
+		if area_par.is_in_group("water_pump"):
+			tool.frame = 1
+		elif area_par.is_in_group("water_pump"):
+			tool.frame = 2
