@@ -127,6 +127,7 @@ collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1137938108]
 shape = SubResource("CircleShape2D_1k3an")
+debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="DebugStateLabel" type="Label" parent="." unique_id=1664998739]
 unique_name_in_owner = true
