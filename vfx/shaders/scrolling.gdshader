@@ -6,6 +6,7 @@ uniform float speed : hint_range(0.0, 100.0) = 1;
 uniform float scale : hint_range(0.01, 100.0, 0.01) = 0.2;
 uniform vec2 gap = vec2(0.5, 0.5);
 uniform vec2 node_scale = vec2(1.0);
+uniform float transparency : hint_range(0.0, 1.0) = 1.0;
 
 vec2 rotate(vec2 uv, float local_angle) {
 	mat2 rotation = mat2(vec2(sin(local_angle), -cos(local_angle)),
@@ -31,4 +32,5 @@ void fragment() {
 	vec4 tex = texture(TEXTURE, pos);
 
 	COLOR = vec4(vec3(tex.rgb), alpha);
+	COLOR.a *= transparency; 
 }
