@@ -13,7 +13,7 @@ const IMAGE_FADE_TIME : float = 0.5
 @onready var label_bottom: RichTextLabel = $Control/MarginContainer/VBoxContainer/LabelBottom
 @onready var next_arrow: Sprite2D = $Control/MarginContainer/VBoxContainer/NextArrow
 
-var current_day : int = 0
+var current_day : int = 1
 var state : TV_State = TV_State.IDLE
 var skipping : bool = false
 var tween : Tween
@@ -44,9 +44,32 @@ var dialogue : Dictionary = {
 			"image": Vector2i(0, 0),
 		}
 	],
+	1: [ #Day 1 , Thieves and Burglars
+		{
+			"top" : "Good Day to all!\nToday's news report will tackle on an unfortunate statistic seen in the local neighborhood.",
+		},
+		{
+			"top" : "Lately, there has been a rise of criminal activity.",
+			"image" : Vector2i(0,1),
+			"bottom" : "For your safety, lock all your doors and\nDO NOT go outside.",
+		},
+		{
+			"top" : "If you find any suspicious activity in your area, DO NOT ENGAGE.\n\nYour LIFE will be in GREAT DANGER if you do!",
+			
+		},
+		{
+			"top" : "You must quietly leave the area\n slowly walk to your house and DO NOT LEAVE.\nIt is advised not to be noticed as you leave or your safety is compromised.",
+			"image" : Vector2i(1,1),
+		},
+		{
+			"top" : "This concludes today's news report.\nStay safe.\nDo not approach suspicious people.\nAnd . . . Have a Great Day!",
+			"image" : Vector2i(0,0),
+			"bottom" : "[This report has been brought to you by the Oracle Report Association]"
+		}
+	]
 }
 
-const PAUSES : Dictionary = { ".": 0.35, "!": 0.35, "?": 0.35, ",": 0.15 }
+const PAUSES : Dictionary = { ".": 0.6, "!": 0.6, "?": 0.6, ",": 0.5, "\n": 1.0}
 
 func _ready() -> void:
 	hide_text(label_top)
