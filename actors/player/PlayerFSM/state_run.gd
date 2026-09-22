@@ -5,6 +5,10 @@ func enterState():
 	pass
 
 func updateState(delta: float):
+	if PLAYER.walk_sfx.volume_db != 0.0:
+		if PLAYER.walk_sfx.playing == false:
+			PLAYER.walk_sfx.playing = true
+		PLAYER.walk_sfx.volume_db = lerpf(PLAYER.walk_sfx.volume_db, 0.0, delta * 10)
 	movement(delta)
 
 func movement(delta: float):

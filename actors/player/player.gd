@@ -30,10 +30,16 @@ var max_mouse_reference: float = 100.0
 @onready var water_ptcl: CPUParticles2D = $HandPivot/Tool/WateringCanParticles
 @onready var wrench_ptcl: CPUParticles2D = $HandPivot/Tool/WrenchParticles
 
+@onready var flash_light_pivot: Node2D = $FlashLightPivot
+
+#Sfx
+@onready var walk_sfx: AudioStreamPlayer = $SFX/WalkSFX
+@onready var water_sfx: AudioStreamPlayer = $SFX/WaterSFX
+
 func _ready() -> void:
 	_max_look_rad = deg_to_rad(max_look_angle_degrees)
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	#Head code
 	var diff: Vector2 = get_global_mouse_position() - head_pivot.global_position
 	var facing_right: bool = diff.x >= 0.0
@@ -51,6 +57,9 @@ func _process(_delta: float) -> void:
 				water_ptcl.emitting = false
 				wrench_ptcl.emitting = false
 			1: #Watering Can
+				var wc_tween : Tween = get_tree().create_tween()
+				wc_tween.tween_property(water_sfx, "volume_db", 0.0, 1)
+				
 				water_ptcl.emitting = true
 				wrench_ptcl.emitting = false
 			2: #Wrench
@@ -59,6 +68,11 @@ func _process(_delta: float) -> void:
 	else:
 		water_ptcl.emitting = false
 		wrench_ptcl.emitting = false
+		
+		var wc_tween : Tween = get_tree().create_tween()
+		wc_tween.tween_property(water_sfx, "volume_db", -80.0, 1)
+	
+	flash_light_pivot.look_at(get_global_mouse_position())
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -87,6 +101,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func cycle_tool_sprite(direction: int) -> void:
 	var total_frames: int = tool.hframes * tool.vframes
 	tool.frame = posmod(tool.frame + direction, total_frames)
+	SoundBank.play_sfx("switch_item")
 
 func _on_interaction_area_area_entered(area: Area2D) -> void:
 	var area_par := area.get_parent()

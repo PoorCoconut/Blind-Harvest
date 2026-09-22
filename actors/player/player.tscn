@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://bhxjxgka2uddu" path="res://systems/FSM/FSM.gd" id="3_ax26v"]
 [ext_resource type="Script" uid="uid://qri00n31jglx" path="res://actors/player/PlayerFSM/state_idle.gd" id="4_6p1w3"]
 [ext_resource type="Script" uid="uid://b1ci27y347n1w" path="res://actors/player/PlayerFSM/state_run.gd" id="5_15y17"]
+[ext_resource type="Texture2D" uid="uid://cn5nl2yw0x176" path="res://game_assets/flashlight_lightcone.png" id="7_388e2"]
+[ext_resource type="AudioStream" uid="uid://chjylsbxtegjk" path="res://sound/sfx/sfx_walk.mp3" id="7_bop6h"]
+[ext_resource type="AudioStream" uid="uid://75rog7cglq7g" path="res://sound/sfx/sfx_water.mp3" id="8_a744p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mti6b"]
 atlas = ExtResource("2_ax26v")
@@ -57,12 +60,28 @@ height = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_1k3an"]
 radius = 20.0
 
+[sub_resource type="Gradient" id="Gradient_15y17"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_388e2"]
+gradient = SubResource("Gradient_15y17")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.84615386, 0.46153846)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4kxuq"]
+gradient = SubResource("Gradient_15y17")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
 [node name="Player" type="CharacterBody2D" unique_id=240714517 groups=["player"]]
 script = ExtResource("1_ilk7j")
 
 [node name="Visuals" type="Node2D" parent="." unique_id=203098467]
 
 [node name="Body" type="Sprite2D" parent="Visuals" unique_id=616515613]
+light_mask = 2
 position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_mti6b")
 
@@ -70,6 +89,7 @@ texture = SubResource("AtlasTexture_mti6b")
 position = Vector2(0, -9)
 
 [node name="Head" type="Sprite2D" parent="Visuals/HeadPivot" unique_id=1965004166]
+light_mask = 2
 position = Vector2(0, 1)
 texture = SubResource("AtlasTexture_4kxuq")
 
@@ -77,14 +97,17 @@ texture = SubResource("AtlasTexture_4kxuq")
 position = Vector2(0, -9)
 
 [node name="Hand" type="Sprite2D" parent="HandPivot" unique_id=509635315]
+light_mask = 2
 texture = SubResource("AtlasTexture_6p1w3")
 
 [node name="Tool" type="Sprite2D" parent="HandPivot" unique_id=1680671086]
+light_mask = 2
 position = Vector2(0, -3)
 texture = SubResource("AtlasTexture_1k3an")
 hframes = 3
 
 [node name="WateringCanParticles" type="CPUParticles2D" parent="HandPivot/Tool" unique_id=620768442]
+light_mask = 2
 material = SubResource("CanvasItemMaterial_xhehx")
 position = Vector2(1, 0)
 emitting = false
@@ -102,6 +125,7 @@ scale_amount_curve = SubResource("Curve_bop6h")
 anim_speed_max = 2.4
 
 [node name="WrenchParticles" type="CPUParticles2D" parent="HandPivot/Tool" unique_id=590604180]
+light_mask = 2
 position = Vector2(0, 3)
 emitting = false
 amount = 10
@@ -150,5 +174,47 @@ PLAYER = NodePath("../..")
 [node name="Run" type="Node" parent="FSM" unique_id=2093321865 node_paths=PackedStringArray("PLAYER")]
 script = ExtResource("5_15y17")
 PLAYER = NodePath("../..")
+
+[node name="PlayerLight" type="PointLight2D" parent="." unique_id=1464727708]
+light_mask = 2
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 10.0
+texture = SubResource("GradientTexture2D_388e2")
+
+[node name="LanternLight" type="PointLight2D" parent="." unique_id=1873671267]
+visible = false
+light_mask = 2
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 10.0
+texture = SubResource("GradientTexture2D_4kxuq")
+texture_scale = 2.5
+
+[node name="FlashLightPivot" type="Node2D" parent="." unique_id=1592641718]
+
+[node name="FlashLight" type="PointLight2D" parent="FlashLightPivot" unique_id=1849441623]
+light_mask = 2
+position = Vector2(-16, 0)
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 5.0
+texture = ExtResource("7_388e2")
+offset = Vector2(192, 0)
+texture_scale = 0.2
+
+[node name="SFX" type="Node" parent="." unique_id=874436210]
+
+[node name="WalkSFX" type="AudioStreamPlayer" parent="SFX" unique_id=1061487839]
+stream = ExtResource("7_bop6h")
+volume_db = -80.0
+bus = &"SFX"
+
+[node name="WaterSFX" type="AudioStreamPlayer" parent="SFX" unique_id=1959167584]
+stream = ExtResource("8_a744p")
+autoplay = true
 
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]

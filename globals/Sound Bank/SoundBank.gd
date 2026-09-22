@@ -2,7 +2,19 @@ extends Node
 
 #Store sound effects here...
 var sfx_dict : Dictionary = {
+	#Player
+	"switch_item" : preload("uid://db15gb87fhem8"),
+	"f_light_on" : preload("uid://bn5a8hnv4mp63"),
+	"f_light_off" : preload("uid://mida4lmec3wj"),
+	"f_light_charged" : preload("uid://d36mpcho4e3ee"),
 	
+	#Ambiance
+	"amb_horror" : preload("uid://elu5b7uru45u"),
+	"amb_horror2" : preload("uid://cn5bssgip8fqt"),
+	"amb_horror3" : preload("uid://cqxlr1wt3i4fc"),
+	
+	#Gameplay
+	"halfway" : preload("uid://dfqaixofmtviu"),
 }
 
 #Here is an example:
@@ -13,7 +25,7 @@ var sfx_dict : Dictionary = {
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-func play_sfx(sfx_name : String, spawn_pos : Vector2) -> void:
+func play_sfx(sfx_name : String, spawn_pos : Vector2 = Vector2.ZERO) -> void:
 	#Check if sound exists
 	if not sfx_dict.has(sfx_name):
 		push_error("GameManager: SFX '" + sfx_name + "' not found in dictionary.")

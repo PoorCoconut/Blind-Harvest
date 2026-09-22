@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bxpj63r6lffje"]
+
+[ext_resource type="Script" uid="uid://c2egegtvfekmj" path="res://actors/dog_farm/dog_farm.gd" id="1_0lso5"]
+[ext_resource type="Texture2D" uid="uid://7evv26uppv0p" path="res://game_assets/ui_sprites.png" id="1_1wp02"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
+atlas = ExtResource("1_1wp02")
+region = Rect2(16, 0, 16, 16)
+
+[node name="DogFarm" type="Node2D" unique_id=308526983]
+script = ExtResource("1_0lso5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=420926150]
+position = Vector2(0, -6)
+texture = SubResource("AtlasTexture_4kxuq")

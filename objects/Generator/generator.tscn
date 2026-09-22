@@ -1,18 +1,18 @@
-[gd_scene format=3 uid="uid://bs434mon3s7t2"]
+[gd_scene format=3 uid="uid://dlf6iix7hjq88"]
 
-[ext_resource type="Texture2D" uid="uid://fexph0k7gham" path="res://game_assets/gameplay/farm_sprites.png" id="1_1j4d1"]
+[ext_resource type="Texture2D" uid="uid://fexph0k7gham" path="res://game_assets/gameplay/farm_sprites.png" id="1_juhgu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1k3an"]
-atlas = ExtResource("1_1j4d1")
-region = Rect2(72, 48, 32, 32)
+atlas = ExtResource("1_juhgu")
+region = Rect2(80, 24, 24, 24)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1k3an"]
 radius = 24.0
 
-[node name="WaterPump" type="Node2D" unique_id=347362925 groups=["water_pump"]]
+[node name="Generator" type="Node2D" unique_id=347362925 groups=["water_pump"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1242936887]
-position = Vector2(0, -16)
+position = Vector2(0, -12)
 texture = SubResource("AtlasTexture_1k3an")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=954223639]
