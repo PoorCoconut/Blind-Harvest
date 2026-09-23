@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bn5ilj6dvhaem"]
+
+[ext_resource type="Script" uid="uid://cgaoaygk14kc2" path="res://globals/Simple Music Manager/simple_music_manager.gd" id="1_txlap"]
+[ext_resource type="AudioStream" uid="uid://cfdspwh2uywyn" path="res://sound/mus/Waltz of the Disasters.wav" id="2_apkl5"]
+[ext_resource type="AudioStream" uid="uid://h1vnsgdc7j0o" path="res://sound/mus/Daylight Waltz.wav" id="3_idvws"]
+
+[node name="SimpleMusicManager" type="Node" unique_id=2006899512]
+process_mode = 3
+script = ExtResource("1_txlap")
+
+[node name="Menu" type="AudioStreamPlayer" parent="." unique_id=1340119013]
+stream = ExtResource("2_apkl5")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+
+[node name="Day" type="AudioStreamPlayer" parent="." unique_id=107513880]
+stream = ExtResource("3_idvws")
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+
+[node name="News" type="AudioStreamPlayer" parent="." unique_id=439677235]
+volume_db = -80.0
+autoplay = true
+bus = &"Music"
+
+[node name="End" type="AudioStreamPlayer" parent="." unique_id=2004542915]
+volume_db = -80.0
+autoplay = true
+bus = &"Music"

@@ -10,7 +10,7 @@
 [ext_resource type="Shader" uid="uid://b7fu678h3i00r" path="res://vfx/shaders/crt.gdshader" id="8_usasd"]
 [ext_resource type="AudioStream" uid="uid://b2m2qpqymgjcu" path="res://sound/sfx/sfx_tv_on.mp3" id="9_ojvb7"]
 [ext_resource type="AudioStream" uid="uid://rkp552igpdkf" path="res://sound/sfx/sfx_tv_static.mp3" id="10_4jyb7"]
-[ext_resource type="AudioStream" uid="uid://dp5u5kxrg3sip" path="res://sound/mus/mus_news.mp3" id="11_ge5kp"]
+[ext_resource type="AudioStream" uid="uid://dqlqi5kadbl7x" path="res://sound/mus/Newsanova.wav" id="11_ojvb7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4sfkv"]
 shader = ExtResource("2_q4vuk")
@@ -616,7 +616,7 @@ autoplay = true
 bus = &"SFX"
 
 [node name="MusNews" type="AudioStreamPlayer" parent="." unique_id=1578491815]
-stream = ExtResource("11_ge5kp")
+stream = ExtResource("11_ojvb7")
 pitch_scale = 0.01
 autoplay = true
 bus = &"Music"

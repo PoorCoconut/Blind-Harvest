@@ -1,0 +1,349 @@
+[gd_scene format=3 uid="uid://cbbee5kxc5sk6"]
+
+[ext_resource type="Script" uid="uid://brht4tt2k115o" path="res://systems/Farming Plot/farming_plot.gd" id="1_3rwvc"]
+[ext_resource type="Texture2D" uid="uid://3ft4bxnletbr" path="res://game_assets/worlds/spring-crops.png" id="2_qa42h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
+atlas = ExtResource("2_qa42h")
+region = Rect2(-16, 0, 96, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
+size = Vector2(128, 64)
+
+[node name="FarmingPlot" type="Node2D" unique_id=330822011]
+script = ExtResource("1_3rwvc")
+
+[node name="Plants" type="Node2D" parent="." unique_id=892051140]
+
+[node name="Sprite2D" type="Sprite2D" parent="Plants" unique_id=96454652]
+position = Vector2(8, 8)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D2" type="Sprite2D" parent="Plants" unique_id=1213343173]
+position = Vector2(14, 15)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D3" type="Sprite2D" parent="Plants" unique_id=179726522]
+position = Vector2(9, 23)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D4" type="Sprite2D" parent="Plants" unique_id=728568212]
+position = Vector2(13, 31)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D5" type="Sprite2D" parent="Plants" unique_id=704232900]
+position = Vector2(9, 39)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D6" type="Sprite2D" parent="Plants" unique_id=2033164754]
+position = Vector2(14, 47)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D7" type="Sprite2D" parent="Plants" unique_id=761843458]
+position = Vector2(22, 7)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D8" type="Sprite2D" parent="Plants" unique_id=349113188]
+position = Vector2(28, 14)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D9" type="Sprite2D" parent="Plants" unique_id=1852667390]
+position = Vector2(23, 22)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D10" type="Sprite2D" parent="Plants" unique_id=1765229277]
+position = Vector2(27, 30)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D11" type="Sprite2D" parent="Plants" unique_id=1530505331]
+position = Vector2(23, 38)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D12" type="Sprite2D" parent="Plants" unique_id=790301241]
+position = Vector2(28, 46)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D13" type="Sprite2D" parent="Plants" unique_id=1219992967]
+position = Vector2(33, 5)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D14" type="Sprite2D" parent="Plants" unique_id=1405312079]
+position = Vector2(39, 12)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D15" type="Sprite2D" parent="Plants" unique_id=1356313524]
+position = Vector2(34, 20)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D16" type="Sprite2D" parent="Plants" unique_id=1856860438]
+position = Vector2(38, 28)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D17" type="Sprite2D" parent="Plants" unique_id=1272643175]
+position = Vector2(34, 36)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D18" type="Sprite2D" parent="Plants" unique_id=88344657]
+position = Vector2(39, 44)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D19" type="Sprite2D" parent="Plants" unique_id=1738260568]
+position = Vector2(46, 8)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D20" type="Sprite2D" parent="Plants" unique_id=1043298548]
+position = Vector2(52, 15)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D21" type="Sprite2D" parent="Plants" unique_id=1282403990]
+position = Vector2(47, 23)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D22" type="Sprite2D" parent="Plants" unique_id=1940791355]
+position = Vector2(51, 31)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D23" type="Sprite2D" parent="Plants" unique_id=798043308]
+position = Vector2(47, 39)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D24" type="Sprite2D" parent="Plants" unique_id=1979082249]
+position = Vector2(52, 47)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D25" type="Sprite2D" parent="Plants" unique_id=368402992]
+position = Vector2(60, 7)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D26" type="Sprite2D" parent="Plants" unique_id=692677845]
+position = Vector2(66, 14)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D27" type="Sprite2D" parent="Plants" unique_id=932816277]
+position = Vector2(61, 22)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D28" type="Sprite2D" parent="Plants" unique_id=1406951937]
+position = Vector2(65, 30)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D29" type="Sprite2D" parent="Plants" unique_id=1768248019]
+position = Vector2(61, 38)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D30" type="Sprite2D" parent="Plants" unique_id=2010539840]
+position = Vector2(66, 46)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D31" type="Sprite2D" parent="Plants" unique_id=1398915327]
+position = Vector2(72, 13)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D32" type="Sprite2D" parent="Plants" unique_id=495347882]
+position = Vector2(78, 20)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D33" type="Sprite2D" parent="Plants" unique_id=296593240]
+position = Vector2(73, 28)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D34" type="Sprite2D" parent="Plants" unique_id=87253658]
+position = Vector2(77, 36)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D35" type="Sprite2D" parent="Plants" unique_id=2008121591]
+position = Vector2(73, 44)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D36" type="Sprite2D" parent="Plants" unique_id=1248137889]
+position = Vector2(78, 52)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D37" type="Sprite2D" parent="Plants" unique_id=1482398736]
+position = Vector2(83, 8)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D38" type="Sprite2D" parent="Plants" unique_id=202718395]
+position = Vector2(89, 15)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D39" type="Sprite2D" parent="Plants" unique_id=1248184625]
+position = Vector2(84, 23)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D40" type="Sprite2D" parent="Plants" unique_id=300615990]
+position = Vector2(88, 31)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D41" type="Sprite2D" parent="Plants" unique_id=442292790]
+position = Vector2(84, 39)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D42" type="Sprite2D" parent="Plants" unique_id=1617549145]
+position = Vector2(89, 47)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D43" type="Sprite2D" parent="Plants" unique_id=1464271730]
+position = Vector2(94, 11)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D44" type="Sprite2D" parent="Plants" unique_id=1693018176]
+position = Vector2(100, 18)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D45" type="Sprite2D" parent="Plants" unique_id=1260583072]
+position = Vector2(95, 26)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D46" type="Sprite2D" parent="Plants" unique_id=22484397]
+position = Vector2(99, 34)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D47" type="Sprite2D" parent="Plants" unique_id=1354797730]
+position = Vector2(95, 42)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D48" type="Sprite2D" parent="Plants" unique_id=680624953]
+position = Vector2(100, 50)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D49" type="Sprite2D" parent="Plants" unique_id=1941116441]
+position = Vector2(110, 9)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D50" type="Sprite2D" parent="Plants" unique_id=117250614]
+position = Vector2(119, 15)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D51" type="Sprite2D" parent="Plants" unique_id=911311899]
+position = Vector2(111, 24)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D52" type="Sprite2D" parent="Plants" unique_id=1737472291]
+position = Vector2(118, 34)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D53" type="Sprite2D" parent="Plants" unique_id=100210540]
+position = Vector2(107, 41)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="Sprite2D54" type="Sprite2D" parent="Plants" unique_id=1794668355]
+position = Vector2(116, 48)
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 6
+frame = 5
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=493269444]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=172900027]
+position = Vector2(64, 32)
+shape = SubResource("RectangleShape2D_4kxuq")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

@@ -12,6 +12,7 @@ extends Control
 @export_file("*.tscn") var next_level_path : String
 
 func _ready() -> void:
+	MusicManager.change_music("menu", 0.0)
 	slider_ma_vol.value = SettingsManager.master_vol
 	slider_mu_vol.value = SettingsManager.music_vol
 	slider_s_vol.value = SettingsManager.sfx_vol

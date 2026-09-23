@@ -103,10 +103,22 @@ func cycle_tool_sprite(direction: int) -> void:
 	tool.frame = posmod(tool.frame + direction, total_frames)
 	SoundBank.play_sfx("switch_item")
 
+func get_tool_id() -> int:
+	return tool.frame
+
+func is_using_tool() -> bool:
+	return Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+
 func _on_interaction_area_area_entered(area: Area2D) -> void:
 	var area_par := area.get_parent()
 	if area_par:
 		if area_par.is_in_group("water_pump"):
-			tool.frame = 1
-		elif area_par.is_in_group("water_pump"):
-			tool.frame = 2
+			if tool.frame == 0:
+				cycle_tool_sprite(1)
+			elif tool.frame == 2:
+				cycle_tool_sprite(-1)
+		elif area_par.is_in_group("generator"):
+			if tool.frame == 0:
+				cycle_tool_sprite(2)
+			elif tool.frame == 1:
+				cycle_tool_sprite(1)

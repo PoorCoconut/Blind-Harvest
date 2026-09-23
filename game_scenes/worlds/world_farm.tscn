@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ckw3aagt83e4s" path="res://game_assets/worlds/tileset_grass.png" id="7_8r7ov"]
 [ext_resource type="Texture2D" uid="uid://cbk7ed53yulo4" path="res://game_assets/worlds/wood fence tileset.png" id="8_t45a1"]
 [ext_resource type="AudioStream" uid="uid://bm0fp425jt5t8" path="res://sound/amb/amb_drone.mp3" id="9_t45a1"]
+[ext_resource type="PackedScene" uid="uid://cbbee5kxc5sk6" path="res://systems/Farming Plot/farming_plot.tscn" id="11_fvngo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
 atlas = ExtResource("4_8fyfc")
@@ -761,6 +762,7 @@ tile_map_data = PackedByteArray("AAAHAAQAAAADAAEAAAADAAQAAAACAAAAAAAEAAQAAAACAAA
 tile_set = SubResource("TileSet_mti6b")
 
 [node name="DarkModulate" type="CanvasModulate" parent="." unique_id=1625098332]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="AmbienceWorld" type="AudioStreamPlayer" parent="." unique_id=1687501688]
@@ -771,5 +773,8 @@ autoplay = true
 [node name="RandomScareAmbienceTimer" type="Timer" parent="." unique_id=1805321982]
 wait_time = 10.0
 autostart = true
+
+[node name="FarmingPlot" parent="." unique_id=330822011 instance=ExtResource("11_fvngo")]
+position = Vector2(-80, 256)
 
 [connection signal="timeout" from="RandomScareAmbienceTimer" to="." method="_on_random_scare_ambience_timer_timeout"]

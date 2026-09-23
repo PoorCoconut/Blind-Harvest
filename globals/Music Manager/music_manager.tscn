@@ -1,7 +1,33 @@
 [gd_scene format=3 uid="uid://c0m8bxeg6ekky"]
 
 [ext_resource type="Script" uid="uid://cu4cmygusntwq" path="res://globals/Music Manager/music_manager.gd" id="1_kwnxt"]
+[ext_resource type="Script" uid="uid://ok7aycfrhu2f" path="res://systems/Custom Music Track Resource/MusicTrack.gd" id="2_ll68j"]
+[ext_resource type="AudioStream" uid="uid://h1vnsgdc7j0o" path="res://sound/mus/Daylight Waltz.wav" id="3_vglro"]
+[ext_resource type="AudioStream" uid="uid://cfdspwh2uywyn" path="res://sound/mus/Waltz of the Disasters.wav" id="4_ilgn7"]
+[ext_resource type="AudioStream" uid="uid://dchypk524dpgb" path="res://sound/mus/Mystery Waltz.ogg" id="5_1oab0"]
+
+[sub_resource type="Resource" id="Resource_apkl5"]
+script = ExtResource("2_ll68j")
+track_name = "day"
+stems = Array[AudioStream]([ExtResource("3_vglro")])
+bpm = 140
+metadata/_custom_type_script = "uid://ok7aycfrhu2f"
+
+[sub_resource type="Resource" id="Resource_idvws"]
+script = ExtResource("2_ll68j")
+track_name = "menu"
+stems = Array[AudioStream]([ExtResource("4_ilgn7")])
+bpm = 100
+metadata/_custom_type_script = "uid://ok7aycfrhu2f"
+
+[sub_resource type="Resource" id="Resource_fwj8x"]
+script = ExtResource("2_ll68j")
+track_name = "end"
+stems = Array[AudioStream]([ExtResource("5_1oab0")])
+bpm = 200
+metadata/_custom_type_script = "uid://ok7aycfrhu2f"
 
 [node name="MusicManager" type="Node" unique_id=1495717072]
 process_mode = 3
 script = ExtResource("1_kwnxt")
+music_tracks = Array[ExtResource("2_ll68j")]([SubResource("Resource_apkl5"), SubResource("Resource_idvws"), SubResource("Resource_fwj8x")])

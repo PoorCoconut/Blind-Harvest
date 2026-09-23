@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dchypk524dpgb"
+path="res://.godot/imported/Mystery Waltz.ogg-9f797824ca8abd88821d6c57be52fcda.oggvorbisstr"
+
+[deps]
+
+source_file="res://sound/mus/Mystery Waltz.ogg"
+dest_files=["res://.godot/imported/Mystery Waltz.ogg-9f797824ca8abd88821d6c57be52fcda.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
