@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://busneeccby05a"]
+
+[ext_resource type="Script" uid="uid://gnlfgq4la35n" path="res://systems/Watering Can/watering_can.gd" id="1_nauth"]
+
+[node name="WateringCan" type="Node" unique_id=1721167239]
+script = ExtResource("1_nauth")
+refill_rate = 25.0

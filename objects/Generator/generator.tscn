@@ -17,7 +17,7 @@ texture = SubResource("AtlasTexture_1k3an")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=954223639]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1349919863]
 shape = SubResource("CircleShape2D_1k3an")

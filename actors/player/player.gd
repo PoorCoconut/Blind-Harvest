@@ -30,11 +30,16 @@ var max_mouse_reference: float = 100.0
 @onready var water_ptcl: CPUParticles2D = $HandPivot/Tool/WateringCanParticles
 @onready var wrench_ptcl: CPUParticles2D = $HandPivot/Tool/WrenchParticles
 
-@onready var flash_light_pivot: Node2D = $FlashLightPivot
-
-#Sfx
+@onready var flash_light_pivot: Node2D = $Light/FlashLightPivot
 @onready var walk_sfx: AudioStreamPlayer = $SFX/WalkSFX
 @onready var water_sfx: AudioStreamPlayer = $SFX/WaterSFX
+
+@onready var can: WateringCan = $WateringCan
+var is_watering := false   # true only on frames the can actually spent water
+
+#Sound
+var _sfx_on := false
+var _sfx_tween: Tween
 
 func _ready() -> void:
 	_max_look_rad = deg_to_rad(max_look_angle_degrees)
@@ -51,16 +56,16 @@ func _process(delta: float) -> void:
 	#Hand code
 	update_floating_hand()
 	
+	is_watering = false
+	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		match tool.frame:
 			0: #Holding nothing
 				water_ptcl.emitting = false
 				wrench_ptcl.emitting = false
 			1: #Watering Can
-				var wc_tween : Tween = get_tree().create_tween()
-				wc_tween.tween_property(water_sfx, "volume_db", 0.0, 1)
-				
-				water_ptcl.emitting = true
+				is_watering = can.use(delta)   # returns false when empty
+				water_ptcl.emitting = is_watering
 				wrench_ptcl.emitting = false
 			2: #Wrench
 				water_ptcl.emitting = false
@@ -68,10 +73,8 @@ func _process(delta: float) -> void:
 	else:
 		water_ptcl.emitting = false
 		wrench_ptcl.emitting = false
-		
-		var wc_tween : Tween = get_tree().create_tween()
-		wc_tween.tween_property(water_sfx, "volume_db", -80.0, 1)
 	
+	_set_water_sfx(is_watering)
 	flash_light_pivot.look_at(get_global_mouse_position())
 
 func _physics_process(_delta: float) -> void:
@@ -108,6 +111,16 @@ func get_tool_id() -> int:
 
 func is_using_tool() -> bool:
 	return Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+
+func _set_water_sfx(on: bool) -> void:
+	if on == _sfx_on:
+		return
+	_sfx_on = on
+	if _sfx_tween:
+		_sfx_tween.kill()
+	_sfx_tween = create_tween()
+	# quick fade so it feels responsive; a 1s fade-out feels like "still playing"
+	_sfx_tween.tween_property(water_sfx, "volume_db", 0.0 if on else -80.0, 0.1 if on else 0.25)
 
 func _on_interaction_area_area_entered(area: Area2D) -> void:
 	var area_par := area.get_parent()

@@ -3,4 +3,4 @@ extends Node
 #Below is an example of a signal. This signal is connected via code in the PlayerHUD
 
 
-signal player_hp_updated(current_hp, max_hp)
+signal player_water_updated(current_water, max_water)

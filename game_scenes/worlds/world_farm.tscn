@@ -728,7 +728,7 @@ color = Color(0.24705882, 0.24705882, 0.45490196, 1)
 visible = false
 
 [node name="Player" parent="." unique_id=240714517 instance=ExtResource("2_8fyfc")]
-position = Vector2(160, 56)
+position = Vector2(160, 40)
 
 [node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("3_140fy")]
 target = NodePath("../Player")
@@ -776,5 +776,14 @@ autostart = true
 
 [node name="FarmingPlot" parent="." unique_id=330822011 instance=ExtResource("11_fvngo")]
 position = Vector2(-80, 256)
+
+[node name="FarmingPlot2" parent="." unique_id=628806780 instance=ExtResource("11_fvngo")]
+position = Vector2(272, 256)
+
+[node name="FarmingPlot3" parent="." unique_id=1768374795 instance=ExtResource("11_fvngo")]
+position = Vector2(272, 496)
+
+[node name="FarmingPlot4" parent="." unique_id=1537638543 instance=ExtResource("11_fvngo")]
+position = Vector2(-80, 496)
 
 [connection signal="timeout" from="RandomScareAmbienceTimer" to="." method="_on_random_scare_ambience_timer_timeout"]

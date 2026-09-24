@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bip5hhxeryemi" path="res://actors/player/player.gd" id="1_ilk7j"]
 [ext_resource type="Texture2D" uid="uid://cjcochjq7rsgd" path="res://actors/player/player.png" id="2_ax26v"]
+[ext_resource type="PackedScene" uid="uid://busneeccby05a" path="res://systems/Watering Can/watering_can.tscn" id="2_hiosj"]
 [ext_resource type="Texture2D" uid="uid://c2m0t3pkj2dx1" path="res://vfx/particles/particles.png" id="3_15y17"]
 [ext_resource type="Script" uid="uid://bhxjxgka2uddu" path="res://systems/FSM/FSM.gd" id="3_ax26v"]
 [ext_resource type="Script" uid="uid://qri00n31jglx" path="res://actors/player/PlayerFSM/state_idle.gd" id="4_6p1w3"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cn5nl2yw0x176" path="res://game_assets/flashlight_lightcone.png" id="7_388e2"]
 [ext_resource type="AudioStream" uid="uid://chjylsbxtegjk" path="res://sound/sfx/sfx_walk.mp3" id="7_bop6h"]
 [ext_resource type="AudioStream" uid="uid://75rog7cglq7g" path="res://sound/sfx/sfx_water.mp3" id="8_a744p"]
+[ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="10_lsln6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mti6b"]
 atlas = ExtResource("2_ax26v")
@@ -76,7 +78,12 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=240714517 groups=["player"]]
+collision_layer = 2
 script = ExtResource("1_ilk7j")
+
+[node name="WateringCan" parent="." unique_id=1721167239 instance=ExtResource("2_hiosj")]
+
+[node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("10_lsln6")]
 
 [node name="Visuals" type="Node2D" parent="." unique_id=203098467]
 
@@ -175,7 +182,9 @@ PLAYER = NodePath("../..")
 script = ExtResource("5_15y17")
 PLAYER = NodePath("../..")
 
-[node name="PlayerLight" type="PointLight2D" parent="." unique_id=1464727708]
+[node name="Light" type="Node2D" parent="." unique_id=1748585715]
+
+[node name="PlayerLight" type="PointLight2D" parent="Light" unique_id=1464727708]
 light_mask = 2
 range_item_cull_mask = 3
 shadow_enabled = true
@@ -183,8 +192,7 @@ shadow_filter = 1
 shadow_filter_smooth = 10.0
 texture = SubResource("GradientTexture2D_388e2")
 
-[node name="LanternLight" type="PointLight2D" parent="." unique_id=1873671267]
-visible = false
+[node name="LanternLight" type="PointLight2D" parent="Light" unique_id=1873671267]
 light_mask = 2
 range_item_cull_mask = 3
 shadow_enabled = true
@@ -193,9 +201,11 @@ shadow_filter_smooth = 10.0
 texture = SubResource("GradientTexture2D_4kxuq")
 texture_scale = 2.5
 
-[node name="FlashLightPivot" type="Node2D" parent="." unique_id=1592641718]
+[node name="FlashLightPivot" type="Node2D" parent="Light" unique_id=1592641718]
+visible = false
 
-[node name="FlashLight" type="PointLight2D" parent="FlashLightPivot" unique_id=1849441623]
+[node name="FlashLight" type="PointLight2D" parent="Light/FlashLightPivot" unique_id=1849441623]
+visible = false
 light_mask = 2
 position = Vector2(-16, 0)
 range_item_cull_mask = 3
@@ -215,6 +225,7 @@ bus = &"SFX"
 
 [node name="WaterSFX" type="AudioStreamPlayer" parent="SFX" unique_id=1959167584]
 stream = ExtResource("8_a744p")
+volume_db = -80.0
 autoplay = true
 
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
