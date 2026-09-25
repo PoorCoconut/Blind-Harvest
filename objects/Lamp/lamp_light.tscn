@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dyn1i33jbdurx"]
+
+[ext_resource type="Texture2D" uid="uid://fexph0k7gham" path="res://game_assets/gameplay/farm_sprites.png" id="1_oq50r"]
+[ext_resource type="Texture2D" uid="uid://cn5nl2yw0x176" path="res://game_assets/flashlight_lightcone.png" id="2_5jytq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
+atlas = ExtResource("1_oq50r")
+region = Rect2(96, 80, 32, 48)
+
+[sub_resource type="Gradient" id="Gradient_oq50r"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oq50r"]
+gradient = SubResource("Gradient_oq50r")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="LampLight" type="Node2D" unique_id=713855791]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1994477375]
+position = Vector2(8, -24)
+texture = SubResource("AtlasTexture_4kxuq")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=723775599]
+
+[node name="FlashLight" type="PointLight2D" parent="." unique_id=736711954]
+light_mask = 2
+position = Vector2(10, -46)
+rotation = 1.5707964
+energy = 0.5
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 5.0
+texture = ExtResource("2_5jytq")
+offset = Vector2(48, 0)
+texture_scale = 0.05
+
+[node name="RadialLight" type="PointLight2D" parent="." unique_id=1902566203]
+light_mask = 2
+position = Vector2(10, -40)
+rotation = 1.5707964
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 5.0
+texture = SubResource("GradientTexture2D_oq50r")
+
+[node name="GroundLight" type="PointLight2D" parent="." unique_id=264693556]
+light_mask = 2
+position = Vector2(11, 6)
+rotation = 1.5707964
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 5.0
+texture = SubResource("GradientTexture2D_oq50r")
+texture_scale = 3.0

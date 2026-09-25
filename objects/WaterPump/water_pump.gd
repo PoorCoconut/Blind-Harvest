@@ -7,11 +7,10 @@ func _process(delta: float) -> void:
 		player.can.refill(delta)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	print("hello")
 	if body is Player:
-		print("world")
 		player = body
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body == player:
+		player.can._set_refilling(false)
 		player = null

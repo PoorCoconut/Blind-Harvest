@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/sfx_pop.mp3-8e1d9208f2252df1ca4863a2561c0e3f.
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

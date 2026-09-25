@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c41b78yqqql8u"]
+
+[ext_resource type="Script" uid="uid://do1r7eijdju70" path="res://actors/enemies/trespasser/trespasser.gd" id="1_cn5ow"]
+[ext_resource type="Texture2D" uid="uid://7evv26uppv0p" path="res://game_assets/ui_sprites.png" id="2_rnq52"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
+atlas = ExtResource("2_rnq52")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4kxuq"]
+radius = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rnq52"]
+radius = 8.0
+
+[node name="Trespasser" type="Node2D" unique_id=1536655820]
+script = ExtResource("1_cn5ow")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1223869678]
+texture = SubResource("AtlasTexture_4kxuq")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=125310577]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=195335795]
+shape = SubResource("CircleShape2D_4kxuq")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CatchArea" type="Area2D" parent="." unique_id=2129098333]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchArea" unique_id=1585013290]
+shape = SubResource("CircleShape2D_rnq52")
+debug_color = Color(0.9882353, 0, 0.29803923, 0)
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

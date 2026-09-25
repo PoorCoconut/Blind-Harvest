@@ -29,6 +29,11 @@ const FRAME_RIPE := 5
 @onready var plants_node: Node2D = $Plants
 @onready var water_bar: TextureProgressBar = %WaterCanBar
 
+@export_category("Water Bar")
+@export var water_bar_pop_duration: float = 0.3
+var _water_bar_tween: Tween
+
+
 var plants: Array[Sprite2D] = []
 var has_crop: Array[bool] = []
 var order: Array[int] = []        # shuffled so planting/harvesting looks organic
@@ -91,7 +96,7 @@ func _plant_next() -> void:
 # ---------- GROWING ----------
 func _process_growing(delta: float) -> void:
 	var change := -water_drain_rate
-	if player != null and player.is_watering:   # was: _holding(Tool.WATERING_CAN)
+	if player != null and player.is_watering:
 		change += water_fill_rate
 	water = clampf(water + change * delta, 0.0, water_bar.max_value)
 	water_bar.value = water
@@ -107,6 +112,7 @@ func _process_growing(delta: float) -> void:
 func _advance_stage() -> void:
 	stage += 1
 	for sprite in plants:
+		
 		_pop(sprite, stage, randf_range(0.0, max_stagger))
 
 
@@ -138,7 +144,8 @@ func _pop(sprite: Sprite2D, frame: int, delay: float) -> void:
 		sprite.frame = frame
 		sprite.scale = Vector2.ZERO
 		sprite.rotation = 0.0
-		_jiggle(sprite))
+		_jiggle(sprite)
+		SoundBank.play_sfx("plant_grow", sprite.global_position, 0.5, 1.5, 500))
 	tween.tween_property(sprite, "scale", Vector2.ONE, pop_duration)\
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)   # swap to TRANS_ELASTIC for more bounce
 	tween.finished.connect(_on_pop_finished)
@@ -162,7 +169,7 @@ func _on_pop_finished() -> void:
 # ---------- state ----------
 func _set_state(new_state: PlantState) -> void:
 	state = new_state
-	water_bar.visible = state == PlantState.GROWING
+	_animate_water_bar(state == PlantState.GROWING)
 	
 	match state:
 		PlantState.EMPTY:
@@ -197,3 +204,20 @@ func _on_interaction_area_body_entered(body: Node2D) -> void:
 func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if body == player:
 		player = null
+
+func _animate_water_bar(show: bool) -> void:
+	if _water_bar_tween:
+		_water_bar_tween.kill()
+	
+	_water_bar_tween = create_tween()
+	
+	if show:
+		water_bar.visible = true
+		water_bar.scale = Vector2.ZERO
+		_water_bar_tween.tween_property(water_bar, "scale", Vector2.ONE, water_bar_pop_duration)\
+			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	else:
+		_water_bar_tween.tween_property(water_bar, "scale", Vector2.ZERO, water_bar_pop_duration * 0.6)\
+			.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+		_water_bar_tween.tween_callback(func() -> void:
+			water_bar.visible = false)

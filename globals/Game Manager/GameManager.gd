@@ -3,6 +3,8 @@ extends Node
 var CURRENT_WORLD_STATE : String = "Nothing"
 const SAVE_PATH : String = "user://savegame.json"
 
+var player_safe : bool = false
+
 func _ready() -> void:
 	print("GAME MANAGER LOADED!")
 

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b48rcntau186e"]
+
+[ext_resource type="Script" uid="uid://c57yclguapioi" path="res://objects/Door/door.gd" id="1_0u6ss"]
+[ext_resource type="Texture2D" uid="uid://cbk7ed53yulo4" path="res://game_assets/worlds/wood fence tileset.png" id="1_c0ik3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
+atlas = ExtResource("1_c0ik3")
+region = Rect2(0, 64, 64, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mti6b"]
+size = Vector2(32, 28)
+
+[node name="Door" type="Node2D" unique_id=19510667]
+script = ExtResource("1_0u6ss")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1271013671]
+texture = SubResource("AtlasTexture_4kxuq")
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1996931396]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1304507271]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_mti6b")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
