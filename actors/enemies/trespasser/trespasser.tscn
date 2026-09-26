@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://do1r7eijdju70" path="res://actors/enemies/trespasser/trespasser.gd" id="1_cn5ow"]
 [ext_resource type="Texture2D" uid="uid://7evv26uppv0p" path="res://game_assets/ui_sprites.png" id="2_rnq52"]
+[ext_resource type="AudioStream" uid="uid://d2eyvy1pdc52u" path="res://sound/sfx/sfx_trespasser_readying.mp3" id="3_l7iiw"]
+[ext_resource type="AudioStream" uid="uid://ch7g6ende1j2a" path="res://sound/sfx/sfx_chase.mp3" id="4_v0rhj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
 atlas = ExtResource("2_rnq52")
@@ -17,19 +19,35 @@ radius = 8.0
 script = ExtResource("1_cn5ow")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1223869678]
+position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_4kxuq")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=125310577]
+position = Vector2(0, -8)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=195335795]
 shape = SubResource("CircleShape2D_4kxuq")
 debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="CatchArea" type="Area2D" parent="." unique_id=2129098333]
+position = Vector2(0, -8)
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CatchArea" unique_id=1585013290]
 shape = SubResource("CircleShape2D_rnq52")
 debug_color = Color(0.9882353, 0, 0.29803923, 0)
 
+[node name="MusicBox" type="AudioStreamPlayer2D" parent="." unique_id=2064905459]
+stream = ExtResource("3_l7iiw")
+autoplay = true
+max_distance = 1000.0
+bus = &"SFX"
+
+[node name="Chase" type="AudioStreamPlayer2D" parent="." unique_id=12947534]
+stream = ExtResource("4_v0rhj")
+bus = &"SFX"
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
+[connection signal="finished" from="MusicBox" to="." method="_on_music_box_finished"]

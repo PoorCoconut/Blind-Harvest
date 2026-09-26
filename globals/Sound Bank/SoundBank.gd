@@ -13,10 +13,16 @@ var sfx_dict : Dictionary = {
 	"amb_horror" : preload("uid://elu5b7uru45u"),
 	"amb_horror2" : preload("uid://cn5bssgip8fqt"),
 	"amb_horror3" : preload("uid://cqxlr1wt3i4fc"),
+	"amb_elk" : preload("uid://u52bctpqptdg"),
+	"amb_elk2" : preload("uid://cvxsv87251owk"),
 	
 	#Gameplay
 	"halfway" : preload("uid://dfqaixofmtviu"),
 	"plant_grow" : preload("uid://db15gb87fhem8"),
+	
+	#Enemy
+	"enemy_alert" : preload("uid://cbmxbm5nfh75r"),
+	"growl" : preload("uid://c5albgm2i51tp"),
 }
 
 #Here is an example:

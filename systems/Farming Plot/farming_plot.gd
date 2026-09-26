@@ -13,8 +13,8 @@ const FRAME_RIPE := 5
 
 @export_category("Water")
 @export var water_fill_rate: float = 60.0   # per second while watering (fast)
-@export var water_drain_rate: float = 8.0   # per second, always (slow)
-@export var grow_time: float = 5.0          # seconds of WATERED time per growth stage
+@export var water_drain_rate: float = 3.0   # per second, always (slow)
+@export var grow_time: float = 15.0          # seconds of WATERED time per growth stage
 
 @export_category("Growth Visuals")
 @export var max_stagger: float = 1.2        # random delay so crops don't pop together

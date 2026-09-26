@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://binqha8ap6x51"]
+
+[ext_resource type="Script" uid="uid://dmk50w7lrm06d" path="res://actors/enemies/rabid dog/rabid_dog.gd" id="1_28qqc"]
+[ext_resource type="Texture2D" uid="uid://7evv26uppv0p" path="res://game_assets/ui_sprites.png" id="1_tycf1"]
+[ext_resource type="AudioStream" uid="uid://be81tw1t0se2i" path="res://sound/sfx/sfx_rabid_walk.mp3" id="3_o4hyp"]
+[ext_resource type="AudioStream" uid="uid://c5jx0x36s5f7c" path="res://sound/sfx/sfx_rabid_atk.mp3" id="4_bx1lm"]
+[ext_resource type="AudioStream" uid="uid://c5albgm2i51tp" path="res://sound/sfx/sfx_growl.mp3" id="5_0hy06"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
+atlas = ExtResource("1_tycf1")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mti6b"]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mm1bc"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_28qqc"]
+radius = 6.0
+
+[node name="RabidDog" type="CharacterBody2D" unique_id=770598614]
+script = ExtResource("1_28qqc")
+avoid_turn_speed = 300.0
+chase_speed = 80.0
+
+[node name="Visuals" type="Node2D" parent="." unique_id=1002383275]
+position = Vector2(0, -8)
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals" unique_id=1541802701]
+texture = SubResource("AtlasTexture_4kxuq")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=560537154]
+position = Vector2(0, -8)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=628222827]
+shape = SubResource("CircleShape2D_mti6b")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="CatchArea" type="Area2D" parent="." unique_id=1572962155]
+position = Vector2(0, -8)
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CatchArea" unique_id=894669365]
+shape = SubResource("CircleShape2D_mm1bc")
+debug_color = Color(0.99215686, 0, 0.27450982, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1214811584]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_28qqc")
+
+[node name="Sensors" type="Node2D" parent="." unique_id=1568133643]
+position = Vector2(0, -8)
+
+[node name="RayFrontLeft" type="RayCast2D" parent="Sensors" unique_id=886988540]
+target_position = Vector2(24, 10)
+
+[node name="RayFrontRight" type="RayCast2D" parent="Sensors" unique_id=966038650]
+target_position = Vector2(24, -10)
+
+[node name="RayLeft" type="RayCast2D" parent="Sensors" unique_id=997525535]
+target_position = Vector2(16, -24)
+
+[node name="RayRight" type="RayCast2D" parent="Sensors" unique_id=1309173661]
+target_position = Vector2(16, 24)
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="." unique_id=1461623949]
+stream = ExtResource("3_o4hyp")
+autoplay = true
+max_distance = 300.0
+bus = &"SFX"
+
+[node name="Chase" type="AudioStreamPlayer2D" parent="." unique_id=1447846922]
+stream = ExtResource("4_bx1lm")
+max_distance = 500.0
+bus = &"SFX"
+
+[node name="Growl" type="AudioStreamPlayer2D" parent="." unique_id=1491735863]
+stream = ExtResource("5_0hy06")
+max_distance = 300.0
+
+[node name="Timer" type="Timer" parent="." unique_id=1638905413]
+wait_time = 5.0
+autostart = true
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

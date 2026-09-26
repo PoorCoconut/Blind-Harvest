@@ -10,7 +10,7 @@ extends Node2D
 @export var day_color : Color
 @export_range(0.0, 1.0) var midnight_peak : float = 0.8
 
-var night_day_cycle : float = (5) * 60 #This is by minutes
+var night_day_cycle : float = (3) * 60 #This is by minutes
 var current_time : float = 0.0 #This counts from 0.0 to night_day_cycle
 var _reached_day := false
 var halfway : bool = false
