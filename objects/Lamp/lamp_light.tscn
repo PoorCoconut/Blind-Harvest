@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dyn1i33jbdurx"]
 
+[ext_resource type="Script" uid="uid://bo0o12qu6urs4" path="res://objects/Lamp/lamp_light.gd" id="1_5jytq"]
 [ext_resource type="Texture2D" uid="uid://fexph0k7gham" path="res://game_assets/gameplay/farm_sprites.png" id="1_oq50r"]
 [ext_resource type="Texture2D" uid="uid://cn5nl2yw0x176" path="res://game_assets/flashlight_lightcone.png" id="2_5jytq"]
 
@@ -17,12 +18,11 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [node name="LampLight" type="Node2D" unique_id=713855791]
+script = ExtResource("1_5jytq")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1994477375]
 position = Vector2(8, -24)
 texture = SubResource("AtlasTexture_4kxuq")
-
-[node name="PointLight2D" type="PointLight2D" parent="." unique_id=723775599]
 
 [node name="FlashLight" type="PointLight2D" parent="." unique_id=736711954]
 light_mask = 2

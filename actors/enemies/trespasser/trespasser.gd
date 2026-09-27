@@ -85,13 +85,13 @@ func _set_chase_audio(active: bool) -> void:
 		_pitch_tween.kill()
 	
 	if active:
-		chase.pitch_scale = 0.0
+		chase.pitch_scale = 0.1
 		chase.playing = true
 		_pitch_tween = create_tween()
 		_pitch_tween.tween_property(chase, "pitch_scale", 1.0, pitch_tween_duration)
 	else:
 		_pitch_tween = create_tween()
-		_pitch_tween.tween_property(chase, "pitch_scale", 0.0, pitch_tween_duration)
+		_pitch_tween.tween_property(chase, "pitch_scale", 0.1, pitch_tween_duration)
 		_pitch_tween.tween_callback(func() -> void:
 			chase.playing = false)
 
@@ -112,6 +112,8 @@ func _process_despawn(delta: float) -> void:
 	if GameManager.player_safe:
 		_safe_timer += delta
 		if _safe_timer >= safe_despawn_time:
+			SoundBank.play_sfx("trespasser_left", get_tree().get_first_node_in_group("player").global_position, 1, 1.5, 4096, 10)
+			print("trespasser left")
 			despawned.emit()
 			queue_free()
 	else:

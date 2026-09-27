@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bek55etru005v"]
+
+[ext_resource type="Script" uid="uid://c0tjm7fgccgsu" path="res://globals/Screen Display/global_screen_display.gd" id="1_rxdew"]
+[ext_resource type="Shader" uid="uid://b7fu678h3i00r" path="res://vfx/shaders/crt.gdshader" id="2_kq7xa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxdew"]
+shader = ExtResource("2_kq7xa")
+shader_parameter/brightnessMult = 4.0
+shader_parameter/wiggleMult = 0.005
+shader_parameter/chromaticAberrationOffset = 0.001
+
+[node name="GlobalScreenDisplay" type="CanvasLayer" unique_id=1106116733]
+layer = 3
+script = ExtResource("1_rxdew")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1961665686]
+visible = false
+material = SubResource("ShaderMaterial_rxdew")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

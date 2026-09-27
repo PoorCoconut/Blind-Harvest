@@ -1,0 +1,699 @@
+[gd_scene format=3 uid="uid://c2umkn5knabow"]
+
+[ext_resource type="Script" uid="uid://btvx7unulib8v" path="res://game_scenes/worlds/Shop/world_shop.gd" id="1_ukttc"]
+[ext_resource type="Shader" uid="uid://ipbk6i6jt2va" path="res://vfx/shaders/scrolling.gdshader" id="2_du7g7"]
+[ext_resource type="Texture2D" uid="uid://c48ic6kjsbjjt" path="res://game_assets/shop_bg.png" id="3_kvsw8"]
+[ext_resource type="Texture2D" uid="uid://c3jt8jd51qxe8" path="res://game_assets/shop_items.png" id="4_kvsw8"]
+[ext_resource type="FontFile" uid="uid://dp8fsptdm4isk" path="res://game_assets/fonts/Tiny5/Tiny5-Regular.ttf" id="5_h23kb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kxuq"]
+shader = ExtResource("2_du7g7")
+shader_parameter/rotate_degree = 20.000000298024
+shader_parameter/move_degree = 45.000000670554
+shader_parameter/speed = 0.30000001425
+shader_parameter/scale = 0.2
+shader_parameter/gap = Vector2(0, 0)
+shader_parameter/node_scale = Vector2(1.8, 1)
+shader_parameter/transparency = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwqyf"]
+atlas = ExtResource("4_kvsw8")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm1bc"]
+atlas = ExtResource("4_kvsw8")
+region = Rect2(0, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62yky"]
+atlas = ExtResource("4_kvsw8")
+region = Rect2(0, 16, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h23kb"]
+atlas = ExtResource("4_kvsw8")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vnta"]
+atlas = ExtResource("4_kvsw8")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4ffm"]
+atlas = ExtResource("4_kvsw8")
+region = Rect2(24, 8, 8, 8)
+
+[sub_resource type="Animation" id="Animation_kvsw8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackBG:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackBG/In:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlackBG/Out:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BlackBG/Out:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BlackBG:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BlackBG/VBoxContainer/OutMoneyLabel:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BlackBG/VBoxContainer/CurrentFoodCost:visible_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BlackBG/VBoxContainer/CurrentPowerCost:visible_ratio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlackBG/VBoxContainer/CurrentWaterCost:visible_ratio")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BlackBG/VBoxContainer/OutMoneyAfterLabel:visible_ratio")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BlackBG/VBoxContainer/Statuses:visible_ratio")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BlackBG/VBoxContainer:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_du7g7"]
+resource_name = "intro"
+length = 3.0000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackBG:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackBG/In:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlackBG:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_h23kb"]
+resource_name = "outro"
+length = 23.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackBG/In:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackBG/Out:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlackBG:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BlackBG/Out:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.5, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BlackBG:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("BlackBG/VBoxContainer/OutMoneyLabel:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4.5, 5.5, 6.5, 7.5, 8.5, 9.5, 10.5, 11.5, 12.5, 13.5, 14.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BlackBG/VBoxContainer/CurrentFoodCost:visible_ratio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(6.5, 7.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BlackBG/VBoxContainer/CurrentPowerCost:visible_ratio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(8.5, 9.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlackBG/VBoxContainer/CurrentWaterCost:visible_ratio")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(10.5, 11.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BlackBG/VBoxContainer/OutMoneyAfterLabel:visible_ratio")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(12.5, 13.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BlackBG/VBoxContainer/Statuses:visible_ratio")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(14.5, 15.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BlackBG/VBoxContainer:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 20, 23),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kvsw8"]
+_data = {
+&"RESET": SubResource("Animation_kvsw8"),
+&"intro": SubResource("Animation_du7g7"),
+&"outro": SubResource("Animation_h23kb")
+}
+
+[node name="World_Shop" type="Control" unique_id=2039773601]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ukttc")
+next_level_path = "uid://dgbwxfljplkvr"
+
+[node name="ShopBackground" type="TextureRect" parent="." unique_id=1707573729]
+material = SubResource("ShaderMaterial_4kxuq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_kvsw8")
+
+[node name="ShopContainer" type="MarginContainer" parent="." unique_id=1769134277]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopContainer" unique_id=1533829349]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="ShopContainer/VBoxContainer" unique_id=991476656]
+layout_mode = 2
+text = "P 0"
+horizontal_alignment = 2
+
+[node name="WateringCan" type="HBoxContainer" parent="ShopContainer/VBoxContainer" unique_id=2134301187]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopContainer/VBoxContainer/WateringCan" unique_id=268005145]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WCLabels" type="HBoxContainer" parent="ShopContainer/VBoxContainer/WateringCan/VBoxContainer" unique_id=2036960749]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopContainer/VBoxContainer/WateringCan/VBoxContainer/WCLabels" unique_id=1311904265]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "Upgrade Watering Can Capacity"
+
+[node name="PurchaseWateringCan" type="Button" parent="ShopContainer/VBoxContainer/WateringCan/VBoxContainer/WCLabels" unique_id=553145407]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "PURCHASE"
+
+[node name="WateringCanCostLabel" type="Label" parent="ShopContainer/VBoxContainer/WateringCan/VBoxContainer/WCLabels" unique_id=1393105578]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "Costs: P 0"
+
+[node name="WCBars" type="HBoxContainer" parent="ShopContainer/VBoxContainer/WateringCan/VBoxContainer" unique_id=939208916]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopContainer/VBoxContainer/WateringCan/VBoxContainer/WCBars" unique_id=758486241]
+layout_mode = 2
+texture = SubResource("AtlasTexture_qwqyf")
+
+[node name="WaterCanUpgradeBar" type="TextureProgressBar" parent="ShopContainer/VBoxContainer/WateringCan/VBoxContainer/WCBars" unique_id=1112849500]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 4.0
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_right = 8
+texture_under = SubResource("AtlasTexture_mm1bc")
+texture_progress = SubResource("AtlasTexture_62yky")
+tint_under = Color(0.02745098, 0.05882353, 0.16862746, 1)
+
+[node name="Control" type="Control" parent="ShopContainer/VBoxContainer/WateringCan/VBoxContainer/WCBars" unique_id=915467736]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Battery" type="HBoxContainer" parent="ShopContainer/VBoxContainer" unique_id=452344686]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopContainer/VBoxContainer/Battery" unique_id=1678323042]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BLabels" type="HBoxContainer" parent="ShopContainer/VBoxContainer/Battery/VBoxContainer" unique_id=1491724913]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ShopContainer/VBoxContainer/Battery/VBoxContainer/BLabels" unique_id=1264938567]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "Upgrade Battery Capacity"
+
+[node name="PurchaseBattery" type="Button" parent="ShopContainer/VBoxContainer/Battery/VBoxContainer/BLabels" unique_id=408056908]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "PURCHASE"
+
+[node name="BatteryCostLabel" type="Label" parent="ShopContainer/VBoxContainer/Battery/VBoxContainer/BLabels" unique_id=1888303553]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "Costs: P 0"
+
+[node name="BBars" type="HBoxContainer" parent="ShopContainer/VBoxContainer/Battery/VBoxContainer" unique_id=1325012135]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopContainer/VBoxContainer/Battery/VBoxContainer/BBars" unique_id=1791769302]
+layout_mode = 2
+texture = SubResource("AtlasTexture_h23kb")
+
+[node name="BatteryUpgradeBar" type="TextureProgressBar" parent="ShopContainer/VBoxContainer/Battery/VBoxContainer/BBars" unique_id=758063755]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 4.0
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_right = 8
+texture_under = SubResource("AtlasTexture_mm1bc")
+texture_progress = SubResource("AtlasTexture_62yky")
+tint_under = Color(0.02745098, 0.05882353, 0.16862746, 1)
+
+[node name="Control" type="Control" parent="ShopContainer/VBoxContainer/Battery/VBoxContainer/BBars" unique_id=1224183471]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Flashlight" type="HBoxContainer" parent="ShopContainer/VBoxContainer" unique_id=865872213]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopContainer/VBoxContainer/Flashlight" unique_id=207068249]
+layout_mode = 2
+texture = SubResource("AtlasTexture_6vnta")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="ShopContainer/VBoxContainer/Flashlight" unique_id=2138252765]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "Flashlight Attachment"
+
+[node name="PurchaseFlashlight" type="Button" parent="ShopContainer/VBoxContainer/Flashlight" unique_id=1136061233]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "PURCHASE"
+
+[node name="FlashlightCostLabel" type="Label" parent="ShopContainer/VBoxContainer/Flashlight" unique_id=1475036130]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "Costs: P 0"
+
+[node name="Boots" type="HBoxContainer" parent="ShopContainer/VBoxContainer" unique_id=1928679144]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ShopContainer/VBoxContainer/Boots" unique_id=2010027762]
+layout_mode = 2
+texture = SubResource("AtlasTexture_f4ffm")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="ShopContainer/VBoxContainer/Boots" unique_id=1959637393]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "Boots"
+
+[node name="PurchaseBoots" type="Button" parent="ShopContainer/VBoxContainer/Boots" unique_id=1103453725]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "PURCHASE"
+
+[node name="BootsCostLabel" type="Label" parent="ShopContainer/VBoxContainer/Boots" unique_id=1443341836]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "Costs: P 0"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopContainer/VBoxContainer" unique_id=589708559]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="LeaveButton" type="Button" parent="ShopContainer/VBoxContainer/VBoxContainer" unique_id=444706376]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_h23kb")
+theme_override_font_sizes/font_size = 8
+text = "Leave AgoraMart"
+
+[node name="BlackBG" type="ColorRect" parent="." unique_id=1657870990]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="In" type="Label" parent="BlackBG" unique_id=338124844]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Welcome to Agora Mart"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Out" type="Label" parent="BlackBG" unique_id=1559215208]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Thank You for Shopping!"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BlackBG" unique_id=279986895]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="OutMoneyLabel" type="Label" parent="BlackBG/VBoxContainer" unique_id=28760575]
+layout_mode = 2
+text = "You have
+P 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="CurrentFoodCost" type="Label" parent="BlackBG/VBoxContainer" unique_id=1579167879]
+layout_mode = 2
+text = "You purchased food for P 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="CurrentPowerCost" type="Label" parent="BlackBG/VBoxContainer" unique_id=584252246]
+layout_mode = 2
+text = "Voltek Corp Services has cut P 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="CurrentWaterCost" type="Label" parent="BlackBG/VBoxContainer" unique_id=818495802]
+layout_mode = 2
+text = "Seaqua Waterline has cut P 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="OutMoneyAfterLabel" type="Label" parent="BlackBG/VBoxContainer" unique_id=793658644]
+layout_mode = 2
+text = "Your current balance is now P 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Statuses" type="RichTextLabel" parent="BlackBG/VBoxContainer" unique_id=1588470672]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "You are [wave amp = 10.0]HUNGRY.[/wave] 
+[wave amp=8.0]Power[/wave] has been cut. [wave amp=8.0]
+Water[/wave] has been cut."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Fader" type="AnimationPlayer" parent="." unique_id=1190273543]
+libraries/ = SubResource("AnimationLibrary_kvsw8")
+autoplay = &"intro"
+
+[connection signal="pressed" from="ShopContainer/VBoxContainer/WateringCan/VBoxContainer/WCLabels/PurchaseWateringCan" to="." method="_on_purchase_watering_can_pressed"]
+[connection signal="pressed" from="ShopContainer/VBoxContainer/Battery/VBoxContainer/BLabels/PurchaseBattery" to="." method="_on_purchase_battery_pressed"]
+[connection signal="pressed" from="ShopContainer/VBoxContainer/Flashlight/PurchaseFlashlight" to="." method="_on_purchase_flashlight_pressed"]
+[connection signal="pressed" from="ShopContainer/VBoxContainer/Boots/PurchaseBoots" to="." method="_on_purchase_boots_pressed"]
+[connection signal="pressed" from="ShopContainer/VBoxContainer/VBoxContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="animation_finished" from="Fader" to="." method="_on_fader_animation_finished"]

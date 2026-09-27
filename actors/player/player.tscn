@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://busneeccby05a" path="res://systems/Watering Can/watering_can.tscn" id="2_hiosj"]
 [ext_resource type="Texture2D" uid="uid://c2m0t3pkj2dx1" path="res://vfx/particles/particles.png" id="3_15y17"]
 [ext_resource type="Script" uid="uid://bhxjxgka2uddu" path="res://systems/FSM/FSM.gd" id="3_ax26v"]
+[ext_resource type="PackedScene" uid="uid://bmq1leke8lgg1" path="res://systems/Battery/battery.tscn" id="3_ssdk0"]
 [ext_resource type="Script" uid="uid://qri00n31jglx" path="res://actors/player/PlayerFSM/state_idle.gd" id="4_6p1w3"]
 [ext_resource type="Script" uid="uid://b1ci27y347n1w" path="res://actors/player/PlayerFSM/state_run.gd" id="5_15y17"]
 [ext_resource type="Texture2D" uid="uid://cn5nl2yw0x176" path="res://game_assets/flashlight_lightcone.png" id="7_388e2"]
@@ -82,6 +83,8 @@ collision_layer = 2
 script = ExtResource("1_ilk7j")
 
 [node name="WateringCan" parent="." unique_id=1721167239 instance=ExtResource("2_hiosj")]
+
+[node name="Battery" parent="." unique_id=1572821024 instance=ExtResource("3_ssdk0")]
 
 [node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("10_lsln6")]
 
@@ -162,6 +165,7 @@ debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="DebugStateLabel" type="Label" parent="." unique_id=1664998739]
 unique_name_in_owner = true
+visible = false
 offset_left = -24.0
 offset_top = -32.0
 offset_right = 26.0
@@ -199,15 +203,15 @@ shadow_enabled = true
 shadow_filter = 1
 shadow_filter_smooth = 10.0
 texture = SubResource("GradientTexture2D_4kxuq")
-texture_scale = 2.5
+texture_scale = 2.0
 
 [node name="FlashLightPivot" type="Node2D" parent="Light" unique_id=1592641718]
 visible = false
 
 [node name="FlashLight" type="PointLight2D" parent="Light/FlashLightPivot" unique_id=1849441623]
-visible = false
 light_mask = 2
 position = Vector2(-16, 0)
+energy = 0.15
 range_item_cull_mask = 3
 shadow_enabled = true
 shadow_filter = 1

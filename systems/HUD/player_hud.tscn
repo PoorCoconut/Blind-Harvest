@@ -46,4 +46,30 @@ stretch_margin_right = 1
 texture_progress = SubResource("AtlasTexture_mti6b")
 tint_progress = Color(0.57254905, 0.5647059, 0.7647059, 1)
 
+[node name="BatteryWhiteBar" type="TextureProgressBar" parent="BarContainer" unique_id=1406124145]
+unique_name_in_owner = true
+offset_left = 144.0
+offset_top = 101.0
+offset_right = 176.0
+offset_bottom = 104.0
+nine_patch_stretch = true
+stretch_margin_left = 1
+stretch_margin_right = 1
+texture_under = SubResource("AtlasTexture_4kxuq")
+texture_progress = SubResource("AtlasTexture_mm1bc")
+tint_under = Color(0.02745098, 0.05882353, 0.16862746, 1)
+tint_progress = Color(0.9999998, 0.86490715, 0.725782, 1)
+
+[node name="BatteryChaser" type="TextureProgressBar" parent="BarContainer" unique_id=287151485]
+unique_name_in_owner = true
+offset_left = 144.0
+offset_top = 101.0
+offset_right = 176.0
+offset_bottom = 104.0
+nine_patch_stretch = true
+stretch_margin_left = 1
+stretch_margin_right = 1
+texture_progress = SubResource("AtlasTexture_mti6b")
+tint_progress = Color(1, 0.7137255, 0.3882353, 1)
+
 [node name="Timer" type="Timer" parent="." unique_id=277835653]

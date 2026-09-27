@@ -19,6 +19,7 @@ func _ready() -> void:
 
 func _on_button_play_pressed() -> void:
 	GameManager.load_next_level(next_level_path)
+	MusicManager.stop_music()
 
 func _on_button_settings_pressed() -> void:
 	%SettingsContainer.show()
@@ -68,12 +69,8 @@ func _on_nuke_button_pressed() -> void:
 	slider_mu_vol.value = SettingsManager.music_vol
 	slider_s_vol.value = SettingsManager.sfx_vol
 	
-	#PLAYER POSITION [ALSO CALL YOUR "RESET PLAYER STATS" HERE]
 	# Check if the save file exists, and if it does, delete it forever.
-	var save_path = "user://savegame.json"
-	if FileAccess.file_exists(save_path):
-		DirAccess.remove_absolute(save_path)
-		print("Save data wiped! Next run starts from the bottom.")
+	GameManager.delete_save()
 	
 	#RESET KEYBINDS
 	SettingsManager.reset_keybinds_to_default()

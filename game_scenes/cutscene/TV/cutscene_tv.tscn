@@ -449,7 +449,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 6, 8),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, -3.0, -20.0]
+"values": [-8.0, -10.0, -20.0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -512,6 +512,7 @@ _data = {
 [node name="CutsceneTV" type="Node2D" unique_id=585415546]
 script = ExtResource("1_w5ux8")
 news_atlas = ExtResource("6_ge5kp")
+shop_path = "uid://c2umkn5knabow"
 
 [node name="Control" type="Control" parent="." unique_id=631190]
 layout_mode = 3
@@ -617,6 +618,7 @@ bus = &"SFX"
 
 [node name="MusNews" type="AudioStreamPlayer" parent="." unique_id=1578491815]
 stream = ExtResource("11_ojvb7")
+volume_db = -5.0
 pitch_scale = 0.01
 autoplay = true
 bus = &"Music"

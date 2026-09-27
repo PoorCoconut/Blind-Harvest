@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://b8tvqoofm3e4x" path="res://vfx/shaders/wind.gdshader" id="2_3dn86"]
 [ext_resource type="Texture2D" uid="uid://3ft4bxnletbr" path="res://game_assets/worlds/spring-crops.png" id="2_qa42h"]
 [ext_resource type="Texture2D" uid="uid://7evv26uppv0p" path="res://game_assets/ui_sprites.png" id="3_144ek"]
+[ext_resource type="FontFile" uid="uid://dp8fsptdm4isk" path="res://game_assets/fonts/Tiny5/Tiny5-Regular.ttf" id="5_kn41u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3dn86"]
 shader = ExtResource("2_3dn86")
@@ -66,7 +67,7 @@ _data = {
 &"hover": SubResource("Animation_3dn86")
 }
 
-[node name="FarmingPlot" type="Node2D" unique_id=330822011]
+[node name="FarmingPlot" type="Node2D" unique_id=330822011 groups=["farming_plot"]]
 script = ExtResource("1_3rwvc")
 
 [node name="Plants" type="Node2D" parent="." unique_id=892051140]
@@ -310,6 +311,7 @@ autostart = true
 
 [node name="WaterCanBar" type="TextureProgressBar" parent="." unique_id=526549387]
 unique_name_in_owner = true
+z_index = 1
 offset_left = 56.0
 offset_top = 8.0
 offset_right = 72.0
@@ -325,6 +327,21 @@ tint_progress = Color(0.3254902, 0.36078432, 0.5686275, 1)
 [node name="WaterCanBarAnim" type="AnimationPlayer" parent="." unique_id=1604079569]
 libraries/ = SubResource("AnimationLibrary_kn41u")
 autoplay = &"hover"
+
+[node name="Tutorial" type="RichTextLabel" parent="." unique_id=1706831867]
+visible = false
+z_index = 1
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 160.0
+theme_override_fonts/normal_font = ExtResource("5_kn41u")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[wave amp=6.0]Press and Hold LMB with nothing in hand[/wave] to plant crops.
+[wave amp=7.0]Hold a watering can[/wave] to water crops."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

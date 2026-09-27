@@ -38,7 +38,7 @@ func _set_refilling(on: bool) -> void:
 	if _refill_tween:
 		_refill_tween.kill()
 	_refill_tween = create_tween()
-	_refill_tween.tween_property(refill_sfx, "volume_db", 2.0 if on else -80.0, 0.5)
+	_refill_tween.tween_property(refill_sfx, "volume_db", 0.0 if on else -80.0, 0.5)
 
 func has_water() -> bool:
 	return water > 0.0

@@ -1,79 +1,51 @@
 extends Node2D
 
-@onready var ambience_world: AudioStreamPlayer = $AmbienceWorld
-@onready var day_night_modulate: CanvasModulate = $DayNightModulate
 @onready var house_shadow: Sprite2D = $HouseShadow
 @onready var environment_shadow: Node2D = $EnvironmentShadow
+@onready var day_orchestrator: DayOrchestrator = $DayOrchestrator
+@onready var fader_anim: AnimationPlayer = $FaderAnim
 
-@export var night_color : Color
-@export var midnight_color : Color
-@export var day_color : Color
-@export_range(0.0, 1.0) var midnight_peak : float = 0.8
-
-var night_day_cycle : float = (3) * 60 #This is by minutes
-var current_time : float = 0.0 #This counts from 0.0 to night_day_cycle
-var _reached_day := false
-var halfway : bool = false
-
+@export_file("*.tscn") var tv_path : String
+var tutorial_harvest_count: int = 0
 
 func _ready() -> void:
-	var tween : Tween = get_tree().create_tween()
-	tween.tween_property(ambience_world, "volume_db", 0, 5)
+	# Optional: Connect signals if the farm needs to react to the day ending
+	$DayOrchestrator.day_ended.connect(_on_day_ended)
 
-
-func _process(delta: float) -> void:
-	if current_time < night_day_cycle:
-		current_time += delta
-		update_modulate()
-	if current_time <= night_day_cycle/2 + 1 and current_time >= night_day_cycle/2 - 1 and not halfway:
-		print("halfway!")
-		halfway = true
-		SoundBank.play_sfx("halfway")
-
-
-func update_modulate() -> void:
-	var progress: float = current_time / night_day_cycle   # 0.0 to 1.0
-	
-	var color: Color
-	if progress <= midnight_peak:
-		# night -> midnight, over the first `midnight_peak` of the cycle
-		var t: float = progress / midnight_peak
-		color = night_color.lerp(midnight_color, t)
-	else:
-		# midnight -> day, over the remaining part of the cycle
-		var t: float = (progress - midnight_peak) / (1.0 - midnight_peak)
-		color = midnight_color.lerp(day_color, t)
-	
-	day_night_modulate.color = color
-	
-	if progress >= 1.0 and not _reached_day:
-		_reached_day = true
-		print("Day has arrived.")   # hook scene changes / spawns here later
-
-
-func _on_random_scare_ambience_timer_timeout() -> void:
-	if randi_range(0, 100) >= 70:
-		var amb_indx = randi_range(1,3)
-		if amb_indx == 1:
-			SoundBank.play_sfx("amb_horror")
-		elif amb_indx == 2:
-			SoundBank.play_sfx("amb_horror2")
-		elif amb_indx == 3:
-			SoundBank.play_sfx("amb_horror3")
-
+func _on_day_ended() -> void:
+	MusicManager.stop_music()
+	print("Day is over. Processing farm cleanup...")
 
 func _on_house_shadow_area_body_entered(body: Node2D) -> void:
-	if body is Player:
+	if body.is_in_group("player"):
 		GameManager.player_safe = true
-		var shadow_tween : Tween = get_tree().create_tween()
-		shadow_tween.tween_property(house_shadow, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
-		var env_tween : Tween = get_tree().create_tween()
-		env_tween.tween_property(environment_shadow, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.5)
+		fade_shadow(house_shadow, 0.0)
+		fade_shadow(environment_shadow, 1.0)
 
 func _on_house_shadow_area_body_exited(body: Node2D) -> void:
-	if body is Player:
+	if body.is_in_group("player"):
 		GameManager.player_safe = false
-		var shadow_tween : Tween = get_tree().create_tween()
-		shadow_tween.tween_property(house_shadow, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.5)
-		var env_tween : Tween = get_tree().create_tween()
-		env_tween.tween_property(environment_shadow, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
+		fade_shadow(house_shadow, 1.0)
+		fade_shadow(environment_shadow, 0.0)
+
+func fade_shadow(target_node: Node2D, target_alpha: float) -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property(target_node, "modulate:a", target_alpha, 0.5)
+
+func _on_farming_plot_harvested(amount: int) -> void:
+	GameManager.add_money(amount)
+	
+	# Check if we are currently running the tutorial objective
+	var day_data = day_orchestrator.current_day_data
+	
+	if day_data != null and day_data.tutorial_mode:
+		tutorial_harvest_count += 1
+		
+		if tutorial_harvest_count >= 128:
+			day_orchestrator.end_day()
+
+func _on_day_orchestrator_day_ended() -> void:
+	fader_anim.play("in")
+
+func _on_fader_anim_animation_finished(_anim_name: StringName) -> void:
+	GameManager.load_next_level(tv_path)

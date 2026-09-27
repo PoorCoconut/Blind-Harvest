@@ -45,6 +45,11 @@ var target: Player = null
 
 
 func _ready() -> void:
+	if randi_range(1,2) == 1:
+		SoundBank.play_sfx("dog_spawn1")
+	else:
+		SoundBank.play_sfx("dog_spawn2")
+	
 	catch_area.monitoring = false
 	_facing = rotation
 	_desired_angle = _facing
@@ -142,12 +147,12 @@ func _set_state(new_state: DogState) -> void:
 
 func _on_catch_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and not GameManager.player_safe:
-		print("bitten")
+		#print("bitten")
 		player_caught.emit()
 
 
 func _on_timer_timeout() -> void:
 	if not growl.playing and randi_range(1, 2) == 1:
-		print("growl")
+		#print("growl")
 		growl.pitch_scale = randf_range(0.7, 1.2)
 		growl.play()

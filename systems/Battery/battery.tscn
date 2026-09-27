@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bmq1leke8lgg1"]
+
+[ext_resource type="Script" uid="uid://djejtwsfoee87" path="res://systems/Battery/battery.gd" id="1_2xllj"]
+
+[node name="Battery" type="Node" unique_id=1572821024]
+script = ExtResource("1_2xllj")

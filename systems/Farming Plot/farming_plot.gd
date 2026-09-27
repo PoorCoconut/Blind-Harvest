@@ -47,8 +47,12 @@ var player: Player = null
 var _action_timer: float = 0.0
 var _pending_pops: int = 0
 
+@onready var tutorial: RichTextLabel = $Tutorial
 
 func _ready() -> void:
+	if GameManager.current_day == 0:
+		tutorial.show()
+	
 	for child in plants_node.get_children():
 		if child is Sprite2D:
 			var sprite := child as Sprite2D
@@ -122,6 +126,7 @@ func _harvest_next() -> void:
 		if has_crop[i]:
 			has_crop[i] = false
 			var sprite := plants[i]
+			SoundBank.play_sfx("plant_grow", sprite.global_position, 0.5, 1.5, 500)
 			var tween := create_tween()
 			tween.tween_property(sprite, "scale", Vector2.ZERO, 0.15)\
 				.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)

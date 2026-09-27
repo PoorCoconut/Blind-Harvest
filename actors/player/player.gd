@@ -30,12 +30,18 @@ var max_mouse_reference: float = 100.0
 @onready var water_ptcl: CPUParticles2D = $HandPivot/Tool/WateringCanParticles
 @onready var wrench_ptcl: CPUParticles2D = $HandPivot/Tool/WrenchParticles
 
+@onready var lantern_light: PointLight2D = $Light/LanternLight
 @onready var flash_light_pivot: Node2D = $Light/FlashLightPivot
+@onready var flash_light: PointLight2D = $Light/FlashLightPivot/FlashLight
 @onready var walk_sfx: AudioStreamPlayer = $SFX/WalkSFX
 @onready var water_sfx: AudioStreamPlayer = $SFX/WaterSFX
 
 @onready var can: WateringCan = $WateringCan
 var is_watering := false   # true only on frames the can actually spent water
+
+@onready var battery: Battery = $Battery
+var _lantern_base_energy: float
+var _flashlight_base_energy: float
 
 #Sound
 var _sfx_on := false
@@ -43,6 +49,9 @@ var _sfx_tween: Tween
 
 func _ready() -> void:
 	_max_look_rad = deg_to_rad(max_look_angle_degrees)
+	_lantern_base_energy = lantern_light.energy
+	_flashlight_base_energy = flash_light.energy
+	Events.player_battery_updated.connect(_on_battery_updated)
 
 func _process(delta: float) -> void:
 	#Head code
@@ -76,6 +85,9 @@ func _process(delta: float) -> void:
 	
 	_set_water_sfx(is_watering)
 	flash_light_pivot.look_at(get_global_mouse_position())
+	
+	# Passive battery drain — the lights are always pulling power.
+	battery.drain(delta)
 
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -135,3 +147,8 @@ func _on_interaction_area_area_entered(area: Area2D) -> void:
 				cycle_tool_sprite(2)
 			elif tool.frame == 1:
 				cycle_tool_sprite(1)
+
+func _on_battery_updated(current: float, maximum: float) -> void:
+	var ratio: float = current / maximum if maximum > 0.0 else 0.0
+	lantern_light.energy = _lantern_base_energy * ratio
+	flash_light.energy = _flashlight_base_energy * ratio

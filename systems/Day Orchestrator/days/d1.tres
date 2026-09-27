@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DayData" format=3 uid="uid://dtmrmllmosuve"]
+
+[ext_resource type="Script" uid="uid://bu4mho63fv1vf" path="res://systems/Day Orchestrator/enemy_spawn_config.gd" id="1_8f0d2"]
+[ext_resource type="Script" uid="uid://i44km2pmnrjw" path="res://systems/Day Orchestrator/DayData.gd" id="1_ej2ik"]
+[ext_resource type="PackedScene" uid="uid://c41b78yqqql8u" path="res://actors/enemies/trespasser/trespasser.tscn" id="2_rffcq"]
+
+[sub_resource type="Resource" id="Resource_kbiyf"]
+script = ExtResource("1_8f0d2")
+enemy_scene = ExtResource("2_rffcq")
+enemy_id = "trespasser"
+metadata/_custom_type_script = "uid://bu4mho63fv1vf"
+
+[resource]
+script = ExtResource("1_ej2ik")
+enemy_configs = Array[ExtResource("1_8f0d2")]([SubResource("Resource_kbiyf")])
+metadata/_custom_type_script = "uid://i44km2pmnrjw"

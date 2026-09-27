@@ -2,6 +2,7 @@ extends Node2D
 
 @export var news_atlas : Texture2D
 @export var cell_size : Vector2i = Vector2i(64,64)
+@export_file("*.tscn") var shop_path : String
 enum TV_State { IDLE, PLAYING, WAITING }
 
 const CHARS_PER_SECOND : float = 40.0
@@ -13,7 +14,7 @@ const IMAGE_FADE_TIME : float = 0.5
 @onready var label_bottom: RichTextLabel = $Control/MarginContainer/VBoxContainer/LabelBottom
 @onready var next_arrow: Sprite2D = $Control/MarginContainer/VBoxContainer/NextArrow
 
-var current_day : int = 1
+var current_day : int = 3
 var state : TV_State = TV_State.IDLE
 var skipping : bool = false
 var tween : Tween
@@ -22,49 +23,133 @@ signal advance_pressed
 
 #Day Dialogue
 var dialogue : Dictionary = {
-	0: [ # Day 0 (test day)
+	0: [ # Day 0, tutorial day
 		{
-			"top": "This is the Day 0 text. This day is for test messages.",
-			"bottom": "When this text is finished, next_arrow is now shown.",
+			"top": "Good Day to all!",
+			"image" : Vector2i(0,0),
+			"bottom": "This report has been brought to you by the Oracle Report Association.\nA little farming guide for all the farmers out there.",
 		},
 		{
-			"top": "Everything is hidden once the player clicks past next_arrow.",
-			"image": Vector2i(0, 0),
-			"bottom": "There is now an image above this text!",
+			"top": "Growing crops is incredibly easy!",
+			"image": Vector2i(1, 0),
+			"bottom": "You just need water, patience and love!",
 		},
 		{
-			"image": Vector2i(0, 0),
-			"bottom": "Sometimes there won't be a top message. Just an image and a text below.",
+			"top": "When watering crops, pay attention to any meter of your water cans.",
+			"image": Vector2i(2, 0),
+			"bottom": "Crops need its soil constantly wet to grow.",
 		},
 		{
-			"top": "A cycle can also be just a top message.",
+			"top": "This report has also been sponsored!",
+			"image": Vector2i(3, 0),
+			"bottom" : "Drop by to the Agora Mart [TM] to buy goodies and upgrades!\tThey have items every farmer needs!",
 		},
 		{
-			"top": "That concludes the news for today! Good Luck!!!",
+			"top" : "In other news,\nVoltek Corporation services as well as Seaqua waterline have recently raised their service payment.",
+			"image": Vector2i(4, 0),
+			"bottom": "This means farmers may have to pay more from their pockets to ensure their services remain stable",
+		},
+		{
+			"top": "Forwarned is forearmed.\nThis concludes the report for today, have a great day.",
 			"image": Vector2i(0, 0),
 		}
 	],
-	1: [ #Day 1 , Thieves and Burglars
+	1: [ #Day 1 , Trespassers
 		{
 			"top" : "Good Day to all!\nToday's news report will tackle on an unfortunate statistic seen in the local neighborhood.",
 		},
 		{
-			"top" : "Lately, there has been a rise of criminal activity.",
+			"top" : "Lately, there has been a rise of criminal activity.\nA trespasser with a music box has been spotted roaming through the town.",
 			"image" : Vector2i(0,1),
 			"bottom" : "For your safety, lock all your doors and\nDO NOT go outside.",
 		},
 		{
-			"top" : "If you find any suspicious activity in your area, DO NOT ENGAGE.\n\nYour LIFE will be in GREAT DANGER if you do!",
+			"bottom" : "Reports have said that it attacks anyone when its music box finishes playing twice.\nAs long as you are inside your house by then,\nyou. are. safe."
 			
 		},
 		{
-			"top" : "You must quietly leave the area\n slowly walk to your house and DO NOT LEAVE.\nIt is advised not to be noticed as you leave or your safety is compromised.",
+			"top" : "If you find any suspicious activity in your area, DO NOT ENGAGE.\n\nYour LIFE will be in GREAT DANGER if you do!",
 			"image" : Vector2i(1,1),
+			
 		},
 		{
-			"top" : "This concludes today's news report.\nStay safe.\nDo not approach suspicious people.\nAnd . . . Have a Great Day!",
+			"top":"When dealing with this stranger, it is advised not to approach them. Listen vigilantly and rush towards your house.",
+		},
+		{
+			"top" : "Forewarned is forearmed.\nStay safe and have a great evening.",
 			"image" : Vector2i(0,0),
 			"bottom" : "[This report has been brought to you by the Oracle Report Association]"
+		}
+	],
+	2:[
+		{
+			"top" : "The Oracle Report Association greets you all!",
+			"image" : Vector2i(0,0),
+			"bottom":"Today's news report will tackle on the recent rabies pandemic happening in the local area."
+		},
+		{
+			"image" : Vector2i(0,2),
+			"bottom": "Multiple dogs have been found aimlessly wandering the streets.\nDO NOT APPROACH THEM.\nDO NOT FEED THEM.\nDO NOT ENGAGE WITH THEM.",
+		},
+		{
+			"top" : "It is most likely a dog infected with the Rabies Virus.",
+			"image" : Vector2i(1,2),
+			"bottom" : "Dealing with them is 'easy'!",
+		},
+		{
+			"top":"You may hear barking in the distance when it is about to enter your area.",
+			"bottom":"When it IS in your area. You may hear footsteps and growling. Use this information wisely to have a rough location where the dog is."
+		},
+		{
+			"top":"These dogs are notorious and stubborn and may or may not leave the area.",
+			"image" : Vector2i(2,1),
+			"bottom":"Staying inside your house makes you safe from attacks but it won't do anything.",
+		},
+		{
+			"top":"It's unpredictable wandering may be dangerous especially at night where visiblity is low.",
+			"bottom":"Be advised. If you are near it, the dog WILL attack.",
+		},
+		{
+			"top":"Dealing with dog attacks:",
+			"bottom":"There are multiple ways of dealing with dog attacks but to put it simply...\nRUN AWAY!\nIt may give up chasing you and go back to aimlessly wander around."
+		},
+		{
+			"top":"In unrelated news,\nthere has been reports of a massive storm incoming tomorrow night.",
+			"bottom":"The Voltek Corporation has issued a notice of a complete power grid shutoff tomorrow night. Be Prepared!"
+		},
+		{
+			"top" : "Forewarned is forearmed.\nHave a safe night and don't let the doggies bite!",
+			"image" : Vector2i(0,0),
+			"bottom" : "[This report has been brought to you by the Oracle Report Association]"
+		}
+	],
+	3:[
+		{
+			"top":"A cloudy day to all!",
+			"image" : Vector2i(0,0),
+			"bottom":"This is the Oracle Report Association here to give your daily report."
+		},
+		{
+			"top":"Heavy rain has now already been reported happening in the local area.",
+			"bottom":"This rain is expected to worsen tonight. Be Prepared!"
+		},
+		{
+			"top":"The Voltek Corporation has begin shutting down the power grid.",
+			"bottom":"Tonight will be a very dark night."
+		},
+		{
+			"top":"Threats of the previous nights have begin rising. Dogs and the mysterious trespassers have become rampant",
+			"bottom":"Your safety is heavily breached. It is advised to stay inside the house until the storm passes. Otherwise, you will need to deal with such threats in darkness."
+		},
+		{
+			"top":"If you have generators, it may help you incredibly tonight!",
+		},
+		{
+			"bottom":"For the farmers out there, the rain will help you tonight as it may water them for free!",
+		},
+		{
+			"top":"Forwarned is forearmed.\nThat concludes today's report.",
+			"bottom":"Stay safe and get ready for evacuation if things get worse.\n[This report has been brought to you by the Oracle Report Association]"
 		}
 	]
 }
@@ -72,6 +157,8 @@ var dialogue : Dictionary = {
 const PAUSES : Dictionary = { ".": 0.6, "!": 0.6, "?": 0.6, ",": 0.5, "\n": 1.0}
 
 func _ready() -> void:
+	GameManager.save_game()
+	current_day = GameManager.current_day
 	hide_text(label_top)
 	hide_text(label_bottom)
 	news_image.hide()
@@ -81,7 +168,7 @@ func _on_orchestrator_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "intro":
 		play_day(current_day)
 	elif anim_name == "outro":
-		print("Cutscene Finished!")
+		GameManager.load_next_level(shop_path)
 
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("action"):

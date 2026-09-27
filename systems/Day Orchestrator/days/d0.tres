@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DayData" format=3 uid="uid://ck87oks1jhvnw"]
+
+[ext_resource type="Script" uid="uid://bu4mho63fv1vf" path="res://systems/Day Orchestrator/enemy_spawn_config.gd" id="1_14vai"]
+[ext_resource type="Script" uid="uid://i44km2pmnrjw" path="res://systems/Day Orchestrator/DayData.gd" id="1_yv7jf"]
+
+[resource]
+script = ExtResource("1_yv7jf")
+day_number = 0
+tutorial_mode = true
+random_scares_enabled = false
+start_time = 300.0
+time_progresses = false
+ends_on_timer = false
+metadata/_custom_type_script = "uid://i44km2pmnrjw"

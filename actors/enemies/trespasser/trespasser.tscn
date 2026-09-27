@@ -40,6 +40,7 @@ debug_color = Color(0.9882353, 0, 0.29803923, 0)
 
 [node name="MusicBox" type="AudioStreamPlayer2D" parent="." unique_id=2064905459]
 stream = ExtResource("3_l7iiw")
+volume_db = 5.0
 autoplay = true
 max_distance = 1000.0
 bus = &"SFX"

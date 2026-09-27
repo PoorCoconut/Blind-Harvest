@@ -4,3 +4,4 @@ extends Node
 
 
 signal player_water_updated(current_water, max_water)
+signal player_battery_updated(current_charge, max_charge)

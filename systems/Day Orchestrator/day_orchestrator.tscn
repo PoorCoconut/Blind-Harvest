@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d3wdmhpn2dkag"]
+
+[ext_resource type="Script" uid="uid://dbl0lfuh3sqna" path="res://systems/Day Orchestrator/day_orchestrator.gd" id="1_c235i"]
+
+[node name="DayOrchestrator" type="Node" unique_id=134384307]
+script = ExtResource("1_c235i")
