@@ -34,4 +34,4 @@ jobs:
       - name: Deploy to Itch.io
         env:
           BUTLER_API_KEY: ${{ secrets.ITCHIO_API_KEY }}
-        run: butler push build/web poorcoco/blind-harvest:web
+        run: butler push build/web poorcoco/blind-harvest:html5
