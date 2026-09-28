@@ -34,7 +34,7 @@ jobs:
       - name: Install Butler
         run: |
           apt-get update && apt-get install -y curl unzip
-          curl -L -o butler.zip https://itch.ovh
+          curl -L -o butler.zip https://github.com
           unzip butler.zip -d /usr/local/bin
           chmod +x /usr/local/bin/butler
 
