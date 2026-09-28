@@ -31,9 +31,15 @@ jobs:
           mkdir -v -p build/web
           godot --headless --export-release "Web" build/web/$EXPORT_NAME
 
-      # This replaces the entire curl/unzip/chmod block with a standard pre-packaged runner action
-      - name: Setup Butler CLI
-        uses: itsnexn/setup-butler@v1
+      - name: Install and Setup Butler
+        run: |
+          apt-get update && apt-get install -y curl unzip
+          # Download using an absolute link split safely onto its own line
+          curl -L -o butler.zip "https://github.com"
+          unzip -o butler.zip -d /usr/local/bin
+          chmod +x /usr/local/bin/butler
+          # Confirm the binary is working inside the container
+          butler --version
 
       - name: Deploy to Itch.io
         env:
