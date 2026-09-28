@@ -63,7 +63,7 @@ func _on_music_box_finished() -> void:
 
 # ---------- chase (permanent once started) ----------
 func _process_chasing(delta: float) -> void:
-	var should_chase := not GameManager.player_safe
+	var should_chase = not GameManager.player_safe
 	if should_chase != _chase_active:
 		_chase_active = should_chase
 		_set_chase_audio(should_chase)
