@@ -36,4 +36,4 @@ jobs:
           BUTLER_API_KEY: ${{ secrets.ITCHIO_API_KEY }}
         run: |
           butler upgrade
-          butler push build/web poorcoco/blind-harvest-game:html5
+          butler push build/web poorcoco/void-vanguard:ci-test
