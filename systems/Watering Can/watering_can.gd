@@ -3,7 +3,8 @@ class_name WateringCan
 
 @export var max_water: float = 100.0
 @export var usage_rate: float = 20.0     # per second while spraying
-@export var refill_rate: float = 60.0    # per second at the pump
+@export var base_refill_rate: float = 20.0
+var current_refill_rate: float = 0.0          # Use this variable for actual pumping
 
 var water: float = 0.0
 @onready var refill_sfx: AudioStreamPlayer = $RefillSFX  # add this node under WateringCan
@@ -12,7 +13,7 @@ var _refilling := false
 var _refill_tween: Tween
 
 func _ready() -> void:
-	water = max_water
+	update_stats()
 	_emit_update.call_deferred()   # deferred so the HUD is ready to listen
 
 
@@ -27,7 +28,7 @@ func use(delta: float) -> bool:
 ## Call every frame while at the pump.
 func refill(delta: float) -> void:
 	var before := water
-	_set_water(water + refill_rate * delta)
+	_set_water(water + current_refill_rate * delta)
 	_set_refilling(water > before and not is_full())
 
 func _set_refilling(on: bool) -> void:
@@ -57,4 +58,18 @@ func _set_water(value: float) -> void:
 
 
 func _emit_update() -> void:
+	print("Watering Can Debug: ",water, "/", max_water)
 	Events.player_water_updated.emit(water, max_water)
+
+func update_stats() -> void:
+	max_water = 100.0 + (100.0 * (GameManager.can_level * 0.25))
+	
+	# Always calculate off the protected base rate
+	current_refill_rate = base_refill_rate + (base_refill_rate * (GameManager.can_level * 0.02))
+	
+	if GameManager.seaqua_debt > 0:
+		current_refill_rate *= 0.45
+		
+	water = max_water
+	
+	print("Max Water: %s\nRefill Rate: %s" % [max_water, current_refill_rate])

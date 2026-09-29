@@ -21,6 +21,13 @@ var is_hungry : bool = false
 func _ready() -> void:
 	print("GAME MANAGER LOADED!")
 	load_game()
+	print("Game Manager Stats:\n",
+	#"","\n",
+	"Current Day: ", current_day,"\n",
+	"Can Level: ", can_level,"\n",
+	"Battery Level: ", battery_level,"\n",
+	"Seaqua debt: " ,seaqua_debt,"\n",
+	"Voltek debt: ", voltek_debt,"\n",)
 
 ##SAVE FILE LOGIC
 const GAME_SAVE_PATH : String = "user://gamestate.json"

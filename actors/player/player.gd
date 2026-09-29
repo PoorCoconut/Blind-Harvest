@@ -67,13 +67,18 @@ func _process(delta: float) -> void:
 	
 	is_watering = false
 	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_action_pressed("action"):
 		match tool.frame:
 			0: #Holding nothing
 				water_ptcl.emitting = false
 				wrench_ptcl.emitting = false
 			1: #Watering Can
-				is_watering = can.use(delta)   # returns false when empty
+				# Block usage if the can is currently connected to the pump
+				if not can._refilling:
+					is_watering = can.use(delta)   
+				else:
+					is_watering = false
+					
 				water_ptcl.emitting = is_watering
 				wrench_ptcl.emitting = false
 			2: #Wrench
@@ -112,6 +117,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			cycle_tool_sprite(-1)
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			cycle_tool_sprite(1)
+	elif Input.is_action_just_pressed("charge"):
+		cycle_tool_sprite(1)
 
 func cycle_tool_sprite(direction: int) -> void:
 	var total_frames: int = tool.hframes * tool.vframes
@@ -122,7 +129,7 @@ func get_tool_id() -> int:
 	return tool.frame
 
 func is_using_tool() -> bool:
-	return Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+	return Input.is_action_pressed("action")
 
 func _set_water_sfx(on: bool) -> void:
 	if on == _sfx_on:

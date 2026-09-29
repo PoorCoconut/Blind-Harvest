@@ -5,7 +5,6 @@
 
 [node name="WateringCan" type="Node" unique_id=1721167239]
 script = ExtResource("1_nauth")
-refill_rate = 25.0
 
 [node name="RefillSFX" type="AudioStreamPlayer" parent="." unique_id=863780202]
 stream = ExtResource("2_yndvo")

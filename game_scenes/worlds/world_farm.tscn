@@ -1073,8 +1073,14 @@ color = Color(0, 0, 0, 1)
 [node name="FaderAnim" type="AnimationPlayer" parent="." unique_id=358320834]
 libraries/ = SubResource("AnimationLibrary_d5c5g")
 
+[node name="PumpTP" type="Node2D" parent="." unique_id=296151135 groups=["secret_tp"]]
+position = Vector2(-176, 768)
+
+[node name="GenTP" type="Node2D" parent="." unique_id=1230417864 groups=["secret_tp"]]
+position = Vector2(492, 784)
+
 [connection signal="timeout" from="SpawnTimer" to="EnemySpawner" method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="RandomScareAmbienceTimer" to="." method="_on_random_scare_ambience_timer_timeout"]
+[connection signal="timeout" from="RandomScareAmbienceTimer" to="DayOrchestrator" method="_on_random_scare_ambience_timer_timeout"]
 [connection signal="body_entered" from="HouseShadowArea" to="." method="_on_house_shadow_area_body_entered"]
 [connection signal="body_exited" from="HouseShadowArea" to="." method="_on_house_shadow_area_body_exited"]
 [connection signal="harvested" from="FarmPlots/FarmingPlot" to="." method="_on_farming_plot_harvested"]

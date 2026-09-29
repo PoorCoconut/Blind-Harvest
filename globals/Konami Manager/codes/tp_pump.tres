@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="KonamiCode" format=3 uid="uid://dcf511strpje5"]
+
+[ext_resource type="Script" uid="uid://rs60b3fygs8g" path="res://globals/Konami Manager/konami_code.gd" id="1_6qtvp"]
+
+[resource]
+script = ExtResource("1_6qtvp")
+code_name = "gen"
+sequence = Array[String](["ui_up", "ui_up", "ui_left", "ui_right"])
+metadata/_custom_type_script = "uid://rs60b3fygs8g"

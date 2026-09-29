@@ -40,6 +40,7 @@ func _check_code(code: KonamiCode, event: InputEvent) -> void:
 		if _progress[code] >= code.sequence.size():
 			if code.single_use:
 				code.used_up = true
+			SoundBank.play_sfx("ui_click")
 			code_entered.emit(code.code_name)
 			_progress[code] = 0
 	else:

@@ -10,6 +10,7 @@ var tutorial_harvest_count: int = 0
 
 func _ready() -> void:
 	# Optional: Connect signals if the farm needs to react to the day ending
+	KonamiManager.code_entered.connect(_on_code_entered)
 	$DayOrchestrator.day_ended.connect(_on_day_ended)
 
 func _on_day_ended() -> void:
@@ -49,3 +50,13 @@ func _on_day_orchestrator_day_ended() -> void:
 
 func _on_fader_anim_animation_finished(_anim_name: StringName) -> void:
 	GameManager.load_next_level(tv_path)
+
+func _on_code_entered(code_name : String):
+	if code_name == "pump":
+		var player : Player = get_tree().get_first_node_in_group("player")
+		if player:
+			player.global_position = $PumpTP.global_position
+	elif code_name == "gen":
+		var player : Player = get_tree().get_first_node_in_group("player")
+		if player:
+			player.global_position = $GenTP.global_position

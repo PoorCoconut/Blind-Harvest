@@ -40,6 +40,9 @@ func _ready() -> void:
 func apply_day_configuration() -> void:
 	current_time = current_day_data.start_time
 	
+	if current_time >= (night_day_cycle / 2.0):
+		_halfway_triggered = true
+	
 	if current_day_data.tutorial_mode:
 		ambience_world.stop()
 	else:

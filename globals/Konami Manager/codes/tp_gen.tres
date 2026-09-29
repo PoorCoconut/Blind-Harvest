@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="KonamiCode" format=3 uid="uid://leqgdy8j41u"]
+
+[ext_resource type="Script" uid="uid://rs60b3fygs8g" path="res://globals/Konami Manager/konami_code.gd" id="1_3hpim"]
+
+[resource]
+script = ExtResource("1_3hpim")
+code_name = "pump"
+sequence = Array[String](["ui_down", "ui_down", "ui_left", "ui_right"])
+metadata/_custom_type_script = "uid://rs60b3fygs8g"

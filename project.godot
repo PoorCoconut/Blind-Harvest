@@ -14,6 +14,10 @@ config/name="Blind Harvest"
 config/description="Farm your way off your debts while dealing with a series of unfortunate events in your farm!"
 run/main_scene="uid://camlgx74mlna4"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+boot_splash/bg_color=Color(0.02745098, 0.05882353, 0.16862746, 1)
+boot_splash/stretch_mode=0
+boot_splash/use_filter=false
+boot_splash/image="uid://b0t2wv1hq5qx2"
 config/icon="res://icon.svg"
 
 [audio]
@@ -60,6 +64,7 @@ player=""
 water_pump=""
 generator=""
 farming_plot=""
+secret_tp=""
 
 [gui]
 

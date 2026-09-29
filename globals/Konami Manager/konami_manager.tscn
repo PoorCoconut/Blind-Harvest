@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://0ae1cms8lw8j"]
 
 [ext_resource type="Script" uid="uid://b0v7slebhokyc" path="res://globals/Konami Manager/konami_manager.gd" id="1_55wjr"]
+[ext_resource type="Script" uid="uid://rs60b3fygs8g" path="res://globals/Konami Manager/konami_code.gd" id="2_q3ot0"]
+[ext_resource type="Resource" uid="uid://leqgdy8j41u" path="res://globals/Konami Manager/codes/tp_gen.tres" id="3_aaqbt"]
+[ext_resource type="Resource" uid="uid://dcf511strpje5" path="res://globals/Konami Manager/codes/tp_pump.tres" id="4_pvngf"]
 
 [node name="KonamiManager" type="Node" unique_id=1739586380]
 script = ExtResource("1_55wjr")
+codes = Array[ExtResource("2_q3ot0")]([ExtResource("3_aaqbt"), ExtResource("4_pvngf")])

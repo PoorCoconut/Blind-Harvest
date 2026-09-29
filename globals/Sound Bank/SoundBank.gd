@@ -36,6 +36,10 @@ var sfx_dict : Dictionary = {
 	#Others
 	"harp" : preload("uid://nf70u5evr72y"),
 	"rooster" : preload("uid://kwq5lnlvgwb8"),
+	
+	#UI
+	"ui_click" : preload("uid://elkeme224vj"),
+	"ui_back" : preload("uid://uma66unabe3j"),
 }
 
 #Here is an example:
