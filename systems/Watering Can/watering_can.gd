@@ -58,7 +58,7 @@ func _set_water(value: float) -> void:
 
 
 func _emit_update() -> void:
-	print("Watering Can Debug: ",water, "/", max_water)
+	#print("Watering Can Debug: ",water, "/", max_water)
 	Events.player_water_updated.emit(water, max_water)
 
 func update_stats() -> void:

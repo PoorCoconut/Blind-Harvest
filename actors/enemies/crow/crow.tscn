@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://qkrm4xisvrga"]
+
+[ext_resource type="Script" uid="uid://d4jbmij7uelr7" path="res://actors/enemies/crow/crow.gd" id="1_f6bdb"]
+[ext_resource type="Texture2D" uid="uid://7evv26uppv0p" path="res://game_assets/ui_sprites.png" id="2_r4cqy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k3an"]
+atlas = ExtResource("2_r4cqy")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1k3an"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0v71g"]
+radius = 32.0
+
+[node name="Crow" type="Area2D" unique_id=2101769738]
+script = ExtResource("1_f6bdb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1658722202]
+position = Vector2(0, -6)
+texture = SubResource("AtlasTexture_1k3an")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=744487128]
+shape = SubResource("CircleShape2D_1k3an")
+
+[node name="PlayerDetector" type="Area2D" parent="." unique_id=1534609182]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=210782545]
+shape = SubResource("CircleShape2D_0v71g")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

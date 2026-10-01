@@ -10,6 +10,7 @@ class_name DayData
 @export var start_time: float = 0.0
 @export var time_progresses: bool = true # If false, time freezes at start_time
 @export var ends_on_timer: bool = true # If false, the day ignores the clock hitting the limit
+@export var grid_relies_on_generator: bool = false
 
 @export_category("Enemy Configuration")
 @export var enemy_configs: Array[EnemySpawnConfig]

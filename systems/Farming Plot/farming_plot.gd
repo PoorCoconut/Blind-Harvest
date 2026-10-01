@@ -15,6 +15,8 @@ const FRAME_RIPE := 5
 @export var water_fill_rate: float = 60.0   # per second while watering (fast)
 @export var water_drain_rate: float = 3.0   # per second, always (slow)
 @export var grow_time: float = 15.0          # seconds of WATERED time per growth stage
+@export var rain_fill_rate: float = 15.0
+var _day_orchestrator: Node
 
 @export_category("Growth Visuals")
 @export var max_stagger: float = 1.2        # random delay so crops don't pop together
@@ -33,6 +35,8 @@ const FRAME_RIPE := 5
 @export var water_bar_pop_duration: float = 0.3
 var _water_bar_tween: Tween
 
+var current_crows: int = 0
+@export var crow_damage_rate: float = 15.0 # How fast 3+ crows drain water
 
 var plants: Array[Sprite2D] = []
 var has_crop: Array[bool] = []
@@ -50,6 +54,8 @@ var _pending_pops: int = 0
 @onready var tutorial: RichTextLabel = $Tutorial
 
 func _ready() -> void:
+	_day_orchestrator = get_tree().get_first_node_in_group("day_orchestrator")
+	
 	if GameManager.current_day == 0:
 		tutorial.show()
 	
@@ -100,17 +106,19 @@ func _plant_next() -> void:
 # ---------- GROWING ----------
 func _process_growing(delta: float) -> void:
 	var change := -water_drain_rate
+	
+	if _day_orchestrator and _day_orchestrator.current_day_data.is_raining:
+		change += rain_fill_rate
+		
 	if player != null and player.is_watering:
 		change += water_fill_rate
+		
+	# The Crow Penalty: Only applies if 3 or more are landed
+	if current_crows >= 3:
+		change -= crow_damage_rate
+		
 	water = clampf(water + change * delta, 0.0, water_bar.max_value)
 	water_bar.value = water
-	
-	# the "must have water for X seconds" timer: pauses while dry, keeps its progress
-	if water > 0.0 and stage < FRAME_RIPE:
-		grow_progress += delta
-		if grow_progress >= grow_time:
-			grow_progress = 0.0
-			_advance_stage()
 
 
 func _advance_stage() -> void:
@@ -189,6 +197,12 @@ func _set_state(new_state: PlantState) -> void:
 
 
 # ---------- helpers ----------
+func add_crow() -> void:
+	current_crows += 1
+
+func remove_crow() -> void:
+	current_crows = max(0, current_crows - 1)
+
 func _holding(tool_id: Tool) -> bool:
 	return player != null and player.is_using_tool() and player.get_tool_id() == tool_id
 

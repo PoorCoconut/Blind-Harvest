@@ -48,9 +48,18 @@ var _sfx_on := false
 var _sfx_tween: Tween
 
 func _ready() -> void:
+	if GameManager.bought_boots:
+		MAX_SPEED += 10
+	if GameManager.is_hungry:
+		ACCELERATION /= 3
+	
+	
 	_max_look_rad = deg_to_rad(max_look_angle_degrees)
 	_lantern_base_energy = lantern_light.energy
 	_flashlight_base_energy = flash_light.energy
+	
+	flash_light_pivot.visible = GameManager.bought_flashlight
+	
 	Events.player_battery_updated.connect(_on_battery_updated)
 
 func _process(delta: float) -> void:
@@ -119,6 +128,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			cycle_tool_sprite(1)
 	elif Input.is_action_just_pressed("charge"):
 		cycle_tool_sprite(1)
+	elif Input.is_action_just_pressed("toggle_light"):
+		if GameManager.bought_flashlight:
+			flash_light.visible = not flash_light.visible
+			SoundBank.play_sfx("flashlight_click")
 
 func cycle_tool_sprite(direction: int) -> void:
 	var total_frames: int = tool.hframes * tool.vframes

@@ -2,6 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bu4mho63fv1vf" path="res://systems/Day Orchestrator/enemy_spawn_config.gd" id="1_14vai"]
 [ext_resource type="Script" uid="uid://i44km2pmnrjw" path="res://systems/Day Orchestrator/DayData.gd" id="1_yv7jf"]
+[ext_resource type="PackedScene" uid="uid://qkrm4xisvrga" path="res://actors/enemies/crow/crow.tscn" id="2_tbefe"]
+
+[sub_resource type="Resource" id="Resource_ue16g"]
+script = ExtResource("1_14vai")
+enemy_scene = ExtResource("2_tbefe")
+enemy_id = "crow"
+max_active_at_once = 6
+spawn_interval = 15.0
+metadata/_custom_type_script = "uid://bu4mho63fv1vf"
 
 [resource]
 script = ExtResource("1_yv7jf")
@@ -11,4 +20,5 @@ random_scares_enabled = false
 start_time = 300.0
 time_progresses = false
 ends_on_timer = false
+enemy_configs = Array[ExtResource("1_14vai")]([SubResource("Resource_ue16g")])
 metadata/_custom_type_script = "uid://i44km2pmnrjw"

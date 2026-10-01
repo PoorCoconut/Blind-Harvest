@@ -42,6 +42,11 @@ func apply_day_configuration() -> void:
 	
 	if current_time >= (night_day_cycle / 2.0):
 		_halfway_triggered = true
+		
+	# Assign grid rules based on Voltek Debt OR the DayData configuration
+	var generator = get_tree().get_first_node_in_group("generator")
+	if generator:
+		generator.requires_cranking = (GameManager.voltek_debt > 0) or current_day_data.grid_relies_on_generator
 	
 	if current_day_data.tutorial_mode:
 		ambience_world.stop()
@@ -53,11 +58,8 @@ func apply_day_configuration() -> void:
 		rain_particles.emitting = true
 		if rain_audio:
 			rain_audio.play()
-		for lamp in lamp_lights.get_children():
-			if lamp.has_method("turn_off"):
-				lamp.turn_off()
-		# Set the first lightning strike to happen between 5 and 15 seconds from now
 		next_lightning_strike = randf_range(5.0, 15.0)
+		
 	else:
 		rain_particles.emitting = false
 		if rain_audio:

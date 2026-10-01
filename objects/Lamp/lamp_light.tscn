@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bo0o12qu6urs4" path="res://objects/Lamp/lamp_light.gd" id="1_5jytq"]
 [ext_resource type="Texture2D" uid="uid://fexph0k7gham" path="res://game_assets/gameplay/farm_sprites.png" id="1_oq50r"]
 [ext_resource type="Texture2D" uid="uid://cn5nl2yw0x176" path="res://game_assets/flashlight_lightcone.png" id="2_5jytq"]
+[ext_resource type="AudioStream" uid="uid://ynntgbeao4ol" path="res://sound/sfx/sfx_lights_error.mp3" id="4_kfcox"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
 atlas = ExtResource("1_oq50r")
@@ -57,3 +58,9 @@ shadow_filter = 1
 shadow_filter_smooth = 5.0
 texture = SubResource("GradientTexture2D_oq50r")
 texture_scale = 3.0
+
+[node name="LightBuzz" type="AudioStreamPlayer2D" parent="." unique_id=689422042]
+stream = ExtResource("4_kfcox")
+autoplay = true
+max_distance = 100.0
+bus = &"SFX"

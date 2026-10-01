@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d1s1mauijrak8"]
+
+[ext_resource type="Script" uid="uid://dbjjjapr6cg04" path="res://actors/enemies/moth swarm/moth_swarm.gd" id="1_bfhon"]
+
+[sub_resource type="Curve" id="Curve_1k3an"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.07860262, 1), 0.0, 0.0, 0, 0, Vector2(0.8515284, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1k3an"]
+polygon = PackedVector2Array(0, -2, -2, 0, 0, 2, 2, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1k3an"]
+radius = 6.0
+
+[node name="MothSwarm" type="Area2D" unique_id=894619350]
+collision_mask = 2
+script = ExtResource("1_bfhon")
+
+[node name="MothParticle" type="CPUParticles2D" parent="." unique_id=2075293960]
+amount = 30
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+angular_velocity_min = -15.0
+angular_velocity_max = 15.0
+orbit_velocity_min = -0.5
+orbit_velocity_max = 0.5
+damping_max = 20.0
+scale_amount_curve = SubResource("Curve_1k3an")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1107658162]
+occluder = SubResource("OccluderPolygon2D_1k3an")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1768139810]
+shape = SubResource("CircleShape2D_1k3an")

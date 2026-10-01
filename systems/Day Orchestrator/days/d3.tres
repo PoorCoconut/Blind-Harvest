@@ -22,5 +22,6 @@ metadata/_custom_type_script = "uid://bu4mho63fv1vf"
 script = ExtResource("2_tfq7d")
 day_number = 3
 is_raining = true
+grid_relies_on_generator = true
 enemy_configs = Array[ExtResource("1_kkhdy")]([SubResource("Resource_tfq7d"), SubResource("Resource_ml7ge")])
 metadata/_custom_type_script = "uid://i44km2pmnrjw"
