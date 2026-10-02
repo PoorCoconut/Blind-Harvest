@@ -2,6 +2,69 @@
 
 [ext_resource type="Script" uid="uid://b6rwu6r4il3so" path="res://game_scenes/menus/MainMenu/main_menu.gd" id="1_h6sl1"]
 [ext_resource type="Script" uid="uid://cxjik30ut0s3y" path="res://systems/Rebind Button Script Module/RebindButton.gd" id="2_c5njb"]
+[ext_resource type="Texture2D" uid="uid://db6rj404i2nhx" path="res://game_assets/menu_bg.png" id="2_kcaeb"]
+[ext_resource type="Shader" uid="uid://cjo10gbumkucd" path="res://game_scenes/menus/MainMenu/fiery_swirl.gdshader" id="3_abyub"]
+[ext_resource type="Shader" uid="uid://b7fu678h3i00r" path="res://vfx/shaders/crt.gdshader" id="4_x2ujj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6hcsl"]
+shader = ExtResource("3_abyub")
+shader_parameter/sway_speed = 0.20000000624012
+shader_parameter/sway_strength = 0.0
+shader_parameter/noise_scale = 1.1710000081225
+shader_parameter/time_offset = 0.0
+shader_parameter/swirl_speed = 0.0
+shader_parameter/swirl_twists = 0.10000047974999937
+shader_parameter/swirl_center = Vector2(0.5, 0.5)
+shader_parameter/alpha_multiplier = 0.50000002375
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1bdr"]
+atlas = ExtResource("2_kcaeb")
+region = Rect2(352, 0, 352, 212)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kcaeb"]
+shader = ExtResource("3_abyub")
+shader_parameter/sway_speed = 0.20000000624012
+shader_parameter/sway_strength = 0.0
+shader_parameter/noise_scale = 1.1710000081225
+shader_parameter/time_offset = 0.0
+shader_parameter/swirl_speed = 0.0
+shader_parameter/swirl_twists = 0.10000047974999937
+shader_parameter/swirl_center = Vector2(0.5, 0.5)
+shader_parameter/alpha_multiplier = 0.50000002375
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2ujj"]
+atlas = ExtResource("2_kcaeb")
+region = Rect2(0, 212, 352, 212)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abyub"]
+shader = ExtResource("3_abyub")
+shader_parameter/sway_speed = 0.10000000149012
+shader_parameter/sway_strength = 0.0
+shader_parameter/noise_scale = 1.0
+shader_parameter/time_offset = 0.0
+shader_parameter/swirl_speed = 0.0
+shader_parameter/swirl_twists = 4.7500000022182576e-07
+shader_parameter/swirl_center = Vector2(0.5, 0.5)
+shader_parameter/alpha_multiplier = 0.50000002375
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hcsl"]
+atlas = ExtResource("2_kcaeb")
+region = Rect2(352, 212, 352, 212)
+
+[sub_resource type="Gradient" id="Gradient_abyub"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0v71g"]
+gradient = SubResource("Gradient_abyub")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.78205127, 0.8717949)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xhehx"]
+shader = ExtResource("4_x2ujj")
+shader_parameter/brightnessMult = 4.0
+shader_parameter/wiggleMult = 0.005
+shader_parameter/chromaticAberrationOffset = 0.001
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqmwn"]
 bg_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
@@ -24,13 +87,70 @@ grow_vertical = 2
 script = ExtResource("1_h6sl1")
 next_level_path = "uid://da33v0h0ptytw"
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=29496978]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1758534577]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 336.0
+offset_bottom = 196.0
+color = Color(0.02745098, 0.05882353, 0.16862746, 1)
+
+[node name="Background2" type="TextureRect" parent="." unique_id=420534013]
+material = SubResource("ShaderMaterial_6hcsl")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -52.0
+offset_right = 22.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("AtlasTexture_b1bdr")
+
+[node name="Background3" type="TextureRect" parent="." unique_id=963902437]
+material = SubResource("ShaderMaterial_kcaeb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -52.0
+offset_right = 22.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_x2ujj")
+
+[node name="Background4" type="TextureRect" parent="." unique_id=346166442]
+material = SubResource("ShaderMaterial_abyub")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -52.0
+offset_right = 22.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_6hcsl")
+
+[node name="Shadow" type="TextureRect" parent="." unique_id=868639914]
+layout_mode = 0
+offset_right = 336.0
+offset_bottom = 196.0
+texture = SubResource("GradientTexture2D_0v71g")
+
+[node name="CRT" type="ColorRect" parent="." unique_id=1519545240]
+material = SubResource("ShaderMaterial_xhehx")
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 336.0
+offset_bottom = 196.0
+color = Color(0.02745098, 0.05882353, 0.16862746, 1)
 
 [node name="GameTitle" type="RichTextLabel" parent="." unique_id=1318100979]
 layout_mode = 1

@@ -1,13 +1,30 @@
 [gd_scene format=3 uid="uid://c41b78yqqql8u"]
 
 [ext_resource type="Script" uid="uid://do1r7eijdju70" path="res://actors/enemies/trespasser/trespasser.gd" id="1_cn5ow"]
-[ext_resource type="Texture2D" uid="uid://7evv26uppv0p" path="res://game_assets/ui_sprites.png" id="2_rnq52"]
+[ext_resource type="Shader" uid="uid://b8tvqoofm3e4x" path="res://vfx/shaders/wind.gdshader" id="2_efuep"]
+[ext_resource type="Texture2D" uid="uid://chuudhml2sbis" path="res://game_assets/enemies.png" id="2_v0rhj"]
 [ext_resource type="AudioStream" uid="uid://d2eyvy1pdc52u" path="res://sound/sfx/sfx_trespasser_readying.mp3" id="3_l7iiw"]
 [ext_resource type="AudioStream" uid="uid://ch7g6ende1j2a" path="res://sound/sfx/sfx_chase.mp3" id="4_v0rhj"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v0rhj"]
+shader = ExtResource("2_efuep")
+shader_parameter/start_y = 0.3
+shader_parameter/strength = 0.0870000041325
+shader_parameter/curve_scale = 1.5
+shader_parameter/speed = 2.0
+shader_parameter/wind_start = 0.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
-atlas = ExtResource("2_rnq52")
-region = Rect2(16, 0, 16, 16)
+atlas = ExtResource("2_v0rhj")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efuep"]
+atlas = ExtResource("2_v0rhj")
+region = Rect2(48, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k3an"]
+atlas = ExtResource("2_v0rhj")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4kxuq"]
 radius = 48.0
@@ -15,12 +32,100 @@ radius = 48.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_rnq52"]
 radius = 8.0
 
+[sub_resource type="Animation" id="Animation_yitki"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChaseSprites/ArmPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChaseSprites/ArmPivot2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5235988]
+}
+
+[sub_resource type="Animation" id="Animation_8wbf2"]
+resource_name = "arm_swing"
+length = 0.5
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChaseSprites/ArmPivot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.5235987755982988, 0.5235987755982988]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChaseSprites/ArmPivot2:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5235988, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cpjo1"]
+_data = {
+&"RESET": SubResource("Animation_yitki"),
+&"arm_swing": SubResource("Animation_8wbf2")
+}
+
 [node name="Trespasser" type="Node2D" unique_id=1536655820]
 script = ExtResource("1_cn5ow")
+post_alert_delay = 5.0
+safe_despawn_time = 2.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1223869678]
+[node name="SpriteCalm" type="Sprite2D" parent="." unique_id=1223869678]
+material = SubResource("ShaderMaterial_v0rhj")
 position = Vector2(0, -8)
 texture = SubResource("AtlasTexture_4kxuq")
+
+[node name="ChaseSprites" type="Node2D" parent="." unique_id=1846350101]
+visible = false
+
+[node name="ArmPivot2" type="Node2D" parent="ChaseSprites" unique_id=112386920]
+position = Vector2(3, -8)
+rotation = 0.5235988
+
+[node name="Sprite2D2" type="Sprite2D" parent="ChaseSprites/ArmPivot2" unique_id=365006267]
+position = Vector2(1, 2)
+texture = SubResource("AtlasTexture_efuep")
+
+[node name="BodyHead" type="Sprite2D" parent="ChaseSprites" unique_id=185240347]
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_1k3an")
+
+[node name="ArmPivot" type="Node2D" parent="ChaseSprites" unique_id=581059405]
+position = Vector2(-3, -8)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ChaseSprites/ArmPivot" unique_id=631704955]
+position = Vector2(1, 2)
+texture = SubResource("AtlasTexture_efuep")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=125310577]
 position = Vector2(0, -8)
@@ -48,6 +153,12 @@ bus = &"SFX"
 [node name="Chase" type="AudioStreamPlayer2D" parent="." unique_id=12947534]
 stream = ExtResource("4_v0rhj")
 bus = &"SFX"
+
+[node name="ArmAnim" type="AnimationPlayer" parent="." unique_id=1465500589]
+libraries/ = SubResource("AnimationLibrary_cpjo1")
+autoplay = &"arm_swing"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=929157072]
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_entered" from="CatchArea" to="." method="_on_catch_area_body_entered"]

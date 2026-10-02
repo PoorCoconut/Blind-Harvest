@@ -21,6 +21,9 @@ enum EState { IDLE, ALERT_SOUND, CHASING }
 @onready var chase: AudioStreamPlayer2D = $Chase
 @onready var music_box: AudioStreamPlayer2D = $MusicBox   # adjust path if it's nested elsewhere
 
+@onready var sprite_calm: Sprite2D = $SpriteCalm
+@onready var chase_sprites: Node2D = $ChaseSprites
+
 var state: EState = EState.IDLE
 var _alert_timer: float = 0.0
 var _safe_timer: float = 0.0
@@ -71,11 +74,21 @@ func _process_chasing(delta: float) -> void:
 	if not should_chase:
 		return
 	
+	if chase_sprites.visible == false:
+		chase_sprites.show()
+		sprite_calm.hide()
+	
 	var player := _get_player()
 	if player == null:
 		return
 	var direction := (player.global_position - global_position).normalized()
 	global_position += direction * chase_speed * delta
+	
+	# Flip the chase sprites horizontally depending on the X direction
+	if direction.x >= 0.0:
+		chase_sprites.scale.x = 1.0
+	else:
+		chase_sprites.scale.x = -1.0
 
 func _get_player() -> Player:
 	return get_tree().get_first_node_in_group("player") as Player

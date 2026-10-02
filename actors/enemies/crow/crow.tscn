@@ -1,11 +1,20 @@
 [gd_scene format=3 uid="uid://qkrm4xisvrga"]
 
 [ext_resource type="Script" uid="uid://d4jbmij7uelr7" path="res://actors/enemies/crow/crow.gd" id="1_f6bdb"]
-[ext_resource type="Texture2D" uid="uid://7evv26uppv0p" path="res://game_assets/ui_sprites.png" id="2_r4cqy"]
+[ext_resource type="Texture2D" uid="uid://chuudhml2sbis" path="res://game_assets/enemies.png" id="2_r4cqy"]
+[ext_resource type="AudioStream" uid="uid://cg3ha3sy3lx2o" path="res://sound/sfx/sfx_bird_flapping.mp3" id="3_5xu6v"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1k3an"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v71g"]
 atlas = ExtResource("2_r4cqy")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhehx"]
+atlas = ExtResource("2_r4cqy")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_715ea"]
+atlas = ExtResource("2_r4cqy")
+region = Rect2(0, 16, 8, 8)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1k3an"]
 radius = 6.0
@@ -13,15 +22,70 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_0v71g"]
 radius = 32.0
 
+[sub_resource type="Animation" id="Animation_5xu6v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/WingsPivot:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_r4cqy"]
+resource_name = "wings_flap"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/WingsPivot:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.3490658503988659, -0.3490658503988659, 0.0, -0.3490658503988659, -0.3490658503988659]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5xu6v"]
+_data = {
+&"RESET": SubResource("Animation_5xu6v"),
+&"wings_flap": SubResource("Animation_r4cqy")
+}
+
 [node name="Crow" type="Area2D" unique_id=2101769738]
 script = ExtResource("1_f6bdb")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1658722202]
-position = Vector2(0, -6)
-texture = SubResource("AtlasTexture_1k3an")
+[node name="Visuals" type="Node2D" parent="." unique_id=1973544411]
+
+[node name="Body" type="Sprite2D" parent="Visuals" unique_id=1658722202]
+position = Vector2(-1, -6)
+texture = SubResource("AtlasTexture_0v71g")
+
+[node name="HeadPivot" type="Node2D" parent="Visuals" unique_id=231963555]
+
+[node name="Head" type="Sprite2D" parent="Visuals/HeadPivot" unique_id=349001271]
+position = Vector2(7, -7)
+texture = SubResource("AtlasTexture_xhehx")
+
+[node name="WingsPivot" type="Node2D" parent="Visuals" unique_id=28007871]
+position = Vector2(1, -7.0000005)
+
+[node name="Wings" type="Sprite2D" parent="Visuals/WingsPivot" unique_id=195244286]
+position = Vector2(-3, -3)
+texture = SubResource("AtlasTexture_715ea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=744487128]
 shape = SubResource("CircleShape2D_1k3an")
+debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="PlayerDetector" type="Area2D" parent="." unique_id=1534609182]
 collision_layer = 0
@@ -29,5 +93,15 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=210782545]
 shape = SubResource("CircleShape2D_0v71g")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="WingAnimation" type="AnimationPlayer" parent="." unique_id=943084250]
+libraries/ = SubResource("AnimationLibrary_5xu6v")
+autoplay = &"wings_flap"
+
+[node name="BirdFlap" type="AudioStreamPlayer2D" parent="." unique_id=1503470152]
+stream = ExtResource("3_5xu6v")
+autoplay = true
+bus = &"SFX"
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

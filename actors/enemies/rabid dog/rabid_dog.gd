@@ -33,6 +33,8 @@ enum DogState { WANDER, CHASING }
 
 @onready var visuals: Node2D = $Visuals
 @onready var sensors: Node2D = $Sensors
+@onready var saliva: CPUParticles2D = $Saliva
+@onready var dog_animation: AnimationPlayer = $DogAnimation
 
 
 var state: DogState = DogState.WANDER
@@ -69,7 +71,13 @@ func _physics_process(delta: float) -> void:
 		else (chase_turn_speed if state == DogState.CHASING else wander_turn_speed)
 	
 	_facing = _turn_toward(_facing, _desired_angle, deg_to_rad(turn_speed) * delta)
-	visuals.rotation = _facing          # was: rotation = _facing
+	
+	# Flip visuals horizontally based on the X component of the facing angle
+	if Vector2.RIGHT.rotated(_facing).x >= 0.0:
+		visuals.scale.x = 1.0
+	else:
+		visuals.scale.x = -1.0
+		
 	sensors.rotation = _facing
 	velocity = Vector2.RIGHT.rotated(_facing) * speed
 	move_and_slide()
@@ -143,6 +151,13 @@ func _give_up() -> void:
 func _set_state(new_state: DogState) -> void:
 	state = new_state
 	catch_area.monitoring = state == DogState.CHASING
+	
+	if state == DogState.CHASING:
+		dog_animation.speed_scale = 1.5
+		saliva.amount = 10
+	else:
+		dog_animation.speed_scale = 1.0
+		saliva.amount = 3
 
 
 func _on_catch_area_body_entered(body: Node2D) -> void:

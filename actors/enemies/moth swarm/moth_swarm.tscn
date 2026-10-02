@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dbjjjapr6cg04" path="res://actors/enemies/moth swarm/moth_swarm.gd" id="1_bfhon"]
 
 [sub_resource type="Curve" id="Curve_1k3an"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.07860262, 1), 0.0, 0.0, 0, 0, Vector2(0.8515284, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.2576419, 0.49438208), 0.0, 0.0, 0, 0, Vector2(0.8515284, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1k3an"]
@@ -27,7 +27,9 @@ angular_velocity_max = 15.0
 orbit_velocity_min = -0.5
 orbit_velocity_max = 0.5
 damping_max = 20.0
+scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_1k3an")
+color = Color(0.02745098, 0.05882353, 0.16862746, 1)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1107658162]
 occluder = SubResource("OccluderPolygon2D_1k3an")

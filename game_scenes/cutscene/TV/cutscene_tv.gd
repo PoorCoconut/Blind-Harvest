@@ -40,6 +40,10 @@ var dialogue : Dictionary = {
 			"bottom": "Crops need its soil constantly wet to grow.",
 		},
 		{
+			"top" : "Crows may appear from time to time.",
+			"bottom" : "Not dealing with them may hinder your crop development!"
+		},
+		{
 			"top": "This report has also been sponsored!",
 			"image": Vector2i(3, 0),
 			"bottom" : "Drop by to the Agora Mart [TM] to buy goodies and upgrades!\tThey have items every farmer needs!",
@@ -48,6 +52,10 @@ var dialogue : Dictionary = {
 			"top" : "In other news,\nVoltek Corporation services as well as Seaqua waterline have recently raised their service payment.",
 			"image": Vector2i(4, 0),
 			"bottom": "This means farmers may have to pay more from their pockets to ensure their services remain stable",
+		},
+		{
+			"top" : "Voltek services include constant light.\nA rather important service especially with how dark the nights have become!",
+			"bottom" : "Seaqua's waterline is incredibly helpful as it allows for rapid water flow. Although our local government has issued free water for all, being cut of the water flow service is rather bothersome."
 		},
 		{
 			"top": "Forwarned is forearmed.\nThis concludes the report for today, have a great day.",
@@ -142,7 +150,7 @@ var dialogue : Dictionary = {
 			"bottom":"Your safety is heavily breached. It is advised to stay inside the house until the storm passes. Otherwise, you will need to deal with such threats in darkness."
 		},
 		{
-			"top":"If you have generators, it may help you incredibly tonight!",
+			"top":"If you have generators, it may help you incredibly when Voltek services are offline, especially for tonight!",
 		},
 		{
 			"bottom":"For the farmers out there, the rain will help you tonight as it may water them for free!",
@@ -151,7 +159,43 @@ var dialogue : Dictionary = {
 			"top":"Forwarned is forearmed.\nThat concludes today's report.",
 			"bottom":"Stay safe and get ready for evacuation if things get worse.\n[This report has been brought to you by the Oracle Report Association]"
 		}
-	]
+	],
+	4:[
+		{
+			"top":"What a pleasant morning to all!\nThis is the Oracle News Association here to give you your daily report."
+		},
+		{
+			"top" : "The Storm seems to have calmed down overnight.",
+			"bottom":"There is a possibility another storm will happen soon, but right now, it is time to stop and smell the freshly wet ground."
+		},
+		{
+			"bottom":"Reports have shown a lot of insects and crows have been appearing in the local area."
+		},
+		{
+			"top":"Moths are attracted to light.\nAlthough they pose no threat, they are rather a nuisance when left alone and they may partially block your view.",
+			"bottom":"If you have any light emitting devices, do TURN THEM OFF."
+		},
+		{
+			"top":"A quick bath in darkness will render them to fly off somewhere else!",
+			
+		},
+		{
+			"top" : "A word for our sponsors,",
+			"bottom" : "Voltek Corporation has also returned their services! Expect light tonight if you have no unprocessed payments.",
+		},
+		{
+			"top":"In other news, packs of rabid dogs seem to have started disappearing. It is expected that you may come across them at a chance of low to none.",
+			"bottom":"Police have also started investigating on these 'Trespasser reports.'"
+		},
+		{
+			"top":"It would seem that there may be a sort of organization behind them but it is quite speculative.",
+			"bottom":"It is still recommended not to engage in potentially suspicious activity",
+		},
+		{
+			"top":"Forwarned is forearmed.\nThat concludes today's report.",
+			"bottom":"Crows, moths and suspicious people, what a combo.\n[This report has been brought to you by the Oracle Report Association]"
+		}
+	],
 }
 
 const PAUSES : Dictionary = { ".": 0.6, "!": 0.6, "?": 0.6, ",": 0.5, "\n": 1.0}

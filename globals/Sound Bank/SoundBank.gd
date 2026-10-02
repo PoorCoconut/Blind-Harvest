@@ -24,11 +24,15 @@ var sfx_dict : Dictionary = {
 	#Gameplay
 	"halfway" : preload("uid://dfqaixofmtviu"),
 	"plant_grow" : preload("uid://db15gb87fhem8"),
+	"flashlight_click" : preload("uid://bn5a8hnv4mp63"),
 	
 	#Enemy
 	"enemy_alert" : preload("uid://cbmxbm5nfh75r"),
 	"growl" : preload("uid://c5albgm2i51tp"),
 	"trespasser_left" : preload("uid://c14ol1e3gm12j"),
+	"crow_caw1" : preload("uid://d0m6jb2arvkx6"),
+	"crow_caw2" : preload("uid://dninj2kg5itvj"),
+	"bird_pick" : preload("uid://drvvrlkx4mnao"),
 	
 	"dog_spawn1" : preload("uid://bhfrcekg8crqc"),
 	"dog_spawn2" : preload("uid://cf4xi0vvurqvy"),
