@@ -5,12 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://bly7ags3x2pwq" path="res://game_assets/news_background.png" id="3_3ukex"]
 [ext_resource type="Shader" uid="uid://caq5obgkps4ux" path="res://vfx/shaders/static.gdshader" id="4_ojvb7"]
 [ext_resource type="FontFile" uid="uid://p0cm2ngosmjp" path="res://game_assets/fonts/MedodicaRegular.otf" id="5_4jyb7"]
+[ext_resource type="Texture2D" uid="uid://dqqmme5bln1fe" path="res://game_assets/error_screen.png" id="5_ge5kp"]
 [ext_resource type="Texture2D" uid="uid://bjej6xgtlmy" path="res://game_assets/news_sprites.png" id="6_ge5kp"]
 [ext_resource type="Texture2D" uid="uid://7evv26uppv0p" path="res://game_assets/ui_sprites.png" id="7_t2st6"]
 [ext_resource type="Shader" uid="uid://b7fu678h3i00r" path="res://vfx/shaders/crt.gdshader" id="8_usasd"]
 [ext_resource type="AudioStream" uid="uid://b2m2qpqymgjcu" path="res://sound/sfx/sfx_tv_on.mp3" id="9_ojvb7"]
 [ext_resource type="AudioStream" uid="uid://rkp552igpdkf" path="res://sound/sfx/sfx_tv_static.mp3" id="10_4jyb7"]
 [ext_resource type="AudioStream" uid="uid://dqlqi5kadbl7x" path="res://sound/mus/Newsanova.wav" id="11_ojvb7"]
+[ext_resource type="AudioStream" uid="uid://c8x0pte7lnfy2" path="res://sound/sfx/sfx_tv_no_signal.mp3" id="13_ge5kp"]
+[ext_resource type="AudioStream" uid="uid://5b3dtaxe8326" path="res://sound/sfx/sfx_breathing.mp3" id="14_t2st6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4sfkv"]
 shader = ExtResource("2_q4vuk")
@@ -21,6 +24,16 @@ shader_parameter/scale = 0.1499999966472
 shader_parameter/gap = Vector2(0, 0)
 shader_parameter/node_scale = Vector2(1, 0.6)
 shader_parameter/transparency = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2st6"]
+shader = ExtResource("2_q4vuk")
+shader_parameter/rotate_degree = 0.0
+shader_parameter/move_degree = 15.000000223518
+shader_parameter/speed = 0.10000000475
+shader_parameter/scale = 0.499999988824
+shader_parameter/gap = Vector2(0, 0)
+shader_parameter/node_scale = Vector2(1, 0.6)
+shader_parameter/transparency = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4kxuq"]
 shader = ExtResource("4_ojvb7")
@@ -520,12 +533,29 @@ anchors_preset = 0
 offset_right = 320.0
 offset_bottom = 180.0
 
+[node name="Background" type="ColorRect" parent="Control" unique_id=1073057582]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.02745098, 0.05882353, 0.16862746, 1)
+
 [node name="NewsBG" type="TextureRect" parent="Control" unique_id=597555562]
 material = SubResource("ShaderMaterial_4sfkv")
 layout_mode = 0
 offset_right = 320.0
 offset_bottom = 180.0
 texture = ExtResource("3_3ukex")
+
+[node name="NoSigBG" type="TextureRect" parent="Control" unique_id=1254939450]
+visible = false
+material = SubResource("ShaderMaterial_t2st6")
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+texture = ExtResource("5_ge5kp")
 
 [node name="StaticBG" type="ColorRect" parent="Control" unique_id=41572392]
 material = SubResource("ShaderMaterial_4kxuq")
@@ -621,6 +651,15 @@ stream = ExtResource("11_ojvb7")
 volume_db = -5.0
 pitch_scale = 0.01
 autoplay = true
+bus = &"Music"
+
+[node name="TVNoSig" type="AudioStreamPlayer" parent="." unique_id=1958507030]
+stream = ExtResource("13_ge5kp")
+
+[node name="Breathing" type="AudioStreamPlayer" parent="." unique_id=1025566228]
+stream = ExtResource("14_t2st6")
+volume_db = 10.0
+pitch_scale = 0.2
 bus = &"Music"
 
 [connection signal="animation_finished" from="Orchestrator" to="." method="_on_orchestrator_animation_finished"]

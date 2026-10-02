@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemySpawnConfig" format=3 uid="uid://ph75b6ilc0nk"]
+
+[ext_resource type="PackedScene" uid="uid://qkrm4xisvrga" path="res://actors/enemies/crow/crow.tscn" id="1_7gf02"]
+[ext_resource type="Script" uid="uid://bu4mho63fv1vf" path="res://systems/Day Orchestrator/enemy_spawn_config.gd" id="2_hihw5"]
+
+[resource]
+script = ExtResource("2_hihw5")
+enemy_scene = ExtResource("1_7gf02")
+enemy_id = "crow"
+max_active_at_once = 12
+spawn_interval = 25.0
+metadata/_custom_type_script = "uid://bu4mho63fv1vf"

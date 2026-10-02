@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemySpawnConfig" format=3 uid="uid://bbfjlf5i7xdjm"]
+
+[ext_resource type="PackedScene" uid="uid://c41b78yqqql8u" path="res://actors/enemies/trespasser/trespasser.tscn" id="1_agdy4"]
+[ext_resource type="Script" uid="uid://bu4mho63fv1vf" path="res://systems/Day Orchestrator/enemy_spawn_config.gd" id="2_alnbk"]
+
+[resource]
+script = ExtResource("2_alnbk")
+enemy_scene = ExtResource("1_agdy4")
+enemy_id = "trespasser"
+metadata/_custom_type_script = "uid://bu4mho63fv1vf"

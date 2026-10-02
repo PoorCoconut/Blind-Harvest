@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemySpawnConfig" format=3 uid="uid://pf3kmrn8sq1r"]
+
+[ext_resource type="Script" uid="uid://bu4mho63fv1vf" path="res://systems/Day Orchestrator/enemy_spawn_config.gd" id="1_dn815"]
+[ext_resource type="PackedScene" uid="uid://binqha8ap6x51" path="res://actors/enemies/rabid dog/rabid_dog.tscn" id="1_hu2u7"]
+
+[resource]
+script = ExtResource("1_dn815")
+enemy_scene = ExtResource("1_hu2u7")
+enemy_id = "rabid_dog"
+max_active_at_once = 4
+metadata/_custom_type_script = "uid://bu4mho63fv1vf"

@@ -118,11 +118,12 @@ var dialogue : Dictionary = {
 			"bottom":"Be advised. If you are near it, the dog WILL attack.",
 		},
 		{
-			"top":"Dealing with dog attacks:",
-			"bottom":"There are multiple ways of dealing with dog attacks but to put it simply...\nRUN AWAY!\nIt may give up chasing you and go back to aimlessly wander around."
+			"top":"Dealing with dog attacks:\nThere are multiple ways of dealing with dog attacks but to put it simply...\nRUN AWAY!\nIt may give up chasing you and go back to aimlessly wander around.",
+			"image" : Vector2i(2,2),
 		},
 		{
 			"top":"In unrelated news,\nthere has been reports of a massive storm incoming tomorrow night.",
+			"image" : Vector2i(3,2),
 			"bottom":"The Voltek Corporation has issued a notice of a complete power grid shutoff tomorrow night. Be Prepared!"
 		},
 		{
@@ -139,40 +140,48 @@ var dialogue : Dictionary = {
 		},
 		{
 			"top":"Heavy rain has now already been reported happening in the local area.",
+			"image" : Vector2i(0,3),
 			"bottom":"This rain is expected to worsen tonight. Be Prepared!"
 		},
 		{
-			"top":"The Voltek Corporation has begin shutting down the power grid.",
+			"top":"The Voltek Corporation has begun shutting down the power grid.",
+			"image" : Vector2i(1,3),
 			"bottom":"Tonight will be a very dark night."
 		},
 		{
-			"top":"Threats of the previous nights have begin rising. Dogs and the mysterious trespassers have become rampant",
+			"top":"Threats of the previous nights have begun rising. Dogs and the mysterious trespassers have become rampant",
 			"bottom":"Your safety is heavily breached. It is advised to stay inside the house until the storm passes. Otherwise, you will need to deal with such threats in darkness."
 		},
 		{
 			"top":"If you have generators, it may help you incredibly when Voltek services are offline, especially for tonight!",
+			"image" : Vector2i(2,3),
 		},
 		{
 			"bottom":"For the farmers out there, the rain will help you tonight as it may water them for free!",
 		},
 		{
 			"top":"Forwarned is forearmed.\nThat concludes today's report.",
+			"image" : Vector2i(0,0),
 			"bottom":"Stay safe and get ready for evacuation if things get worse.\n[This report has been brought to you by the Oracle Report Association]"
 		}
 	],
 	4:[
 		{
-			"top":"What a pleasant morning to all!\nThis is the Oracle News Association here to give you your daily report."
+			"top":"What a pleasant morning to all!\nThis is the Oracle News Association here to give you your daily report.",
+			"image":Vector2i(0,0),
 		},
 		{
 			"top" : "The Storm seems to have calmed down overnight.",
+			"image":Vector2i(0,4),
 			"bottom":"There is a possibility another storm will happen soon, but right now, it is time to stop and smell the freshly wet ground."
 		},
 		{
+			"image":Vector2i(1,4),
 			"bottom":"Reports have shown a lot of insects and crows have been appearing in the local area."
 		},
 		{
 			"top":"Moths are attracted to light.\nAlthough they pose no threat, they are rather a nuisance when left alone and they may partially block your view.",
+			"image":Vector2i(2,4),
 			"bottom":"If you have any light emitting devices, do TURN THEM OFF."
 		},
 		{
@@ -181,6 +190,7 @@ var dialogue : Dictionary = {
 		},
 		{
 			"top" : "A word for our sponsors,",
+			"image":Vector2i(3,4),
 			"bottom" : "Voltek Corporation has also returned their services! Expect light tonight if you have no unprocessed payments.",
 		},
 		{
@@ -189,20 +199,157 @@ var dialogue : Dictionary = {
 		},
 		{
 			"top":"It would seem that there may be a sort of organization behind them but it is quite speculative.",
+			"image":Vector2i(0,1),
 			"bottom":"It is still recommended not to engage in potentially suspicious activity",
 		},
 		{
 			"top":"Forwarned is forearmed.\nThat concludes today's report.",
+			"image" : Vector2i(0,0),
 			"bottom":"Crows, moths and suspicious people, what a combo.\n[This report has been brought to you by the Oracle Report Association]"
 		}
 	],
+	5:[
+		{
+			"top":"Greetings to all!",
+			"image":Vector2i(0,0),
+			"bottom":"This is the Oracle News Association here to bring the report for today."
+		},
+		{
+			"top":"It seems that it is moth season!",
+			"image":Vector2i(0,5),
+			"bottom":"A surge of moths have suddenly appeared. This may be due to the recent storm!"
+		},
+		{
+			"top":"Due to this influx, crows have began rapidly appearing",
+			"image":Vector2i(1,5),
+			"bottom":"Due to the crows, rabid dogs are back and they seem to be hunting the crows. Watch out!"
+		},
+		{
+			"top":"The police have began cracking down the mysterious organization associated with trespassers.",
+			"bottom":"As such, trespasser encounters have started dwindling."
+		},
+		{
+			"top":"In other news, meteorologists have reported that another storm is to be expected tomorrow.",
+			"image":Vector2i(0,4),
+			"bottom":"They mention how odd another storm developing is and that the storm tomorrow will be very powerful"
+		},
+		{
+			"top":"Voltek has began handing out notices for their absence of service tomorrow."
+		},
+		{
+			"top":"Forwarned is forearmed.\nThat concludes today's report.",
+			"image" : Vector2i(0,0),
+			"bottom":"The Cycle of Life, trapped in a delicate chain.\n[This report has been brought to you by the Oracle Report Association]"
+		}
+	],
+	6:[
+		{
+			"event": "hijack_start",
+			"top":"██████ ██████ ███████████",
+			"image":Vector2i(0,6),
+			"bottom":"WE ████ HIJACKED ███ STATION"
+		},
+		{
+			"top":"WE ████ ██ SEND █ MESSAGE ██ ███ WORLD",
+			"image":Vector2i(1,6),
+#REDEMPTION IS SOON. LISTEN TO THE MUSIC OF HEAVEN. THE BOX OF PANDORA, THE GATES OF THE AETHERS. HEAVEN. HEAVEN. HEAVEN. SEE US. LOOK AT US. PRAY TO BE INCLUDED TO HEAVEN! HEAVEN! HEAVEN!
+#HAVE MERCY ON US! HELP US! DO NOT FORSAKE US! HEAVEN! HEAVEN! HEAVEN! THE TRUTH, THE LIGHT, THE LIFE ITSELF, BELONGING, ENTRANCING, CONFUSING. WORLD, HEAR OUR MESSAGE. HEAR US!
+		},
+		{
+			"top" : "██████████ ██ █████ ██████ ██ ███ █████ ██ ███████ ███ ███ ██"
+		},
+		{
+			"top" : "████████ ███ █████ ██ ███ ████████ ███████ ███████ ███████ ███ ███ ████ ██"
+		},
+		{
+			"top" : "███ ████ ██ ██ ████████ ██ ███████ ███████ ███████"
+		},
+		{
+			"top" : "████ █████ ██ ███ ████ ███ ██ ███ ███████ ███ ███████ ███████ ███████ ███"
+		},
+		{
+			"top" : "██████ ███ ██████ ███ ████ ███████ ██████████ ███████████ ██████████"
+		},
+		{
+			"top" : "██████ ████ ███ ████████ ████ ███"
+		},
+		{
+			"top":"LOOK; PASSAGE!",
+			"image":Vector2i(2,6),
+			"bottom":"follow."
+		},
+		{
+			"top":"LOOK; SHEEP!",
+			"image":Vector2i(3,6),
+			"bottom":"become meat."
+		},
+		{
+			"top":"LOOK; FLESH!",
+			"image":Vector2i(4,6),
+			"bottom":"your true self."
+		},
+		{
+			"event": "tv_off",
+			"top":"Please Stand By..."
+		},
+		{
+			"event": "restore_feed",
+			"top":"Any message displayed today was not from the Oracle Report Association",
+			"bottom":"We apologize for any distressing messages, images or audio that might have shown or played."
+		},
+		{
+			"top":"Do not go outside.",
+			"bottom":"Dangerous people are out there."
+		},
+		{
+			"top":"Forwarned is forearmed."
+		}
+	],
+	7:[
+		{
+			"top":"Greetings to all!",
+			"image":Vector2i(0,0),
+			"bottom":"This is the Oracle Report Association",
+		},
+		{
+			"top":"We apologize for the technical issues yesterday.",
+			"image":Vector2i(0,7),
+			"bottom":"We have dealt with the matter at hand. To be transparent, the ORA had been hijacked by a criminal group."
+		},
+		{
+			"top":"You may have associated them with the trespassers that ocassionaly appear.",
+			"image":Vector2i(0,1),
+		},
+		{
+			"top":"The police have cracked down this group and all have been sent to a mental prison camp.",
+			"bottom":"Unfortunately, multiple deaths and injuries were recorded last night."
+		},
+		{
+			"top":"A total of 3 deaths and 14 injured have been reported.",
+			"image":Vector2i(1,7),
+			"bottom":"May their souls rest in peace. May the injured have a speedy recovery."
+		},
+		{
+			"top":"The recent rabies epidemic in dogs has also now been dealt with."
+		},
+		{
+			"top":"Today may be a gloomy day, but the threats of the local area has now ceased."
+		},
+		{
+			"top":"Forwarned is forearmed.\nThat concludes today's report.",
+			"image" : Vector2i(0,0),
+			"bottom":"[This report has been brought to you by the Oracle Report Association]"
+		}
+		
+	]
 }
 
 const PAUSES : Dictionary = { ".": 0.6, "!": 0.6, "?": 0.6, ",": 0.5, "\n": 1.0}
 
 func _ready() -> void:
 	GameManager.save_game()
-	current_day = GameManager.current_day
+	current_day = 7
+	#current_day = GameManager.current_day
 	hide_text(label_top)
 	hide_text(label_bottom)
 	news_image.hide()
@@ -232,6 +379,10 @@ func play_cycle(cycle: Dictionary) -> void:
 	state = TV_State.PLAYING
 	skipping = false
 
+	# 1. Fire the event first so the background/music changes before the text types out
+	if cycle.has("event"):
+		await _handle_event(cycle["event"])
+
 	if cycle.has("top"):
 		await show_text(label_top, cycle["top"])
 	if cycle.has("image"):
@@ -239,15 +390,58 @@ func play_cycle(cycle: Dictionary) -> void:
 	if cycle.has("bottom"):
 		await show_text(label_bottom, cycle["bottom"])
 		
-	#Cycle Finished
+	# Cycle Finished
 	next_arrow.show()
 	state = TV_State.WAITING
 	await advance_pressed
 	
-	#Get ready for the next cycle
+	# Get ready for the next cycle
 	state = TV_State.IDLE
 	next_arrow.hide()
 	await reset()
+
+func _handle_event(event_name: String) -> void:
+	match event_name:
+		"hijack_start":
+			# Hide the background and stop the standard news music
+			$Control/NewsBG.hide()
+			$TVNoSig.play()
+			$Control/NoSigBG.show()
+			await get_tree().create_timer(0.5).timeout
+			$TVNoSig.stop()
+			$Control/NoSigBG.hide()
+			$MusNews.stop()
+			$Breathing.play()
+			
+			# Optional: Play a custom creepy track if you have one
+			# SoundBank.play_sfx("creepy_drone")
+			
+		"tv_off":
+			# Example of a scripted sequence without needing an AnimationPlayer track
+			hide_text(label_top)
+			hide_text(label_bottom)
+			news_image.hide()
+			$Control/NewsBG.hide()
+			$Control/NoSigBG.show()
+			
+			$Breathing.stop()
+			$TVNoSig.play()
+			
+			# Wait a moment in silence before continuing to the "Please Stand By" text
+			
+		"restore_feed":
+			$Control/NoSigBG.hide()
+			await get_tree().create_timer(0.2).timeout
+			$Control/NoSigBG.show()
+			await get_tree().create_timer(0.4).timeout
+			$Control/NoSigBG.hide()
+			$TVNoSig.stop()
+			
+			$Control/NewsBG.show()
+			$MusNews.play()
+			$MusNews.pitch_scale = 1.0 # Restore pitch from the intro track
+			$AudStatic.pitch_scale = 1.0
+			$AudStatic.play()
 
 
 func skip_to_end_of_cycle() -> void:

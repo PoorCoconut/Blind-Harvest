@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cxjik30ut0s3y" path="res://systems/Rebind Button Script Module/RebindButton.gd" id="2_c5njb"]
 [ext_resource type="Texture2D" uid="uid://db6rj404i2nhx" path="res://game_assets/menu_bg.png" id="2_kcaeb"]
 [ext_resource type="Shader" uid="uid://cjo10gbumkucd" path="res://game_scenes/menus/MainMenu/fiery_swirl.gdshader" id="3_abyub"]
+[ext_resource type="Shader" uid="uid://bungmyc4iqet5" path="res://vfx/shaders/fiery.gdshader" id="4_abyub"]
 [ext_resource type="Shader" uid="uid://b7fu678h3i00r" path="res://vfx/shaders/crt.gdshader" id="4_x2ujj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6hcsl"]
@@ -13,7 +14,7 @@ shader_parameter/sway_strength = 0.0
 shader_parameter/noise_scale = 1.1710000081225
 shader_parameter/time_offset = 0.0
 shader_parameter/swirl_speed = 0.0
-shader_parameter/swirl_twists = 0.10000047974999937
+shader_parameter/swirl_twists = 0.10000047974999936
 shader_parameter/swirl_center = Vector2(0.5, 0.5)
 shader_parameter/alpha_multiplier = 0.50000002375
 
@@ -28,7 +29,7 @@ shader_parameter/sway_strength = 0.0
 shader_parameter/noise_scale = 1.1710000081225
 shader_parameter/time_offset = 0.0
 shader_parameter/swirl_speed = 0.0
-shader_parameter/swirl_twists = 0.10000047974999937
+shader_parameter/swirl_twists = 0.10000047974999936
 shader_parameter/swirl_center = Vector2(0.5, 0.5)
 shader_parameter/alpha_multiplier = 0.50000002375
 
@@ -41,15 +42,22 @@ shader = ExtResource("3_abyub")
 shader_parameter/sway_speed = 0.10000000149012
 shader_parameter/sway_strength = 0.0
 shader_parameter/noise_scale = 1.0
-shader_parameter/time_offset = 0.0
+shader_parameter/time_offset = 2.7030001283925
 shader_parameter/swirl_speed = 0.0
-shader_parameter/swirl_twists = 4.7500000022182576e-07
+shader_parameter/swirl_twists = 4.750000002218258e-07
 shader_parameter/swirl_center = Vector2(0.5, 0.5)
 shader_parameter/alpha_multiplier = 0.50000002375
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6hcsl"]
 atlas = ExtResource("2_kcaeb")
 region = Rect2(352, 212, 352, 212)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x2ujj"]
+shader = ExtResource("4_abyub")
+shader_parameter/sway_speed = 1.0
+shader_parameter/sway_strength = 0.05000000074506
+shader_parameter/noise_scale = 5.0
+shader_parameter/time_offset = 0.0
 
 [sub_resource type="Gradient" id="Gradient_abyub"]
 colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
@@ -138,6 +146,7 @@ grow_vertical = 2
 texture = SubResource("AtlasTexture_6hcsl")
 
 [node name="Shadow" type="TextureRect" parent="." unique_id=868639914]
+material = SubResource("ShaderMaterial_x2ujj")
 layout_mode = 0
 offset_right = 336.0
 offset_bottom = 196.0
