@@ -4,7 +4,7 @@ var CURRENT_WORLD_STATE : String = "Nothing"
 const SAVE_PATH : String = "user://savegame.json"
 
 var player_safe : bool = false
-var current_day : int = 7
+var current_day : int = 0
 var current_money : int = 280
 
 #Shop stuff

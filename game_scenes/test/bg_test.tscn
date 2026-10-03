@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cmsbafh4ds7ja"]
+
+[ext_resource type="Shader" uid="uid://caq5obgkps4ux" path="res://vfx/shaders/static.gdshader" id="1_cwj0k"]
+[ext_resource type="Shader" uid="uid://b7fu678h3i00r" path="res://vfx/shaders/crt.gdshader" id="2_1cvxe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0v71g"]
+shader = ExtResource("1_cwj0k")
+shader_parameter/amount = 40.0
+shader_parameter/transparency = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1k3an"]
+shader = ExtResource("2_1cvxe")
+shader_parameter/brightnessMult = 4.0
+shader_parameter/wiggleMult = 0.005
+shader_parameter/chromaticAberrationOffset = 0.001
+
+[node name="BGTest" type="Control" unique_id=1107549801]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=302538463]
+material = SubResource("ShaderMaterial_0v71g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1071347300]
+material = SubResource("ShaderMaterial_1k3an")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
