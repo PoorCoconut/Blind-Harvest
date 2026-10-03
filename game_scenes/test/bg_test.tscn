@@ -1,18 +1,184 @@
 [gd_scene format=3 uid="uid://cmsbafh4ds7ja"]
 
-[ext_resource type="Shader" uid="uid://caq5obgkps4ux" path="res://vfx/shaders/static.gdshader" id="1_cwj0k"]
+[ext_resource type="Shader" uid="uid://cjo10gbumkucd" path="res://game_scenes/menus/MainMenu/fiery_swirl.gdshader" id="1_4c1ef"]
 [ext_resource type="Shader" uid="uid://b7fu678h3i00r" path="res://vfx/shaders/crt.gdshader" id="2_1cvxe"]
+[ext_resource type="Texture2D" uid="uid://db6rj404i2nhx" path="res://game_assets/menu_bg.png" id="2_umr0n"]
+[ext_resource type="Shader" uid="uid://bungmyc4iqet5" path="res://vfx/shaders/fiery.gdshader" id="3_oxg72"]
+[ext_resource type="Texture2D" uid="uid://7evv26uppv0p" path="res://game_assets/ui_sprites.png" id="4_aftbr"]
+[ext_resource type="Shader" uid="uid://b8tvqoofm3e4x" path="res://vfx/shaders/wind.gdshader" id="5_75w3q"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0v71g"]
-shader = ExtResource("1_cwj0k")
-shader_parameter/amount = 40.0
-shader_parameter/transparency = 0.3
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hp4my"]
+shader = ExtResource("1_4c1ef")
+shader_parameter/sway_speed = 0.20000000624012
+shader_parameter/sway_strength = 0.0
+shader_parameter/noise_scale = 1.1710000081225
+shader_parameter/time_offset = 0.0
+shader_parameter/swirl_speed = 0.0
+shader_parameter/swirl_twists = 0.10000047974999936
+shader_parameter/swirl_center = Vector2(0.5, 0.5)
+shader_parameter/alpha_multiplier = 0.50000002375
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1k3an"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dlfb"]
+atlas = ExtResource("2_umr0n")
+region = Rect2(352, 0, 352, 212)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_btitk"]
+shader = ExtResource("1_4c1ef")
+shader_parameter/sway_speed = 0.20000000624012
+shader_parameter/sway_strength = 0.0
+shader_parameter/noise_scale = 1.1710000081225
+shader_parameter/time_offset = 0.0
+shader_parameter/swirl_speed = 0.0
+shader_parameter/swirl_twists = 0.10000047974999936
+shader_parameter/swirl_center = Vector2(0.5, 0.5)
+shader_parameter/alpha_multiplier = 0.50000002375
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rej3o"]
+atlas = ExtResource("2_umr0n")
+region = Rect2(0, 212, 352, 212)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_luijs"]
+shader = ExtResource("1_4c1ef")
+shader_parameter/sway_speed = 0.10000000149012
+shader_parameter/sway_strength = 0.0
+shader_parameter/noise_scale = 1.0
+shader_parameter/time_offset = 2.7030001283925
+shader_parameter/swirl_speed = 0.0
+shader_parameter/swirl_twists = 4.750000002218258e-07
+shader_parameter/swirl_center = Vector2(0.5, 0.5)
+shader_parameter/alpha_multiplier = 0.50000002375
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwe88"]
+atlas = ExtResource("2_umr0n")
+region = Rect2(352, 212, 352, 212)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ipkpa"]
+shader = ExtResource("3_oxg72")
+shader_parameter/sway_speed = 1.0
+shader_parameter/sway_strength = 0.05000000074506
+shader_parameter/noise_scale = 5.0
+shader_parameter/time_offset = 0.0
+
+[sub_resource type="Gradient" id="Gradient_abyub"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4als8"]
+gradient = SubResource("Gradient_abyub")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.78205127, 0.8717949)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1g0l"]
+shader = ExtResource("3_oxg72")
+shader_parameter/sway_speed = 0.51400002115512
+shader_parameter/sway_strength = 0.02000000095
+shader_parameter/noise_scale = 7.56800031198
+shader_parameter/time_offset = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pu1j"]
+atlas = ExtResource("4_aftbr")
+region = Rect2(48, 0, 160, 48)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_52o48"]
+shader = ExtResource("5_75w3q")
+shader_parameter/start_y = 0.3
+shader_parameter/strength = 0.042000001995
+shader_parameter/curve_scale = 0.0
+shader_parameter/speed = 2.5410001206975
+shader_parameter/wind_start = 0.6220000516679098
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7kxr"]
+atlas = ExtResource("4_aftbr")
+region = Rect2(32, 48, 32, 48)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ceym1"]
+shader = ExtResource("5_75w3q")
+shader_parameter/start_y = 0.3
+shader_parameter/strength = 0.042000001995
+shader_parameter/curve_scale = 0.0
+shader_parameter/speed = 2.5410001206975
+shader_parameter/wind_start = -1.57000005245209
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cuj8x"]
+atlas = ExtResource("4_aftbr")
+region = Rect2(64, 48, 32, 48)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fy0xf"]
+shader = ExtResource("5_75w3q")
+shader_parameter/start_y = 0.3
+shader_parameter/strength = 0.042000001995
+shader_parameter/curve_scale = 0.0
+shader_parameter/speed = 2.5410001206975
+shader_parameter/wind_start = 1.57000005245209
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx6c3"]
+atlas = ExtResource("4_aftbr")
+region = Rect2(96, 48, 32, 48)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hrvyc"]
+shader = ExtResource("5_75w3q")
+shader_parameter/start_y = 0.3
+shader_parameter/strength = 0.042000001995
+shader_parameter/curve_scale = 0.0
+shader_parameter/speed = 2.5410001206975
+shader_parameter/wind_start = -0.056999980584590215
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fl8ri"]
+atlas = ExtResource("4_aftbr")
+region = Rect2(128, 48, 32, 48)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5yykx"]
+shader = ExtResource("5_75w3q")
+shader_parameter/start_y = 0.3
+shader_parameter/strength = 0.042000001995
+shader_parameter/curve_scale = 0.0
+shader_parameter/speed = 2.5410001206975
+shader_parameter/wind_start = 0.6220000516679098
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcndw"]
+atlas = ExtResource("4_aftbr")
+region = Rect2(160, 48, 32, 48)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53quo"]
+shader = ExtResource("5_75w3q")
+shader_parameter/start_y = 0.3
+shader_parameter/strength = 0.042000001995
+shader_parameter/curve_scale = 0.0
+shader_parameter/speed = 2.5410001206975
+shader_parameter/wind_start = -0.6790000101295901
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4hit"]
+atlas = ExtResource("4_aftbr")
+region = Rect2(32, 96, 32, 48)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_30sid"]
+shader = ExtResource("5_75w3q")
+shader_parameter/start_y = 0.3
+shader_parameter/strength = 0.042000001995
+shader_parameter/curve_scale = 0.0
+shader_parameter/speed = 2.5410001206975
+shader_parameter/wind_start = -1.1570000328345902
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0qu0"]
+atlas = ExtResource("4_aftbr")
+region = Rect2(64, 96, 32, 48)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tmuo"]
 shader = ExtResource("2_1cvxe")
 shader_parameter/brightnessMult = 4.0
 shader_parameter/wiggleMult = 0.005
 shader_parameter/chromaticAberrationOffset = 0.001
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gflfu"]
+shader = ExtResource("3_oxg72")
+shader_parameter/sway_speed = 0.51400002115512
+shader_parameter/sway_strength = 0.02000000095
+shader_parameter/noise_scale = 7.56800031198
+shader_parameter/time_offset = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjpqo"]
+atlas = ExtResource("4_aftbr")
+region = Rect2(48, 144, 160, 48)
 
 [node name="BGTest" type="Control" unique_id=1107549801]
 layout_mode = 3
@@ -22,20 +188,209 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=302538463]
-material = SubResource("ShaderMaterial_0v71g")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ColorRect" type="ColorRect" parent="." unique_id=605233546]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 336.0
+offset_bottom = 196.0
+color = Color(0.02745098, 0.05882353, 0.16862746, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=1071347300]
-material = SubResource("ShaderMaterial_1k3an")
+[node name="Background2" type="TextureRect" parent="." unique_id=697084487]
+material = SubResource("ShaderMaterial_hp4my")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -52.0
+offset_right = 22.0
+offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("AtlasTexture_3dlfb")
+
+[node name="Background3" type="TextureRect" parent="." unique_id=284766897]
+material = SubResource("ShaderMaterial_btitk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -52.0
+offset_right = 22.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_rej3o")
+
+[node name="Background4" type="TextureRect" parent="." unique_id=113425857]
+material = SubResource("ShaderMaterial_luijs")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -52.0
+offset_right = 22.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_lwe88")
+
+[node name="Shadow" type="TextureRect" parent="." unique_id=1636638737]
+material = SubResource("ShaderMaterial_ipkpa")
+layout_mode = 0
+offset_right = 336.0
+offset_bottom = 196.0
+texture = SubResource("GradientTexture2D_4als8")
+
+[node name="BlindHarvestWhite" type="Node2D" parent="." unique_id=704257063]
+position = Vector2(3, 38)
+
+[node name="TitleBlind" type="TextureRect" parent="BlindHarvestWhite" unique_id=1696121632]
+material = SubResource("ShaderMaterial_x1g0l")
+offset_left = 80.0
+offset_top = 12.0
+offset_right = 240.0
+offset_bottom = 60.0
+texture = SubResource("AtlasTexture_6pu1j")
+
+[node name="TitleH" type="TextureRect" parent="BlindHarvestWhite" unique_id=654087297]
+material = SubResource("ShaderMaterial_52o48")
+offset_left = 67.69231
+offset_top = 52.0
+offset_right = 99.69231
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_m7kxr")
+
+[node name="TitleA" type="TextureRect" parent="BlindHarvestWhite" unique_id=2129193914]
+material = SubResource("ShaderMaterial_ceym1")
+offset_left = 95.84616
+offset_top = 51.999996
+offset_right = 127.84616
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_cuj8x")
+
+[node name="TitleR" type="TextureRect" parent="BlindHarvestWhite" unique_id=1862006923]
+material = SubResource("ShaderMaterial_fy0xf")
+offset_left = 123.84614
+offset_top = 51.999996
+offset_right = 155.84613
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_xx6c3")
+
+[node name="TitleV" type="TextureRect" parent="BlindHarvestWhite" unique_id=1516196916]
+material = SubResource("ShaderMaterial_hrvyc")
+offset_left = 148.0
+offset_top = 52.0
+offset_right = 180.0
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_fl8ri")
+
+[node name="TitleE" type="TextureRect" parent="BlindHarvestWhite" unique_id=1048052844]
+material = SubResource("ShaderMaterial_5yykx")
+offset_left = 174.46152
+offset_top = 52.0
+offset_right = 206.46152
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_wcndw")
+
+[node name="TitleS" type="TextureRect" parent="BlindHarvestWhite" unique_id=951635273]
+material = SubResource("ShaderMaterial_53quo")
+offset_left = 200.15381
+offset_top = 51.999996
+offset_right = 232.15381
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_d4hit")
+
+[node name="TitleT" type="TextureRect" parent="BlindHarvestWhite" unique_id=1131406314]
+material = SubResource("ShaderMaterial_30sid")
+offset_left = 221.9999
+offset_top = 51.999996
+offset_right = 253.99994
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_k0qu0")
+
+[node name="CRT" type="ColorRect" parent="." unique_id=490069279]
+material = SubResource("ShaderMaterial_5tmuo")
+layout_mode = 0
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 336.0
+offset_bottom = 196.0
+color = Color(0.02745098, 0.05882353, 0.16862746, 1)
+
+[node name="BlindHarvestBlack" type="Node2D" parent="." unique_id=1684694769]
+position = Vector2(3, 38)
+
+[node name="TitleBlind" type="TextureRect" parent="BlindHarvestBlack" unique_id=235989456]
+material = SubResource("ShaderMaterial_gflfu")
+offset_left = 80.0
+offset_top = 12.0
+offset_right = 240.0
+offset_bottom = 60.0
+texture = SubResource("AtlasTexture_rjpqo")
+
+[node name="TitleH" type="TextureRect" parent="BlindHarvestBlack" unique_id=2034383594]
+modulate = Color(0.02745098, 0.05882353, 0.16862746, 1)
+material = SubResource("ShaderMaterial_52o48")
+offset_left = 67.69231
+offset_top = 52.0
+offset_right = 99.69231
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_m7kxr")
+
+[node name="TitleA" type="TextureRect" parent="BlindHarvestBlack" unique_id=1863526139]
+modulate = Color(0.02745098, 0.05882353, 0.16862746, 1)
+material = SubResource("ShaderMaterial_ceym1")
+offset_left = 95.84616
+offset_top = 51.999996
+offset_right = 127.84616
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_cuj8x")
+
+[node name="TitleR" type="TextureRect" parent="BlindHarvestBlack" unique_id=1476609452]
+modulate = Color(0.02745098, 0.05882353, 0.16862746, 1)
+material = SubResource("ShaderMaterial_fy0xf")
+offset_left = 123.84614
+offset_top = 51.999996
+offset_right = 155.84613
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_xx6c3")
+
+[node name="TitleV" type="TextureRect" parent="BlindHarvestBlack" unique_id=1070019242]
+modulate = Color(0.02745098, 0.05882353, 0.16862746, 1)
+material = SubResource("ShaderMaterial_hrvyc")
+offset_left = 148.0
+offset_top = 52.0
+offset_right = 180.0
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_fl8ri")
+
+[node name="TitleE" type="TextureRect" parent="BlindHarvestBlack" unique_id=873178147]
+modulate = Color(0.02745098, 0.05882353, 0.16862746, 1)
+material = SubResource("ShaderMaterial_5yykx")
+offset_left = 174.46152
+offset_top = 52.0
+offset_right = 206.46152
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_wcndw")
+
+[node name="TitleS" type="TextureRect" parent="BlindHarvestBlack" unique_id=1663598349]
+modulate = Color(0.02745098, 0.05882353, 0.16862746, 1)
+material = SubResource("ShaderMaterial_53quo")
+offset_left = 200.15381
+offset_top = 51.999996
+offset_right = 232.15381
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_d4hit")
+
+[node name="TitleT" type="TextureRect" parent="BlindHarvestBlack" unique_id=1776715686]
+modulate = Color(0.02745098, 0.05882353, 0.16862746, 1)
+material = SubResource("ShaderMaterial_30sid")
+offset_left = 221.9999
+offset_top = 51.999996
+offset_right = 253.99994
+offset_bottom = 100.0
+texture = SubResource("AtlasTexture_k0qu0")

@@ -4,13 +4,13 @@ var CURRENT_WORLD_STATE : String = "Nothing"
 const SAVE_PATH : String = "user://savegame.json"
 
 var player_safe : bool = false
-var current_day : int = 0
+var current_day : int = 2
 var current_money : int = 280
 
 #Shop stuff
 var can_level : int = 0
-var battery_level : int = 0
-var bought_flashlight : bool = false
+var battery_level : int = 9999
+var bought_flashlight : bool = true
 var bought_boots : bool = false
 var bought_fence : bool = false
 
