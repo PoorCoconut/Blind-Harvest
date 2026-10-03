@@ -856,7 +856,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("CreditsMenu:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -933,7 +933,6 @@ menu_path = "uid://camlgx74mlna4"
 
 [node name="CreditsMenu" type="AudioStreamPlayer" parent="." unique_id=28733885]
 stream = ExtResource("1_5oo5o")
-autoplay = true
 
 [node name="DirtPatches" type="TileMapLayer" parent="." unique_id=2043155544]
 z_index = -1
