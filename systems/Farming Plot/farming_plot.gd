@@ -54,6 +54,7 @@ var player = null
 
 var _action_timer: float = 0.0
 var _pending_pops: int = 0
+var _last_pop_sound_time: int = 0
 
 @onready var tutorial: RichTextLabel = $Tutorial
 @onready var farm_plot_center: Node2D = $FarmPlotCenter
@@ -178,9 +179,18 @@ func _pop(sprite: Sprite2D, frame: int, delay: float) -> void:
 		sprite.scale = Vector2.ZERO
 		sprite.rotation = 0.0
 		_jiggle(sprite)
-		SoundBank.play_sfx("plant_grow", sprite.global_position, 0.5, 1.5, 500))
+		
+		# --- PLATFORM-SPECIFIC AUDIO LIMITING ---
+		var now = Time.get_ticks_msec()
+		
+		# If we are NOT on web, OR if we are on web and the 150ms cooldown has passed
+		if not OS.has_feature("web") or now - _last_pop_sound_time > 150:
+			_last_pop_sound_time = now
+			SoundBank.play_sfx("plant_grow", sprite.global_position, 0.5, 1.5, 500)
+	)
+	
 	tween.tween_property(sprite, "scale", Vector2.ONE, pop_duration)\
-		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)   # swap to TRANS_ELASTIC for more bounce
+		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	tween.finished.connect(_on_pop_finished)
 
 

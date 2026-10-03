@@ -22,3 +22,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="." unique_id=576152971]
+offset_left = 16.0
+offset_top = 128.0
+offset_right = 56.0
+offset_bottom = 168.0
+joystick_mode = 1
+joystick_size = 50.0
+tip_size = 25.0
+action_left = &"move_left"
+action_right = &"move_right"
+action_up = &"move_up"
+action_down = &"move_down"
+visibility_mode = 1
