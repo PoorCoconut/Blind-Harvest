@@ -46,6 +46,7 @@ var _flashlight_base_energy: float
 #Sound
 var _sfx_on := false
 var _sfx_tween: Tween
+var _last_switch_sound_time: int = 0
 
 var is_light_on : bool = true
 
@@ -146,7 +147,14 @@ func _unhandled_input(event: InputEvent) -> void:
 func cycle_tool_sprite(direction: int) -> void:
 	var total_frames: int = tool.hframes * tool.vframes
 	tool.frame = posmod(tool.frame + direction, total_frames)
-	SoundBank.play_sfx("switch_item", global_position, 0.7, 1.2, 100)
+	
+	# --- PLATFORM-SPECIFIC AUDIO LIMITING ---
+	var now = Time.get_ticks_msec()
+	
+	# If we are NOT on web, OR if we are on web and the 150ms cooldown has passed
+	if not OS.has_feature("web") or now - _last_switch_sound_time > 150:
+		_last_switch_sound_time = now
+		SoundBank.play_sfx("switch_item", global_position, 0.7, 1.2, 100)
 
 func get_tool_id() -> int:
 	return tool.frame

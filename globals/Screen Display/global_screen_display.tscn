@@ -9,6 +9,12 @@ shader_parameter/brightnessMult = 4.0
 shader_parameter/wiggleMult = 0.005
 shader_parameter/chromaticAberrationOffset = 0.001
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1k3an"]
+size = Vector2(167, 69)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kq7xa"]
+size = Vector2(167, 69)
+
 [node name="GlobalScreenDisplay" type="CanvasLayer" unique_id=1106116733]
 layer = 3
 script = ExtResource("1_rxdew")
@@ -36,3 +42,18 @@ action_right = &"move_right"
 action_up = &"move_up"
 action_down = &"move_down"
 visibility_mode = 1
+
+[node name="CycleTool" type="TouchScreenButton" parent="." unique_id=975340175]
+position = Vector2(256, 160)
+shape = SubResource("RectangleShape2D_1k3an")
+action = "charge"
+
+[node name="ToggleLight" type="TouchScreenButton" parent="." unique_id=1790477757]
+position = Vector2(240, 8)
+shape = SubResource("RectangleShape2D_kq7xa")
+action = "toggle_light"
+
+[node name="Pause" type="TouchScreenButton" parent="." unique_id=1486942943]
+position = Vector2(56, 8)
+shape = SubResource("RectangleShape2D_kq7xa")
+action = "pause"
