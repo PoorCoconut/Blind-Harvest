@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DayData" format=3 uid="uid://c4ri6e10v7vwe"]
+
+[ext_resource type="Script" uid="uid://bu4mho63fv1vf" path="res://systems/Day Orchestrator/enemy_spawn_config.gd" id="1_tqh6u"]
+[ext_resource type="Script" uid="uid://i44km2pmnrjw" path="res://systems/Day Orchestrator/DayData.gd" id="2_0viei"]
+[ext_resource type="Resource" uid="uid://net00vavpeb7" path="res://systems/Day Orchestrator/quick enemies/moth_slow.tres" id="2_icm7e"]
+[ext_resource type="Resource" uid="uid://bbfjlf5i7xdjm" path="res://systems/Day Orchestrator/quick enemies/trespasser.tres" id="3_1l2yx"]
+
+[resource]
+script = ExtResource("2_0viei")
+day_number = 4
+is_raining = true
+enemy_configs = Array[ExtResource("1_tqh6u")]([ExtResource("2_icm7e"), ExtResource("3_1l2yx")])
+metadata/_custom_type_script = "uid://i44km2pmnrjw"

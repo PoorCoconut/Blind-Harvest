@@ -12,6 +12,9 @@ region = Rect2(80, 24, 24, 24)
 [sub_resource type="CircleShape2D" id="CircleShape2D_1k3an"]
 radius = 24.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wlj6y"]
+polygon = PackedVector2Array(-11, 3, -11, 2, 3, 2, 11, -2, 12, -2, 3, 3)
+
 [node name="Generator" type="Node2D" unique_id=347362925 groups=["generator"]]
 script = ExtResource("1_0qq68")
 
@@ -47,6 +50,10 @@ vertical_alignment = 1
 stream = ExtResource("4_wlj6y")
 autoplay = true
 max_distance = 200.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=2023281803]
+position = Vector2(0, -3)
+occluder = SubResource("OccluderPolygon2D_wlj6y")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

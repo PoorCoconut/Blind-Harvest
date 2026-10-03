@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://h1vnsgdc7j0o" path="res://sound/mus/Daylight Waltz.wav" id="3_vglro"]
 [ext_resource type="AudioStream" uid="uid://cfdspwh2uywyn" path="res://sound/mus/Waltz of the Disasters.wav" id="4_ilgn7"]
 [ext_resource type="AudioStream" uid="uid://dchypk524dpgb" path="res://sound/mus/Mystery Waltz.ogg" id="5_1oab0"]
+[ext_resource type="AudioStream" uid="uid://dn8fs5ih0sx5q" path="res://sound/sfx/sfx_sanity_low.mp3" id="6_vglro"]
 
 [sub_resource type="Resource" id="Resource_apkl5"]
 script = ExtResource("2_ll68j")
@@ -27,7 +28,13 @@ stems = Array[AudioStream]([ExtResource("5_1oab0")])
 bpm = 200
 metadata/_custom_type_script = "uid://ok7aycfrhu2f"
 
+[sub_resource type="Resource" id="Resource_k14wo"]
+script = ExtResource("2_ll68j")
+track_name = "shop_6"
+stems = Array[AudioStream]([ExtResource("6_vglro")])
+metadata/_custom_type_script = "uid://ok7aycfrhu2f"
+
 [node name="MusicManager" type="Node" unique_id=1495717072]
 process_mode = 3
 script = ExtResource("1_kwnxt")
-music_tracks = Array[ExtResource("2_ll68j")]([SubResource("Resource_apkl5"), SubResource("Resource_idvws"), SubResource("Resource_fwj8x")])
+music_tracks = Array[ExtResource("2_ll68j")]([SubResource("Resource_apkl5"), SubResource("Resource_idvws"), SubResource("Resource_fwj8x"), SubResource("Resource_k14wo")])

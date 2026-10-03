@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DayData" format=3 uid="uid://n18iv8pihgj7"]
+
+[ext_resource type="Script" uid="uid://bu4mho63fv1vf" path="res://systems/Day Orchestrator/enemy_spawn_config.gd" id="1_txvut"]
+[ext_resource type="Resource" uid="uid://cip22ohtesetj" path="res://systems/Day Orchestrator/quick enemies/crows_fast.tres" id="2_p3kot"]
+[ext_resource type="Script" uid="uid://i44km2pmnrjw" path="res://systems/Day Orchestrator/DayData.gd" id="2_sy8co"]
+[ext_resource type="Resource" uid="uid://bim22beayfd66" path="res://systems/Day Orchestrator/quick enemies/moth_fast.tres" id="3_mpa8m"]
+[ext_resource type="Resource" uid="uid://pf3kmrn8sq1r" path="res://systems/Day Orchestrator/quick enemies/dog_danger.tres" id="4_7tefi"]
+
+[resource]
+script = ExtResource("2_sy8co")
+day_number = 5
+enemy_configs = Array[ExtResource("1_txvut")]([ExtResource("2_p3kot"), ExtResource("3_mpa8m"), ExtResource("4_7tefi")])
+metadata/_custom_type_script = "uid://i44km2pmnrjw"

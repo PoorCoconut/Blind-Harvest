@@ -30,6 +30,7 @@ func _ready() -> void:
 func _pressed() -> void:
 	is_listening = true
 	text = "Press any key..."
+	SoundBank.play_sfx("ui_click", Vector2.ZERO, 0.7, 1.2, 4096, 10)
 
 func _input(event: InputEvent) -> void:
 	if not is_listening: return

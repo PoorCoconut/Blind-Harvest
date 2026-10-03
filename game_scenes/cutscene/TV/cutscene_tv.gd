@@ -3,6 +3,7 @@ extends Node2D
 @export var news_atlas : Texture2D
 @export var cell_size : Vector2i = Vector2i(64,64)
 @export_file("*.tscn") var shop_path : String
+@export_file("*.tscn") var end_path : String
 enum TV_State { IDLE, PLAYING, WAITING }
 
 const CHARS_PER_SECOND : float = 40.0
@@ -14,7 +15,7 @@ const IMAGE_FADE_TIME : float = 0.5
 @onready var label_bottom: RichTextLabel = $Control/MarginContainer/VBoxContainer/LabelBottom
 @onready var next_arrow: Sprite2D = $Control/MarginContainer/VBoxContainer/NextArrow
 
-var current_day : int = 3
+var current_day : int = 7
 var state : TV_State = TV_State.IDLE
 var skipping : bool = false
 var tween : Tween
@@ -41,6 +42,7 @@ var dialogue : Dictionary = {
 		},
 		{
 			"top" : "Crows may appear from time to time.",
+			"image": Vector2i(4, 1),
 			"bottom" : "Not dealing with them may hinder your crop development!"
 		},
 		{
@@ -333,7 +335,8 @@ var dialogue : Dictionary = {
 			"top":"The recent rabies epidemic in dogs has also now been dealt with."
 		},
 		{
-			"top":"Today may be a gloomy day, but the threats of the local area has now ceased."
+			"top":"Today may be a gloomy day, but the threats of the local area has now ceased.",
+			"bottom":"This week has truly been the disaster for all, but we prevailed!"
 		},
 		{
 			"top":"Forwarned is forearmed.\nThat concludes today's report.",
@@ -348,8 +351,7 @@ const PAUSES : Dictionary = { ".": 0.6, "!": 0.6, "?": 0.6, ",": 0.5, "\n": 1.0}
 
 func _ready() -> void:
 	GameManager.save_game()
-	current_day = 7
-	#current_day = GameManager.current_day
+	current_day = GameManager.current_day
 	hide_text(label_top)
 	hide_text(label_bottom)
 	news_image.hide()
@@ -359,7 +361,10 @@ func _on_orchestrator_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "intro":
 		play_day(current_day)
 	elif anim_name == "outro":
-		GameManager.load_next_level(shop_path)
+		if GameManager.current_day != 7:
+			GameManager.load_next_level(shop_path)
+		else:
+			GameManager.load_next_level(end_path)
 
 func _input(event: InputEvent) -> void:
 	if not event.is_action_pressed("action"):
@@ -404,6 +409,7 @@ func _handle_event(event_name: String) -> void:
 	match event_name:
 		"hijack_start":
 			# Hide the background and stop the standard news music
+			SoundBank.play_sfx("news_horror")
 			$Control/NewsBG.hide()
 			$TVNoSig.play()
 			$Control/NoSigBG.show()

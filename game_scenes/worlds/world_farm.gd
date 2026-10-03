@@ -4,14 +4,24 @@ extends Node2D
 @onready var environment_shadow: Node2D = $EnvironmentShadow
 @onready var day_orchestrator: DayOrchestrator = $DayOrchestrator
 @onready var fader_anim: AnimationPlayer = $FaderAnim
+@onready var fences_removable: TileMapLayer = $Tilemap/FencesRemovable
 
 @export_file("*.tscn") var tv_path : String
+@export_file("*.tscn") var death_path : String
 var tutorial_harvest_count: int = 0
 
 func _ready() -> void:
+	GameManager.save_farm_checkpoint()
+	if GameManager.current_day == 0:
+		MusicManager.change_music("day", 0.0)
+	
 	# Optional: Connect signals if the farm needs to react to the day ending
 	KonamiManager.code_entered.connect(_on_code_entered)
+	
 	$DayOrchestrator.day_ended.connect(_on_day_ended)
+	
+	if GameManager.bought_fence:
+		fences_removable.queue_free()
 
 func _on_day_ended() -> void:
 	MusicManager.stop_music()
@@ -60,3 +70,10 @@ func _on_code_entered(code_name : String):
 		var player : Player = get_tree().get_first_node_in_group("player")
 		if player:
 			player.global_position = $GenTP.global_position
+
+func _on_enemy_spawner_enemy_spawned(enemy: Node2D) -> void:
+	if enemy.has_signal("player_caught"):
+		enemy.player_caught.connect(_trigger_death_screen)
+
+func _trigger_death_screen():
+	GameManager.load_next_level(death_path)

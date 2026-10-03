@@ -36,7 +36,11 @@ var _day_orchestrator: Node
 var _water_bar_tween: Tween
 
 var current_crows: int = 0
-@export var crow_damage_rate: float = 15.0 # How fast 3+ crows drain water
+@export var crow_damage_rate: float = 40.0 # How fast 3+ crows drain water
+
+@export_category("Cutscenes")
+@export var cutscene_player : CutsPlayer
+@export var overrride_hint : bool = false
 
 var plants: Array[Sprite2D] = []
 var has_crop: Array[bool] = []
@@ -46,14 +50,17 @@ var state: PlantState = PlantState.EMPTY
 var stage: int = FRAME_EMPTY
 var water: float = 0.0
 var grow_progress: float = 0.0
-var player: Player = null
+var player = null
 
 var _action_timer: float = 0.0
 var _pending_pops: int = 0
 
 @onready var tutorial: RichTextLabel = $Tutorial
+@onready var farm_plot_center: Node2D = $FarmPlotCenter
 
 func _ready() -> void:
+	if cutscene_player:
+		player = cutscene_player
 	_day_orchestrator = get_tree().get_first_node_in_group("day_orchestrator")
 	
 	if GameManager.current_day == 0:
@@ -76,6 +83,9 @@ func _ready() -> void:
 	order.assign(range(plants.size()))
 	order.shuffle()
 	_set_state(PlantState.EMPTY)
+	
+	if overrride_hint:
+		tutorial.hide()
 
 
 func _process(delta: float) -> void:
@@ -119,6 +129,16 @@ func _process_growing(delta: float) -> void:
 		
 	water = clampf(water + change * delta, 0.0, water_bar.max_value)
 	water_bar.value = water
+	
+	# --- THE MISSING GROWTH LOGIC ---
+	# Crops only grow if they have water
+	if water > 0.0:
+		grow_progress += delta
+		
+		# If enough watered time has passed, reset the timer and grow
+		if grow_progress >= grow_time:
+			grow_progress = 0.0 
+			_advance_stage()
 
 
 func _advance_stage() -> void:
@@ -217,7 +237,7 @@ func _action_ready(delta: float) -> bool:
 
 func _on_interaction_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		player = body as Player
+		player = body
 
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:

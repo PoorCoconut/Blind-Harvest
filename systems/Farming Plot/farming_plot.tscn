@@ -343,5 +343,8 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FarmPlotCenter" type="Node2D" parent="." unique_id=796626450]
+position = Vector2(64, 32)
+
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

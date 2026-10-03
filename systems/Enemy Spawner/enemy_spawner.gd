@@ -1,5 +1,6 @@
 extends Node2D
 class_name EnemySpawner
+signal enemy_spawned(enemy: Node2D)
 
 @export var spawn_bounds: Rect2
 @export var min_player_distance: float = 250.0
@@ -84,6 +85,8 @@ func try_spawn_enemy(config: EnemySpawnConfig) -> void:
 		if intersections.is_empty():
 			enemy_instance.global_position = random_pos
 			add_child(enemy_instance)
+			
+			enemy_spawned.emit(enemy_instance)
 			
 			if config.enemy_id == "crow" or enemy_instance.has_method("_scare_crow"):
 				var plots = get_tree().get_nodes_in_group("farming_plot")

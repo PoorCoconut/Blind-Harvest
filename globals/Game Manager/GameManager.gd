@@ -4,19 +4,22 @@ var CURRENT_WORLD_STATE : String = "Nothing"
 const SAVE_PATH : String = "user://savegame.json"
 
 var player_safe : bool = false
-var current_day : int = 0
-var current_money : int = 0
+var current_day : int = 7
+var current_money : int = 280
 
 #Shop stuff
 var can_level : int = 0
 var battery_level : int = 0
 var bought_flashlight : bool = false
 var bought_boots : bool = false
+var bought_fence : bool = false
 
 #Gameplay stuff
 var voltek_debt : int = 0 #If these variables aren't 0, it must mean the player is in debt
 var seaqua_debt : int = 0
 var is_hungry : bool = false
+
+var _checkpoint_money: int = 0
 
 func _ready() -> void:
 	print("GAME MANAGER LOADED!")
@@ -87,7 +90,7 @@ func delete_save() -> void:
 
 	# 2. Wipe the runtime memory
 	current_day = 0
-	current_money = 0
+	current_money = 280
 	can_level = 0
 	battery_level = 0
 	bought_flashlight = false
@@ -121,3 +124,9 @@ func move_camera_to_player(player_pos : Vector2):
 ##Gameplay Helpers
 func add_money(amount: int) -> void:
 	current_money += amount
+
+func save_farm_checkpoint() -> void:
+	_checkpoint_money = current_money
+
+func load_farm_checkpoint() -> void:
+	current_money = _checkpoint_money

@@ -1,11 +1,16 @@
 extends Area2D
 class_name Crow
 
+@export var silent_crow : bool = false
+@export var override_target : bool = false
+@export var override_target_plot : FarmingPlot
+
 var target_plot: FarmingPlot:
 	set(value):
 		target_plot = value
-		var random_offset = Vector2(randf_range(-16.0, 16.0), randf_range(-16.0, 16.0))
-		_target_position = target_plot.global_position + random_offset
+		if target_plot != null:
+			var random_offset = Vector2(randf_range(-16.0, 16.0), randf_range(-16.0, 16.0))
+			_target_position = target_plot.farm_plot_center.global_position + random_offset
 
 var speed: float = 60.0
 var _target_position: Vector2
@@ -20,8 +25,12 @@ var _hop_timer: float = 0.0
 @onready var bird_flap: AudioStreamPlayer2D = $BirdFlap
 
 func _ready() -> void:
-	SoundBank.play_sfx("crow_caw2")
-	bird_flap.play()
+	if not silent_crow:
+		SoundBank.play_sfx("crow_caw2")
+		bird_flap.play()
+	
+	if override_target and override_target_plot:
+		target_plot = override_target_plot
 
 func _process(delta: float) -> void:
 	if _flying_away:
@@ -29,6 +38,11 @@ func _process(delta: float) -> void:
 		return
 		
 	if not _landed and target_plot:
+		# Face the direction of the target plot while flying
+		var dir = sign(_target_position.x - position.x)
+		if dir != 0:
+			visuals.scale.x = dir
+			
 		position = position.move_toward(_target_position, speed * delta)
 		
 		if position.distance_to(_target_position) < 5.0:
@@ -77,7 +91,7 @@ func _peck() -> void:
 	var peck_tween = create_tween()
 	peck_tween.tween_property(head_pivot, "rotation_degrees", 30.0, 0.05)
 	peck_tween.tween_callback(func() -> void: 
-		SoundBank.play_sfx("bird_pick")
+		SoundBank.play_sfx("bird_pick", Vector2.ZERO, 0.7, 1.2, 1000)
 	)
 	peck_tween.tween_property(head_pivot, "rotation_degrees", 0.0, 0.1)
 

@@ -11,6 +11,9 @@ region = Rect2(72, 48, 32, 32)
 [sub_resource type="CircleShape2D" id="CircleShape2D_1k3an"]
 radius = 24.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g0oxw"]
+polygon = PackedVector2Array(0, 1, -4, 1, 0, 5, 4, 1)
+
 [node name="WaterPump" type="Node2D" unique_id=347362925 groups=["water_pump"]]
 script = ExtResource("1_vejbw")
 
@@ -41,6 +44,10 @@ Water is used to grow plants."
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1554844283]
+position = Vector2(0, -5)
+occluder = SubResource("OccluderPolygon2D_g0oxw")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

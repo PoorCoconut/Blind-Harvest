@@ -2,17 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bu4mho63fv1vf" path="res://systems/Day Orchestrator/enemy_spawn_config.gd" id="1_2awq5"]
 [ext_resource type="Script" uid="uid://i44km2pmnrjw" path="res://systems/Day Orchestrator/DayData.gd" id="2_mvw56"]
-[ext_resource type="PackedScene" uid="uid://binqha8ap6x51" path="res://actors/enemies/rabid dog/rabid_dog.tscn" id="2_ogsyg"]
-
-[sub_resource type="Resource" id="Resource_rdag4"]
-script = ExtResource("1_2awq5")
-enemy_scene = ExtResource("2_ogsyg")
-enemy_id = "rabid"
-max_active_at_once = 2
-metadata/_custom_type_script = "uid://bu4mho63fv1vf"
+[ext_resource type="Resource" uid="uid://b7u0chuewnwnh" path="res://systems/Day Orchestrator/quick enemies/dog_slow.tres" id="2_ogsyg"]
 
 [resource]
 script = ExtResource("2_mvw56")
 day_number = 2
-enemy_configs = Array[ExtResource("1_2awq5")]([SubResource("Resource_rdag4")])
+enemy_configs = Array[ExtResource("1_2awq5")]([ExtResource("2_ogsyg")])
 metadata/_custom_type_script = "uid://i44km2pmnrjw"

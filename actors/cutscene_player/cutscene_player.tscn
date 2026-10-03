@@ -1,0 +1,232 @@
+[gd_scene format=3 uid="uid://dr5e86cepqsed"]
+
+[ext_resource type="Script" uid="uid://mr338loe3ljr" path="res://actors/cutscene_player/cutscene_player.gd" id="1_sjgxd"]
+[ext_resource type="PackedScene" uid="uid://busneeccby05a" path="res://systems/Watering Can/watering_can.tscn" id="2_frds0"]
+[ext_resource type="PackedScene" uid="uid://bmq1leke8lgg1" path="res://systems/Battery/battery.tscn" id="3_8so67"]
+[ext_resource type="Texture2D" uid="uid://cm2tm2fbj3hqb" path="res://actors/cutscene_player/player.png" id="5_e13wu"]
+[ext_resource type="Texture2D" uid="uid://c2m0t3pkj2dx1" path="res://vfx/particles/particles.png" id="6_ratv0"]
+[ext_resource type="Script" uid="uid://bhxjxgka2uddu" path="res://systems/FSM/FSM.gd" id="7_ooj4q"]
+[ext_resource type="Script" uid="uid://dek0q3govdpif" path="res://actors/cutscene_player/PlayerFSM/state_idle.gd" id="8_7c54s"]
+[ext_resource type="Script" uid="uid://dkuegncj5rrsb" path="res://actors/cutscene_player/PlayerFSM/state_run.gd" id="9_2qvhk"]
+[ext_resource type="Texture2D" uid="uid://cn5nl2yw0x176" path="res://game_assets/flashlight_lightcone.png" id="10_41s7o"]
+[ext_resource type="AudioStream" uid="uid://chjylsbxtegjk" path="res://sound/sfx/sfx_walk.mp3" id="11_xbb0r"]
+[ext_resource type="AudioStream" uid="uid://75rog7cglq7g" path="res://sound/sfx/sfx_water.mp3" id="12_xw5fy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mti6b"]
+atlas = ExtResource("5_e13wu")
+region = Rect2(12, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kxuq"]
+atlas = ExtResource("5_e13wu")
+region = Rect2(0, 0, 12, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6p1w3"]
+atlas = ExtResource("5_e13wu")
+region = Rect2(0, 16, 4, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k3an"]
+atlas = ExtResource("5_e13wu")
+region = Rect2(0, 22, 30, 10)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xhehx"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v71g"]
+atlas = ExtResource("6_ratv0")
+region = Rect2(0, 7, 21, 7)
+
+[sub_resource type="Curve" id="Curve_715ea"]
+_limits = [0.0, 1.6525698, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.6525698), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bop6h"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.19148937, 1), 0.0, 0.0, 0, 0, Vector2(0.87765956, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhehx"]
+atlas = ExtResource("6_ratv0")
+region = Rect2(0, 14, 7, 7)
+
+[sub_resource type="Curve" id="Curve_vfsqc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25531915, 1), 0.0, 0.0, 0, 0, Vector2(0.7446809, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6p1w3"]
+radius = 3.0
+height = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1k3an"]
+radius = 20.0
+
+[sub_resource type="Gradient" id="Gradient_15y17"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_388e2"]
+gradient = SubResource("Gradient_15y17")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.84615386, 0.46153846)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4kxuq"]
+gradient = SubResource("Gradient_15y17")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="Player" type="CharacterBody2D" unique_id=240714517 groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_sjgxd")
+
+[node name="WateringCan" parent="." unique_id=1721167239 instance=ExtResource("2_frds0")]
+
+[node name="Battery" parent="." unique_id=1572821024 instance=ExtResource("3_8so67")]
+
+[node name="Visuals" type="Node2D" parent="." unique_id=203098467]
+
+[node name="Body" type="Sprite2D" parent="Visuals" unique_id=616515613]
+light_mask = 2
+position = Vector2(0, -8)
+texture = SubResource("AtlasTexture_mti6b")
+
+[node name="HeadPivot" type="Node2D" parent="Visuals" unique_id=750475493]
+position = Vector2(0, -9)
+
+[node name="Head" type="Sprite2D" parent="Visuals/HeadPivot" unique_id=1965004166]
+light_mask = 2
+position = Vector2(0, 1)
+texture = SubResource("AtlasTexture_4kxuq")
+
+[node name="HandPivot" type="Node2D" parent="." unique_id=507084467]
+position = Vector2(0, -9)
+
+[node name="Hand" type="Sprite2D" parent="HandPivot" unique_id=509635315]
+light_mask = 2
+texture = SubResource("AtlasTexture_6p1w3")
+
+[node name="Tool" type="Sprite2D" parent="HandPivot" unique_id=1680671086]
+light_mask = 2
+position = Vector2(0, -3)
+texture = SubResource("AtlasTexture_1k3an")
+hframes = 3
+
+[node name="WateringCanParticles" type="CPUParticles2D" parent="HandPivot/Tool" unique_id=620768442]
+light_mask = 2
+material = SubResource("CanvasItemMaterial_xhehx")
+position = Vector2(1, 0)
+emitting = false
+amount = 20
+texture = SubResource("AtlasTexture_0v71g")
+randomness = 1.0
+spread = 5.0
+gravity = Vector2(0, 20)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+angular_velocity_min = 10.0
+angular_velocity_max = 30.0
+angular_velocity_curve = SubResource("Curve_715ea")
+scale_amount_curve = SubResource("Curve_bop6h")
+anim_speed_max = 2.4
+
+[node name="WrenchParticles" type="CPUParticles2D" parent="HandPivot/Tool" unique_id=590604180]
+light_mask = 2
+position = Vector2(0, 3)
+emitting = false
+amount = 10
+texture = SubResource("AtlasTexture_xhehx")
+emission_shape = 1
+emission_sphere_radius = 20.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 10.0
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+scale_amount_curve = SubResource("Curve_vfsqc")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=438437244]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_6p1w3")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=2133392981]
+collision_layer = 0
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1137938108]
+shape = SubResource("CircleShape2D_1k3an")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="DebugStateLabel" type="Label" parent="." unique_id=1664998739]
+unique_name_in_owner = true
+visible = false
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 26.0
+offset_bottom = -17.0
+text = "test"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FSM" type="Node" parent="." unique_id=1219932784 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("7_ooj4q")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="FSM" unique_id=1302581798 node_paths=PackedStringArray("ENTITY")]
+script = ExtResource("8_7c54s")
+ENTITY = NodePath("../..")
+
+[node name="Run" type="Node" parent="FSM" unique_id=2093321865 node_paths=PackedStringArray("ENTITY")]
+script = ExtResource("9_2qvhk")
+ENTITY = NodePath("../..")
+
+[node name="Light" type="Node2D" parent="." unique_id=1748585715]
+
+[node name="PlayerLight" type="PointLight2D" parent="Light" unique_id=1464727708]
+light_mask = 2
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 10.0
+texture = SubResource("GradientTexture2D_388e2")
+
+[node name="LanternLight" type="PointLight2D" parent="Light" unique_id=1873671267]
+light_mask = 2
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 10.0
+texture = SubResource("GradientTexture2D_4kxuq")
+texture_scale = 2.0
+
+[node name="FlashLightPivot" type="Node2D" parent="Light" unique_id=1592641718]
+visible = false
+
+[node name="FlashLight" type="PointLight2D" parent="Light/FlashLightPivot" unique_id=1849441623]
+light_mask = 2
+position = Vector2(-16, 0)
+energy = 0.15
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 5.0
+texture = ExtResource("10_41s7o")
+offset = Vector2(192, 0)
+texture_scale = 0.2
+
+[node name="SFX" type="Node" parent="." unique_id=874436210]
+
+[node name="WalkSFX" type="AudioStreamPlayer" parent="SFX" unique_id=1061487839]
+stream = ExtResource("11_xbb0r")
+volume_db = -80.0
+bus = &"SFX"
+
+[node name="WaterSFX" type="AudioStreamPlayer" parent="SFX" unique_id=1959167584]
+stream = ExtResource("12_xw5fy")
+volume_db = -80.0
+autoplay = true
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]

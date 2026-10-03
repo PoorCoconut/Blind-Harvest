@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Mystery Waltz.ogg-9f797824ca8abd88821d6c57be5
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0.0
 bpm=0.0
 beat_count=0

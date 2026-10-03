@@ -5,15 +5,16 @@ class_name WorldShop
 @onready var fader: AnimationPlayer = $Fader
 
 @export_category("Shop Costs")
-@export var watering_can_costs : Array[int] = [200, 300, 400, 500]
-@export var battery_costs : Array[int] = [300, 450, 600, 1000]
-@export var flashlight_cost : int = 500
+@export var watering_can_costs : Array[int] = [300, 350, 400, 450]
+@export var battery_costs : Array[int] = [300, 450, 500, 550]
+@export var flashlight_cost : int = 400
 @export var boots_cost : int = 300
+@export var fence_cost : int = 500
 
 @export_category("End of Day costs")
-@export var food_cost : int = 50
-@export var electricity_cost : int = 100
-@export var water_cost : int = 80
+@export var food_cost : int = 70
+@export var electricity_cost : int = 70
+@export var water_cost : int = 100
 
 @onready var money_label: Label = $ShopContainer/VBoxContainer/MoneyLabel
 
@@ -30,6 +31,11 @@ class_name WorldShop
 
 @onready var purchase_boots: Button = $ShopContainer/VBoxContainer/Boots/PurchaseBoots
 @onready var boots_cost_label: Label = $ShopContainer/VBoxContainer/Boots/BootsCostLabel
+
+@onready var purchase_fence: Button = $ShopContainer/VBoxContainer/Fence/PurchaseFence
+@onready var fence_cost_label: Label = $ShopContainer/VBoxContainer/Fence/FenceCostLabel
+
+@onready var leave_button: Button = $ShopContainer/VBoxContainer/VBoxContainer/LeaveButton
 
 #End of Day messages
 @onready var out_money_label: Label = $BlackBG/VBoxContainer/OutMoneyLabel
@@ -64,6 +70,7 @@ func _ready() -> void:
 	
 	flashlight_cost_label.text = "Costs: P " + str(flashlight_cost)
 	boots_cost_label.text = "Costs: P " + str(boots_cost)
+	fence_cost_label.text = "Costs: P " + str(fence_cost)
 	
 	water_can_upgrade_bar.value = GameManager.can_level
 	battery_upgrade_bar.value = GameManager.battery_level
@@ -83,9 +90,14 @@ func _ready() -> void:
 	if GameManager.bought_boots:
 		purchase_boots.disabled = true
 		purchase_boots.text = "PURCHASED"
+	if GameManager.bought_fence:
+		purchase_fence.disabled = true
+		purchase_fence.text = "PURCHASED"
 	
-	
-	MusicManager.change_music("day", 0.0)
+	if GameManager.current_day != 6:
+		MusicManager.change_music("day", 0.0)
+	else:
+		MusicManager.change_music("shop_6", 0.0)
 
 
 func _on_fader_animation_finished(anim_name: StringName) -> void:
@@ -94,26 +106,33 @@ func _on_fader_animation_finished(anim_name: StringName) -> void:
 
 
 func _on_leave_button_pressed() -> void:
+	leave_button.disabled = true
 	if GameManager.current_day != 0:
 		MusicManager.stop_music()
+	
+	SoundBank.play_sfx("ui_click")
 	
 	var food_short := false
 	var power_short := false
 	var water_short := false
 	out_money_label.text = "You have\nP " + str(GameManager.current_money)
+	#SoundBank.play_sfx("ui_click")
 	# Food — paid immediately, no debt if you can't afford it
 	if GameManager.current_money - food_cost < 0:
 		food_short = true
 		GameManager.is_hungry = true
 		current_food_cost.text = "You couldn't afford food tonight."
+		#SoundBank.play_sfx("ui_back")
 	else:
 		GameManager.current_money -= food_cost
 		GameManager.is_hungry = false
 		current_food_cost.text = "You purchased food for " + str(food_cost)
+		#SoundBank.play_sfx("ui_buy")
 
 	# Electricity — day 3 free, otherwise pay off prior debt + today's bill
 	if GameManager.current_day == 3:
 		current_power_cost.text = "Voltek Corp Services will not charge you tonight."
+		#SoundBank.play_sfx("ui_click")
 	else:
 		var power_due = electricity_cost + GameManager.voltek_debt
 		if GameManager.current_money - power_due < 0:
@@ -121,10 +140,12 @@ func _on_leave_button_pressed() -> void:
 			GameManager.voltek_debt = power_due - GameManager.current_money
 			GameManager.current_money = 0
 			current_power_cost.text = "Voltek Corp Services has cut your power. You owe " + str(GameManager.voltek_debt) + "."
+			#SoundBank.play_sfx("ui_back")
 		else:
 			GameManager.current_money -= power_due
 			GameManager.voltek_debt = 0
 			current_power_cost.text = "Voltek Corp Services has cut " + str(power_due)
+			#SoundBank.play_sfx("ui_buy")
 
 	# Water — same pattern, no day-3 exception
 	var water_due = water_cost + GameManager.seaqua_debt
@@ -133,11 +154,14 @@ func _on_leave_button_pressed() -> void:
 		GameManager.seaqua_debt = water_due - GameManager.current_money
 		GameManager.current_money = 0
 		current_water_cost.text = "Seaqua Waterline has cut your water. You owe " + str(GameManager.seaqua_debt) + "."
+		#SoundBank.play_sfx("ui_back")
 	else:
 		GameManager.current_money -= water_due
 		GameManager.seaqua_debt = 0
 		current_water_cost.text = "Seaqua Waterline has cut " + str(water_due)
+		#SoundBank.play_sfx("ui_buy")
 	out_money_after_label.text = "Your current balance is now " + str(GameManager.current_money)
+	#SoundBank.play_sfx("ui_next")
 
 	# Status readout — this label was declared but never actually populated
 	statuses.text = ""
@@ -157,12 +181,14 @@ func _on_purchase_watering_can_pressed() -> void:
 		return
 	var cost = watering_can_costs[GameManager.can_level]
 	if GameManager.current_money - cost < 0:
+		SoundBank.play_sfx("ui_back")
 		print("NOT ENOUGH MONEY!")
 		return
 	GameManager.current_money -= cost
 	GameManager.can_level += 1
 	water_can_upgrade_bar.value = GameManager.can_level
 	money_label.text = "P " + str(GameManager.current_money)
+	SoundBank.play_sfx("ui_buy")
 	if GameManager.can_level == watering_can_costs.size():
 		purchase_watering_can.disabled = true
 		watering_can_cost_label.text = ""
@@ -177,11 +203,13 @@ func _on_purchase_battery_pressed() -> void:
 	var cost = battery_costs[GameManager.battery_level]
 	if GameManager.current_money - cost < 0:
 		print("NOT ENOUGH MONEY!")
+		SoundBank.play_sfx("ui_back")
 		return
 	GameManager.current_money -= cost
 	GameManager.battery_level += 1
 	battery_upgrade_bar.value = GameManager.battery_level
 	money_label.text = "P " + str(GameManager.current_money)
+	SoundBank.play_sfx("ui_buy")
 	if GameManager.battery_level == battery_costs.size():
 		purchase_battery.disabled = true
 		battery_cost_label.text = ""
@@ -193,24 +221,59 @@ func _on_purchase_battery_pressed() -> void:
 func _on_purchase_flashlight_pressed() -> void:
 	if GameManager.current_money - flashlight_cost < 0:
 		print("NOT ENOUGH MONEY!")
+		SoundBank.play_sfx("ui_back")
 		return
 	
 	GameManager.current_money -= flashlight_cost
 	money_label.text = "P " + str(GameManager.current_money)
+	SoundBank.play_sfx("ui_buy")
 	
 	purchase_flashlight.disabled = true
 	purchase_flashlight.text = "PURCHASED"
 	flashlight_cost_label.text = ""
+	
+	GameManager.bought_flashlight = true
 
 
 func _on_purchase_boots_pressed() -> void:
 	if GameManager.current_money - boots_cost < 0:
 		print("NOT ENOUGH MONEY!")
+		SoundBank.play_sfx("ui_back")
 		return
 	
 	GameManager.current_money -= boots_cost
 	money_label.text = "P " + str(GameManager.current_money)
+	SoundBank.play_sfx("ui_buy")
 	
 	purchase_boots.disabled = true
 	purchase_boots.text = "PURCHASED"
 	boots_cost_label.text = ""
+	
+	GameManager.bought_boots = true
+
+
+func _on_purchase_fence_pressed() -> void:
+	if GameManager.current_money - fence_cost < 0:
+		print("NOT ENOUGH MONEY!")
+		SoundBank.play_sfx("ui_back")
+		return
+	
+	GameManager.current_money -= fence_cost
+	money_label.text = "P " + str(GameManager.current_money)
+	SoundBank.play_sfx("ui_buy")
+	
+	purchase_fence.disabled = true
+	purchase_fence.text = "PURCHASED"
+	fence_cost_label.text = ""
+	
+	GameManager.bought_fence = true
+	
+
+func _play_click():
+	SoundBank.play_sfx("ui_click")
+
+func _play_buy():
+	SoundBank.play_sfx("ui_buy")
+
+func _play_back():
+	SoundBank.play_sfx("ui_back")

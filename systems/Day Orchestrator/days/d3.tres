@@ -1,27 +1,14 @@
 [gd_resource type="Resource" script_class="DayData" format=3 uid="uid://dwfxg0827bayo"]
 
 [ext_resource type="Script" uid="uid://bu4mho63fv1vf" path="res://systems/Day Orchestrator/enemy_spawn_config.gd" id="1_kkhdy"]
-[ext_resource type="PackedScene" uid="uid://c41b78yqqql8u" path="res://actors/enemies/trespasser/trespasser.tscn" id="2_ml7ge"]
+[ext_resource type="Resource" uid="uid://pf3kmrn8sq1r" path="res://systems/Day Orchestrator/quick enemies/dog_danger.tres" id="2_ml7ge"]
 [ext_resource type="Script" uid="uid://i44km2pmnrjw" path="res://systems/Day Orchestrator/DayData.gd" id="2_tfq7d"]
-[ext_resource type="PackedScene" uid="uid://binqha8ap6x51" path="res://actors/enemies/rabid dog/rabid_dog.tscn" id="3_0s1e1"]
-
-[sub_resource type="Resource" id="Resource_tfq7d"]
-script = ExtResource("1_kkhdy")
-enemy_scene = ExtResource("2_ml7ge")
-enemy_id = "trespasser"
-metadata/_custom_type_script = "uid://bu4mho63fv1vf"
-
-[sub_resource type="Resource" id="Resource_ml7ge"]
-script = ExtResource("1_kkhdy")
-enemy_scene = ExtResource("3_0s1e1")
-enemy_id = "rabid"
-max_active_at_once = 4
-metadata/_custom_type_script = "uid://bu4mho63fv1vf"
+[ext_resource type="Resource" uid="uid://bbfjlf5i7xdjm" path="res://systems/Day Orchestrator/quick enemies/trespasser.tres" id="3_0s1e1"]
 
 [resource]
 script = ExtResource("2_tfq7d")
 day_number = 3
 is_raining = true
 grid_relies_on_generator = true
-enemy_configs = Array[ExtResource("1_kkhdy")]([SubResource("Resource_tfq7d"), SubResource("Resource_ml7ge")])
+enemy_configs = Array[ExtResource("1_kkhdy")]([ExtResource("2_ml7ge"), ExtResource("3_0s1e1")])
 metadata/_custom_type_script = "uid://i44km2pmnrjw"

@@ -526,6 +526,7 @@ _data = {
 script = ExtResource("1_w5ux8")
 news_atlas = ExtResource("6_ge5kp")
 shop_path = "uid://c2umkn5knabow"
+end_path = "uid://b2onlqppewe25"
 
 [node name="Control" type="Control" parent="." unique_id=631190]
 layout_mode = 3

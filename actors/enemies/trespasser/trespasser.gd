@@ -117,6 +117,7 @@ func _set_state(new_state: EState) -> void:
 func _on_catch_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and not GameManager.player_safe:
 		print("die")
+		
 		player_caught.emit()
 
 

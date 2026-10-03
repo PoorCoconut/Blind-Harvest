@@ -22,6 +22,9 @@
 [ext_resource type="AudioStream" uid="uid://bm0fp425jt5t8" path="res://sound/amb/amb_drone.mp3" id="9_t45a1"]
 [ext_resource type="PackedScene" uid="uid://cbbee5kxc5sk6" path="res://systems/Farming Plot/farming_plot.tscn" id="11_fvngo"]
 [ext_resource type="PackedScene" uid="uid://dyn1i33jbdurx" path="res://objects/Lamp/lamp_light.tscn" id="12_d1wm5"]
+[ext_resource type="Resource" uid="uid://c4ri6e10v7vwe" path="res://systems/Day Orchestrator/days/d4.tres" id="23_e74dm"]
+[ext_resource type="Resource" uid="uid://n18iv8pihgj7" path="res://systems/Day Orchestrator/days/d5.tres" id="24_ixwlw"]
+[ext_resource type="Resource" uid="uid://bio4ca8d3v7vr" path="res://systems/Day Orchestrator/days/d6.tres" id="25_b5h5a"]
 
 [sub_resource type="Gradient" id="Gradient_d1wm5"]
 offsets = PackedFloat32Array(0, 0.89805824, 1)
@@ -58,7 +61,7 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxuq"]
 size = Vector2(96, 88)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_upj60"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e74dm"]
 texture = ExtResource("7_8r7ov")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -552,7 +555,7 @@ texture = ExtResource("7_8r7ov")
 9:12/0 = 0
 10:12/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ue16g"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ixwlw"]
 texture = ExtResource("4_8fyfc")
 4:8/0 = 0
 5:8/0 = 0
@@ -561,8 +564,8 @@ texture = ExtResource("4_8fyfc")
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Grass"
 terrain_set_0/terrain_0/color = Color(0.7067656, 0, 0.34866878, 1)
-sources/0 = SubResource("TileSetAtlasSource_upj60")
-sources/1 = SubResource("TileSetAtlasSource_ue16g")
+sources/0 = SubResource("TileSetAtlasSource_e74dm")
+sources/1 = SubResource("TileSetAtlasSource_ixwlw")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_upj60"]
 polygon = PackedVector2Array(-2, 0, 2, 0, 2, 2, -2, 2)
@@ -576,7 +579,7 @@ polygon = PackedVector2Array(-4, 4, 4, 4, 2, 6, -2, 6)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a4y5s"]
 polygon = PackedVector2Array(-4, 4, 4, 4, 2, 6, -2, 6)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8r7ov"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b5h5a"]
 texture = ExtResource("7_8r7ov")
 0:12/0 = 0
 1:12/0 = 0
@@ -596,7 +599,7 @@ texture = ExtResource("7_8r7ov")
 
 [sub_resource type="TileSet" id="TileSet_mm1bc"]
 occlusion_layer_0/light_mask = 1
-sources/1 = SubResource("TileSetAtlasSource_8r7ov")
+sources/1 = SubResource("TileSetAtlasSource_b5h5a")
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_8r7ov"]
 tile_data = PackedInt32Array(0, 65536, 1, 65536, 0, 2, 131072, 0, 2, 196608, 0, 2, 262144, 0, 3, 1, 131072, 0, 2, 131072, 0, 3, 131072, 0, 4, 131072, 0, 5, 131072, 0, 6, 131072, 0, 7, 131072, 0, 8, 131072, 0, 9, 196608, 1, 65545, 0, 2, 131081, 0, 2, 196617, 0, 2, 262153, 0, 3)
@@ -607,7 +610,7 @@ polygon = PackedVector2Array(-4, 4, 0, 0, 4, 4, 0, 8)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_t45a1"]
 polygon = PackedVector2Array(-4, 4, 0, 0, 4, 4, 0, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fvngo"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u5kyu"]
 texture = ExtResource("8_t45a1")
 0:0/0 = 0
 0:0/0/y_sort_origin = 7
@@ -756,7 +759,7 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Fence"
 terrain_set_0/terrain_0/color = Color(0.7141871, 0, 0.29861137, 1)
-sources/0 = SubResource("TileSetAtlasSource_fvngo")
+sources/0 = SubResource("TileSetAtlasSource_u5kyu")
 pattern_0 = SubResource("TileMapPattern_8r7ov")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d1wm5"]
@@ -871,6 +874,7 @@ _data = {
 y_sort_enabled = true
 script = ExtResource("1_upj60")
 tv_path = "uid://da33v0h0ptytw"
+death_path = "uid://bfj0eoxj8x3u8"
 
 [node name="EnemySpawner" parent="." unique_id=225147053 instance=ExtResource("2_kalnr")]
 spawn_bounds = Rect2(-224, 0, 768, 760)
@@ -1055,7 +1059,7 @@ position = Vector2(528, 232)
 scale = Vector2(-1, 1)
 
 [node name="DayOrchestrator" parent="." unique_id=134384307 node_paths=PackedStringArray("day_night_modulate", "ambience_world", "rain_particles", "lamp_lights", "rain_audio") groups=["day_orchestrator"] instance=ExtResource("2_j6lki")]
-day_database = Array[ExtResource("3_ttyes")]([ExtResource("4_hryt7"), ExtResource("5_qgfsw"), ExtResource("6_qgfsw"), ExtResource("7_ue16g")])
+day_database = Array[ExtResource("3_ttyes")]([ExtResource("4_hryt7"), ExtResource("5_qgfsw"), ExtResource("6_qgfsw"), ExtResource("7_ue16g"), ExtResource("23_e74dm"), ExtResource("24_ixwlw"), ExtResource("25_b5h5a")])
 day_color = Color(1, 0.64705884, 0.45490196, 1)
 day_night_modulate = NodePath("../DayNightModulate")
 ambience_world = NodePath("../AmbienceWorld")
@@ -1081,6 +1085,7 @@ position = Vector2(-176, 768)
 [node name="GenTP" type="Node2D" parent="." unique_id=1230417864 groups=["secret_tp"]]
 position = Vector2(492, 784)
 
+[connection signal="enemy_spawned" from="EnemySpawner" to="." method="_on_enemy_spawner_enemy_spawned"]
 [connection signal="timeout" from="RandomScareAmbienceTimer" to="DayOrchestrator" method="_on_random_scare_ambience_timer_timeout"]
 [connection signal="body_entered" from="HouseShadowArea" to="." method="_on_house_shadow_area_body_entered"]
 [connection signal="body_exited" from="HouseShadowArea" to="." method="_on_house_shadow_area_body_exited"]

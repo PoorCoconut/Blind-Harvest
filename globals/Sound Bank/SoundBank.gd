@@ -40,10 +40,14 @@ var sfx_dict : Dictionary = {
 	#Others
 	"harp" : preload("uid://nf70u5evr72y"),
 	"rooster" : preload("uid://kwq5lnlvgwb8"),
+	"news_horror" : preload("uid://hglo83xp8qxb"),
 	
 	#UI
 	"ui_click" : preload("uid://elkeme224vj"),
 	"ui_back" : preload("uid://uma66unabe3j"),
+	"ui_buy" : preload("uid://cjo7n2b5n1u7j"),
+	"ui_pause1" : preload("uid://ruf13h435u4i"),
+	"ui_pause2" : preload("uid://ciul35ogj8lgn"),
 }
 
 #Here is an example:

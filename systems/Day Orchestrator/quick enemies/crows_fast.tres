@@ -7,6 +7,6 @@
 script = ExtResource("2_q1dsm")
 enemy_scene = ExtResource("1_sva17")
 enemy_id = "crow"
-max_active_at_once = 6
-spawn_interval = 45.0
+max_active_at_once = 12
+spawn_interval = 30.0
 metadata/_custom_type_script = "uid://bu4mho63fv1vf"

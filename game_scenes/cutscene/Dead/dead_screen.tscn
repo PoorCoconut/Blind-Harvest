@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bfj0eoxj8x3u8"]
+
+[ext_resource type="Script" uid="uid://c7t1xc2ixcevp" path="res://game_scenes/cutscene/Dead/dead_screen.gd" id="1_1sgtc"]
+[ext_resource type="AudioStream" uid="uid://cg853ws1jcxa8" path="res://sound/sfx/sfx_heartbeat.mp3" id="2_22nh2"]
+
+[node name="DeadScreen" type="Control" unique_id=1424331557]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1sgtc")
+menu_path = "uid://camlgx74mlna4"
+farm_path = "uid://dgbwxfljplkvr"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=339830232]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Text" type="RichTextLabel" parent="." unique_id=1410280378]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[wave]███ ███ ████.
+
+Press R to Retry.
+Press any button to go back to menu."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeartBeat" type="AudioStreamPlayer" parent="." unique_id=1030042073]
+stream = ExtResource("2_22nh2")
+autoplay = true

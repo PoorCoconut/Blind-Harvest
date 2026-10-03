@@ -169,7 +169,7 @@ _data = {
 [node name="RabidDog" type="CharacterBody2D" unique_id=770598614]
 script = ExtResource("1_28qqc")
 avoid_turn_speed = 300.0
-chase_speed = 80.0
+chase_speed = 75.0
 
 [node name="Visuals" type="Node2D" parent="." unique_id=1002383275]
 position = Vector2(0, -8)

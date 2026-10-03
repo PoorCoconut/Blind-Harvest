@@ -31,13 +31,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	#if GameManager.CURRENT_WORLD_STATE == "SOMETHING":
 		#return
 	
-	if event.is_action_pressed("ui_cancel"): 
+	if event.is_action_pressed("pause"): 
 		if get_tree().paused:
 			hide_menu()
 		else:
 			show_menu()
 
 func show_menu() -> void:
+	SoundBank.play_sfx("ui_pause1")
 	self.show()
 	get_tree().paused = true 
 	
@@ -79,18 +80,14 @@ func _on_vol_sfx_slider_value_changed(value: float) -> void:
 
 ##NAV BUTTONS AND SAVING
 func _on_menu_button_pressed() -> void:
-	var player = get_tree().get_first_node_in_group("player")
-	if player:
-		GameManager.save_player_position(player.global_position)
-	
-	# THE FIX: Instantly snap the audio back to normal before the level gets deleted!
 	if muffle_tween and muffle_tween.is_valid(): 
 		muffle_tween.kill()
 	low_pass_filter.cutoff_hz = 20500.0
 	AudioServer.set_bus_effect_enabled(music_bus_idx, 0, false)
-	
+	SoundBank.play_sfx("ui_back", Vector2.ZERO, 0.7, 1.2, 4096, 10)
 	get_tree().paused = false
 	LoadingScreen.load_level(menu_path)
 
 func _on_back_button_pressed() -> void:
+	SoundBank.play_sfx("ui_back", Vector2.ZERO, 0.7, 1.2, 4096, 10)
 	hide_menu()
