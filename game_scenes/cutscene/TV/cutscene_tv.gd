@@ -60,6 +60,10 @@ var dialogue : Dictionary = {
 			"bottom" : "Seaqua's waterline is incredibly helpful as it allows for rapid water flow. Although our local government has issued free water for all, being cut of the water flow service is rather bothersome."
 		},
 		{
+			"top": "Water pumps, to fill up your watering can, can usually be found at the bottom left corner of the farm",
+			"bottom": "Generators, to charge your light, can usually be found at the bottom right corner of the farm"
+		},
+		{
 			"top": "Forwarned is forearmed.\nThis concludes the report for today, have a great day.",
 			"image": Vector2i(0, 0),
 		}
@@ -80,7 +84,7 @@ var dialogue : Dictionary = {
 		{
 			"top" : "If you find any suspicious activity in your area, DO NOT ENGAGE.\n\nYour LIFE will be in GREAT DANGER if you do!",
 			"image" : Vector2i(1,1),
-			
+			"bottom" : "Turn off your lights to save energy! Don't forget to charge them too! If you have generators, which farms usually do, use them!"
 		},
 		{
 			"top":"When dealing with this stranger, it is advised not to approach them. Listen vigilantly and rush towards your house.",
